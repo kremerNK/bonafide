@@ -18,6 +18,12 @@ exports = module.exports = function (req, res) {
 	// 		locals.products = products
 	// 		next(err)
 	// 	})
+	Product.model.find().exec(function(err, products){
+		if(err){
+			console.log('error');
+		}
+		console.log(products[0].image.secure_url);
+	})
 
 	view.query('products', Product.model.find())
 	

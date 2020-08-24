@@ -20,3 +20,38 @@ body {
     
     
 }
+
+.shop-body {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.search-product {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-sorting {
+    width: 100%;
+
+    height: 50px;
+    background-color: lightblue;
+}
+
+.product {
+    display: grid;
+    width: 70%
+}
+
+.items {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+#item {
+    width: 33%;
+}
