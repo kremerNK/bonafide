@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+}
+
+#wood-pane {
+    background-image: url('https://www.bonafidejuicery.com/wp-content/uploads/2017/09/kraftbackground-1.jpg');
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}  
+
+#wood-pane > p {
+    color: #51a246;
+    font-weight: 600;
+    line-height: 0.5;
+    font-size: 44px;
+    font-family: 'Dancing Script', cursive;
+    
+    
+} 
+
+#menu {
+    padding-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+ 
+#menu > img {
+    width: 90%;
+}
+
+#menu > img:last-child {
+    padding-top: 25px;
+}

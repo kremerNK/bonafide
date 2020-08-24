@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/shop.css">
+    <title>Document</title>
+</head>
+<body>
+    {{>nav}}
+    {{#each products}}
+        <p>{{title}}</p>
+    {{/each}}
+        <div id='wood-pane'>
+            <p>Products</p>
+        </div>
+        <section class='shop'>
+            <div class='search-product'>
+
+            </div>
+            <div class='product'>
+                {{#each products}}
+                    <p>{{product}}</p>
+                {{/each}}
+            </div>
+        </section>
+    {{>footer}}
+    <script src='/js/shop.js'></script>
+</body>
+</html>      

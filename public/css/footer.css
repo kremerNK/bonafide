@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.spacer {
+    flex: 1; 
+}
+
+/* #test {
+    min-height: 100vh;
+} */
+
+#footer {
+    background-color: #51a246;
+}
+
+#footer > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px 0 40px;
+} 
+
+#footer > div > p {
+    color: white;
+}
+
+#footer > div > ul {
+    display: flex;
+}
+
+#footer > div > ul > li {
+    list-style: none;
+    padding: 0 7px 0 7px;
+    border-left: 1px solid white;
+    
+}
+
+#footer > div > ul > li > a {
+    color: white;
+}
+
+#footer > div > ul > li:last-child {
+    padding: 0 0 0 7px;
+    
+}
+
+#footer > div > ul > li:first-child {
+    border-left: none;
+}
