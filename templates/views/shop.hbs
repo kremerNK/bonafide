@@ -13,17 +13,63 @@
         </div>
         <section class='shop-body'>
             <div class='search-product'>
+                <div class='search'>
+                    <p>Product Search</p>
+                    <div>
+                        <input placeholder='Search products...'type="text">
+                        <button type='Submit' >Search</button>
+                    </div>
+                </div>
+                <div class='categories'>
+                    <p>Product Categories</p>
+                    <input type="checkbox" id="" name="" autocomplete="off" value="all">
+                    <label for="all">All</label><br>
+                    <input type="checkbox" id="" name="" autocomplete="off" value="bakery">
+                    <label for="bakery">Bakery</label><br>
+                    <input type="checkbox" id="" autocomplete="off" name="" value="collagen">
+                    <label for="collagen">Collagen</label><br>
+                    <input type="checkbox" id="" autocomplete="off" name="" value="essential-oils">
+                    <label for="essential-oils">Essential Oils</label><br>
+                    <input type="checkbox" id="" autocomplete="off" name="" value="gift-card">
+                    <label for="gift-card">Gift Card</label><br>
+                    <input type="checkbox" id="" autocomplete="off" name="" value="juice-cleanse">
+                    <label for="juice-cleanse">Juice Cleanse</label><br>
+                    <input type="checkbox" id="" autocomplete="off" name="" value="retail-products">
+                    <label for="retail-products">Retail Products</label><br>
+                    <input type="checkbox" id="" autocomplete="off" name="" value="seasonal-cleanses">
+                    <label for="seasonal-cleanses">Seasonal Cleanses</label><br>
 
+                </div>
             </div>
             <div class='product'>
                 <div class='shop-sorting'>
-
+                    <div>
+                        <i class="fas fa-th"></i>
+                        <i class="fas fa-list"></i>
+                        <select onchange='getSort()' name="" id="sort">
+                            <option value="default" selected='selected'>Default sorting</option>
+                            {{!-- <option value="popularity">Sort by popularity</option> --}}
+                            {{!-- <option value="rating">Sort by average rating</option> --}}
+                            <option value="latest">Sort by latest</option>
+                            <option value="lohi">Sort by price: low to high</option>
+                            <option value="hilo">Sort by price: high to low</option>
+                        </select>
+                    </div>
+                    <div> 
+                        <p>View: 
+                            <a href="">12</a> /
+                            <a href="">24</a> /
+                            <a href="">All</a>
+                        </p>
+                    </div>
                 </div>
                 <div class='items'>
                     {{#each products}}
                         <div id='item'>
+                            <input type="hidden" id='date-created' value='{{dateCreated}}'>
                             <img src="{{image.secure_url}}" alt="">
-                            <p>{{title}}</p>
+                            <p id='item-title'>{{title}}</p>
+                            <p id='item-price'>{{price}}</p>
                             <button>Add to Cart</button>
                         </div>
                     {{/each}}

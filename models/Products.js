@@ -16,8 +16,8 @@ Product.add({
     description1: { type: String},
     description2: { type: String,},
     price: { type: String},
-    
-	image: { type: Types.CloudinaryImage },
+    image: { type: Types.CloudinaryImage },
+    dateCreated: { type: Types.Date, default:Date.now }
 });
 
 Product.schema.virtual('content.full').get(function () {
