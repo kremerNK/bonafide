@@ -16,7 +16,7 @@
                 <div class='search'>
                     <p>Product Search</p>
                     <div>
-                        <input placeholder='Search products...'type="text">
+                        <input autocomplete="off" id='search-input' placeholder='Search products...'type="text">
                         <button type='Submit' >Search</button>
                     </div>
                 </div>
@@ -44,8 +44,8 @@
             <div class='product'>
                 <div class='shop-sorting'>
                     <div>
-                        <i class="fas fa-th"></i>
-                        <i class="fas fa-list"></i>
+                        <i id='items-grid' class="fas fa-th"></i>
+                        <i id='items-list' class="fas fa-list"></i>
                         <select onchange='getSort()' name="" id="sort">
                             <option value="default" selected='selected'>Default sorting</option>
                             {{!-- <option value="popularity">Sort by popularity</option> --}}
@@ -68,9 +68,12 @@
                         <div id='item'>
                             <input type="hidden" id='date-created' value='{{dateCreated}}'>
                             <img src="{{image.secure_url}}" alt="">
-                            <p id='item-title'>{{title}}</p>
-                            <p id='item-price'>{{price}}</p>
-                            <button>Add to Cart</button>
+                            <div>
+                                <p id='item-title'>{{title}}</p>
+                                <p id='item-price'>{{price}}</p>
+                                <button>Add to Cart</button>
+                            </div>
+                            
                         </div>
                     {{/each}}
                 </div>

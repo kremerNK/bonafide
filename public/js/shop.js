@@ -84,5 +84,92 @@ function getSort(){
 }
 
 
-///for grid/list, just make new class for list and
-//revert between the two w/ each choice selected
+//////////switch between grid and list view of items/////////
+
+const gridBtn = document.querySelector('#items-grid')
+const listBtn = document.querySelector('#items-list')
+const itemsDiv = document.querySelector('.items')
+const items = document.querySelectorAll("#item")
+gridBtn.classList.add('active')
+
+function activeBtn(target){
+    target.style.padding = '5px 10px 5px 10px';
+    target.style.border = '1px solid #13aff0'
+    target.style.margin = '0 -1px 0 -1px'
+    target.style.color = '#13aff0'
+}
+
+function deactiveBtn(target){
+    target.style.padding = '5px 10px 5px 10px';
+    target.style.border = '1px solid black'
+    target.style.margin = '0 -1px 0 -1px'
+    target.style.color = 'inherit'
+}
+
+(gridBtn).onclick = () => {
+    if (itemsDiv.classList.contains('activeList')) {
+        event.target.classList.toggle('active')
+        listBtn.classList.contains('active') ? 
+        (listBtn.classList.remove('active'), 
+        deactiveBtn(listBtn)) : null;
+        if (event.target.classList.contains('active')){
+            activeBtn(event.target)
+            itemsDiv.style.display = 'grid'
+            itemsDiv.classList.toggle('activeList') 
+            itemsDiv.classList.toggle('items')
+            items.forEach(item => item.classList.toggle('itemActive'))
+        }
+        else {
+            deactiveBtn(event.target)
+        }
+    }
+    else {
+        console.log('grid activated, no toggle');
+        return
+    }
+}
+
+listBtn.onclick = () => {
+    if (itemsDiv.classList.contains('activeList')){
+        return
+    }
+
+    else {
+        gridBtn.classList.contains('active') ? 
+        (gridBtn.classList.remove('active'), 
+        deactiveBtn(gridBtn)) : null;
+        event.target.classList.toggle('active')
+        console.log(event.target.classList);
+        if (event.target.classList.contains('active')){
+            activeBtn(event.target)
+            itemsDiv.classList.toggle('activeList') 
+            itemsDiv.classList.toggle('items')
+            items.forEach(item => item.classList.toggle('itemActive'))
+        }
+        else {
+            deactiveBtn(event.target)
+        }
+    }
+}
+
+
+//////////search products///////
+
+const searchInput = document.querySelector('#search-input')
+
+searchInput.onkeydown = (search) => {
+    let letterNumber = /^[0-9a-zA-Z]+$/;
+    var searchTerms = "";
+    if (search.key.length == 1 && search.key.match(letterNumber)) {
+        console.log(search.key);
+        console.log(searchTerms);
+        searchTerms += 'a'
+        
+    }
+    else {
+        
+    }
+    
+    console.log(searchTerms);
+    
+}

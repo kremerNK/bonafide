@@ -16,6 +16,7 @@ Product.add({
     description1: { type: String},
     description2: { type: String,},
     price: { type: String},
+    stock: { type: String, default: '0'},
     image: { type: Types.CloudinaryImage },
     dateCreated: { type: Types.Date, default:Date.now }
 });

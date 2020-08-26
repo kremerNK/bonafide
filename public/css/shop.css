@@ -81,8 +81,6 @@ body {
     padding: 0 10px 0 10px;
 }
 
-.shop-sorting > div > i {
-}
 
 .shop-sorting > div > i:hover {
     padding: 5px 10px 5px 10px;
@@ -91,6 +89,21 @@ body {
     cursor: pointer;
     color: #13aff0;
 } 
+
+#items-grid {
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #13aff0;
+    margin: 0 -1px 0 -1px;
+    cursor: pointer;
+    color: #13aff0;
+}
+
+
+#items-list {
+
+}
+
+
 
 .shop-sorting > p {
     margin: 0;
@@ -103,10 +116,31 @@ body {
 }
 
 .items {
+
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+}
 
+.activeList {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.itemActive {
+    color: greenyellow;
+    display: flex;   
+}
+
+.itemActive > img {
+    width: 10%;
+} 
+
+.items-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #item > img {
