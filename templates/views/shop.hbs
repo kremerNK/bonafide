@@ -22,21 +22,21 @@
                 </div>
                 <div class='categories'>
                     <p>Product Categories</p>
-                    <input type="checkbox" id="" name="" autocomplete="off" value="all">
+                    <input type="checkbox" class="checkbox" name="" autocomplete="off" value="all">
                     <label for="all">All</label><br>
-                    <input type="checkbox" id="" name="" autocomplete="off" value="bakery">
+                    <input type="checkbox" class="checkbox" name="" autocomplete="off" value="bakery">
                     <label for="bakery">Bakery</label><br>
-                    <input type="checkbox" id="" autocomplete="off" name="" value="collagen">
+                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="collagen">
                     <label for="collagen">Collagen</label><br>
-                    <input type="checkbox" id="" autocomplete="off" name="" value="essential-oils">
-                    <label for="essential-oils">Essential Oils</label><br>
-                    <input type="checkbox" id="" autocomplete="off" name="" value="gift-card">
+                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="essential-oil">
+                    <label for="essential-oil">Essential Oils</label><br>
+                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="gift-card">
                     <label for="gift-card">Gift Card</label><br>
-                    <input type="checkbox" id="" autocomplete="off" name="" value="juice-cleanse">
+                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="juice-cleanse">
                     <label for="juice-cleanse">Juice Cleanse</label><br>
-                    <input type="checkbox" id="" autocomplete="off" name="" value="retail-products">
+                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="retail-products">
                     <label for="retail-products">Retail Products</label><br>
-                    <input type="checkbox" id="" autocomplete="off" name="" value="seasonal-cleanses">
+                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="seasonal-cleanses">
                     <label for="seasonal-cleanses">Seasonal Cleanses</label><br>
 
                 </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class='items'>
                     {{#each products}}
-                        <div id='item'>
+                        <div id='item' value='{{category}}'>
                             <input type="hidden" id='date-created' value='{{dateCreated}}'>
                             <img src="{{image.secure_url}}" alt="">
                             <div>

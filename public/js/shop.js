@@ -156,20 +156,75 @@ listBtn.onclick = () => {
 //////////search products///////
 
 const searchInput = document.querySelector('#search-input')
+var searchTerms = "";
 
 searchInput.onkeydown = (search) => {
-    let letterNumber = /^[0-9a-zA-Z]+$/;
-    var searchTerms = "";
-    if (search.key.length == 1 && search.key.match(letterNumber)) {
-        console.log(search.key);
-        console.log(searchTerms);
-        searchTerms += 'a'
-        
-    }
-    else {
-        
-    }
-    
-    console.log(searchTerms);
+    window.setTimeout( function () {
+        const items = document.querySelectorAll("#item")
+        const letterNumber = /^[0-9a-zA-Z\s]+$/;
+        if (search.key.length == 1 && search.key.match(letterNumber)) {
+            (searchTerms.length > 0) ? searchTerms += search.key : searchTerms = search.key
+        }
+        else if (search.key == 'Backspace') {
+            searchTerms = searchTerms.slice(0, -1)
+            console.log(search.target.value);
+        }
+        items.forEach(item => {
+            const itemTitle = item.querySelector('#item-title').textContent
+            // const regex = searchTerms.toLowerCase()
+            const regex = search.target.value
+            if (!itemTitle.toLowerCase().match(regex)){
+                item.style.display = 'none';
+                
+            }
+            else {
+                item.style.display = 'flex';
+                item.style.flexDirection = 'column'
+                item.style.alignItems = 'center'
+            }
+        })
+    }, 10)
     
 }
+
+/////////search by Product Categories /////////
+
+const checkBoxes = document.querySelectorAll('.checkbox')
+let selectedBoxes = [];
+
+
+function filterByCategory(selection){
+    if (selection.includes('all') || selection.length == 0){
+        for (i=0; i < allItems.length; i++){
+            allItems[i].style.display = 'flex';
+            allItems[i].style.flexDirection = 'column'
+            allItems[i].style.alignItems = 'center'
+        }
+        return
+    }
+    for (i=0; i < allItems.length; i++){
+        if (selection.includes([...allItems][i].getAttribute('value'))){
+            allItems[i].style.display = 'flex';
+            allItems[i].style.flexDirection = 'column'
+            allItems[i].style.alignItems = 'center'
+        }
+        else {
+            allItems[i].style.display = 'none';
+        }
+    }
+}
+
+checkBoxes.forEach((checkBox) => {
+      checkBox.addEventListener('click', function(){
+        this.classList.toggle('active-checkbox')
+        if (this.classList.contains('active-checkbox')){
+            selectedBoxes.push(this.value)
+            filterByCategory(selectedBoxes)
+    }
+        else {
+            let value = this.value
+            selectedBoxes = selectedBoxes.filter(function(box) { return box !== value})
+            filterByCategory(selectedBoxes)
+        }
+      })
+}) 

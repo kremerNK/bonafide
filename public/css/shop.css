@@ -147,3 +147,6 @@ body {
     width: 100%;
 }
 
+.checkbox:hover {
+    cursor: pointer;
+}
