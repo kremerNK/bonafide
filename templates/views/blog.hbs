@@ -12,7 +12,37 @@
         <div id='wood-pane'>
             <p>Blog</p>
         </div>
+        <section class='blog-section'>
+            <div id='blog'>
+                {{#each post}}
+                    <div class='blog-post'>
+                        <img src="{{image.secure_url}}" alt="">
+                        <p>{{title}}</p>
+                        <p>{{author}}</p>
+                        <p><a href="">Continue reading..</a></p>
+                    </div>
+                    
+                {{/each}}
+            </div>
+            
+            <div id='archives'>
+                <div>
+                    <p>Recent Posts</p>
+                    {{#each postLimit5}}
+                        <a href="">{{title}}</a>
+                    {{/each}}
+                </div>
+                <div>
+                    <p>Archives</p>
+                    {{#each dates}}
+                        <a href="">{{this}}</a>
+                    {{/each}}
+                </div>
+            </div>
+        </section>
+        
+
     {{>footer}}
     <script src='/js/blog.js'></script>
 </body>
-</html>   
+</html>     

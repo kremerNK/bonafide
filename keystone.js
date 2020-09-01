@@ -12,7 +12,7 @@ var mongoose = require('mongoose')
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
 
-keystone.init({
+keystone.init({ 
 	'name': 'bonafide',
 	'brand': 'bonafide',
  

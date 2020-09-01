@@ -38,6 +38,7 @@ exports = module.exports = function (app) {
 	app.get('/menu', routes.views.menu);
 	app.get('/shop', routes.views.shop);
 	app.get('/blog', routes.views.blog);
+	app.get('/blog/:post', routes.views.blogPosts)
 	app.get('/employement', routes.views.employement);
 	app.get('/contact', routes.views.contact);
 	app.get('/order-now', routes.views.ordernow);
@@ -51,7 +52,7 @@ exports = module.exports = function (app) {
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 
 	 
-	 
+	  
 
 };
 

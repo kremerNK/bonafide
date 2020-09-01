@@ -17,7 +17,7 @@ function defaultSort(array, itemsDiv){
     itemsDiv.textContent = '';
     for (i=0; i < array.length; i++){
         itemsDiv.appendChild(array[i].cloneNode(true))
-    }
+    } 
 
 }
 

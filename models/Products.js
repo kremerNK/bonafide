@@ -28,3 +28,4 @@ Product.schema.virtual('content.full').get(function () {
 
 Product.defaultColumns = 'title';
 Product.register();
+ 

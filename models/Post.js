@@ -12,21 +12,29 @@ var Post = new keystone.List('Post', {
 });
 
 Post.add({
-	title: { type: String, required: true },
-	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
-	author: { type: Types.Relationship, ref: 'User', index: true },
-	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
-	image: { type: Types.CloudinaryImage },
-	content: {
-		brief: { type: Types.Html, wysiwyg: true, height: 150 },
-		extended: { type: Types.Html, wysiwyg: true, height: 400 },
-	},
-	categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
+    title: { type: String, required: true },
+    author: { type: String, required: true, default:' '},
+    content: { type: String},
+    image: { type: Types.CloudinaryImage },
+    category: { type: String, default:' '},
+    // monthCreated: { type: Types.Select, options: 'January, February, March, April, May, \
+    // June, July, August, September, October, November, December', 
+    // default: new Date().toLocaleString('default', { month: 'long'})},
+    // yearCreated: { type: String, default: new Date().getFullYear() },
+    dateCreated: { type: Types.Date, default: Date.now}
+    
+
+
 });
 
 Post.schema.virtual('content.full').get(function () {
 	return this.content.extended || this.content.brief;
 });
 
-Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Post.schema.virtual('formattedDate').get(function(){
+    return this._.dateCreated.format('MMMM YYYY');
+})
+
+Post.defaultColumns = 'title';
 Post.register();
+ 

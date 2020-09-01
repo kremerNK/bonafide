@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var Post = keystone.list('Post')
 
 exports = module.exports = function (req, res) {
 
@@ -8,12 +9,23 @@ exports = module.exports = function (req, res) {
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
 	locals.section = 'home';
-
-	// Render the view
-	view.render('blog');
+	
+	
+	Post.model.find({}).sort('-dateCreated').exec(function(err, post) {
+		console.log(post[0]);
+		var dates = []
+		post.forEach(post => {
+			dates.push(post.formattedDate)
+		})
+		dates = [...new Set(dates)]
+		view.query('post', Post.model.find({}).sort('-dateCreated'))
+		view.query('postLimit5', Post.model.find({}).sort('-dateCreated').limit(5))
+		// Render the view
+		view.render('blog', {dates:dates});
+	})
 };
     
-
+  
 
 
 //original blog.js file below//
