@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+}
+
+#wood-pane {
+    background-image: url('https://www.bonafidejuicery.com/wp-content/uploads/2017/09/kraftbackground-1.jpg');
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}  
+ 
+#wood-pane > p {
+    color: #51a246;
+    font-weight: 600;
+    line-height: 0.5;
+    font-size: 44px;
+    font-family: 'Dancing Script', cursive;
+}
+
+.post-section { 
+    display: flex;
+    padding: 0 40px 0 40px;
+    margin: 40px 0 40px 0;
+}
+
+
+#post {
+    width: 80%;
+    border-right: 1px solid #eaeaea;
+}
+
+#post > img {
+    width: 90%;
+    /* display: block;
+    margin: 0 auto; */
+}
+
+#post-author {
+    margin-bottom: 40px;
+}   
+
+#post-title {
+    color: #07b515;
+    font-family: 'Oswald';
+    font-size: 34px;
+    margin: 25px 0 25px 0;
+}
+
+#blog-search {
+    width: 20%;
+    padding: 0 20px 0 20px;
+}

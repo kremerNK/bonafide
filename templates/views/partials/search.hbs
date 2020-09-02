@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/css/search.css">
+
+<div id='archives'>
+    <div>
+        <input type="text" placeholder='Search...'>
+    </div>
+    <div>
+        <p>Recent Posts</p>
+        {{#each postLimit5}}
+            <a href="/blog/{{slug}}">{{title}}</a>
+        {{/each}}
+    </div>
+    <div>
+        <p>Archives</p>
+        {{#each dates}}
+
+            <a href="">{{this}}</a>
+        {{/each}}
+    </div>
+</div> 

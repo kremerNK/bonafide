@@ -2,17 +2,17 @@ var keystone = require('keystone');
 var Post = keystone.list('Post')
 
 exports = module.exports = function (req, res) {
-
+	console.log(req);
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
-	locals.section = 'home';
+	locals.section = 'blog';
 	
-	
+	  
 	Post.model.find({}).sort('-dateCreated').exec(function(err, post) {
-		console.log(post[0]);
+		
 		var dates = []
 		post.forEach(post => {
 			dates.push(post.formattedDate)
@@ -24,7 +24,7 @@ exports = module.exports = function (req, res) {
 		view.render('blog', {dates:dates});
 	})
 };
-    
+     
   
 
 

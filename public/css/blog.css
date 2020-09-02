@@ -41,17 +41,3 @@ body {
     height: 150px;
     width: 175px;
 }
-
-#archives {
-    width: 25%;
-}
-
-#archives div {
-    display: flex;
-    flex-direction: column;
-}
-
-#archives p:first-child {
-    border-left: 2.5px solid #13aff0;
-    padding-left: 10px;
-}

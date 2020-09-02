@@ -1,0 +1,32 @@
+#archives {
+    width: auto;
+}
+
+#archives div {
+    display: flex;
+    flex-direction: column;
+}
+
+#archives p:first-child {
+    border-left: 2.5px solid #13aff0;
+    padding-left: 10px;
+}
+
+#archives > div > p{
+    font-weight: bold;
+}
+
+#archives > div > a {
+    text-decoration: none;
+    color: black;
+    padding: 6px 0px 6px 0px;
+    border-top: 1px solid #eaeaea;
+}
+#archives > div > a:last-child {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+#archives > div > a:hover{
+    color: #13aff0
+}

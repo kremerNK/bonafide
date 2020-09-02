@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/blogPost.css">
+    <title>Document</title>
+</head>
+<body>
+    {{>nav}}
+    
+        
+        <div id='wood-pane'>
+            <p>Blog</p>
+        </div>
+        
+        
+        <section class='post-section'>
+            <div id='post'>
+                <img src="{{data.post.image.secure_url}}" alt="">
+                <h5 id='post-title'>{{data.post.title}}</h5>
+                <p id='post-author'><i class='far fa-user'></i> {{data.post.author}} -    
+                <i class='far fa-calendar-alt'></i> {{data.post.formattedDate}}</p>
+                {{{data.post.testContent.html}}}
+            </div>
+            <div id='blog-search'>
+                {{>search}}
+            </div>  
+        </section>
+
+    {{>footer}}
+    <script src='/js/blogPost.js'></script>
+</body>
+</html>            
