@@ -13,12 +13,21 @@
         <p>Search</p>
     </div>
     <section class='month-section'>
-        <div>
-            <p>test</p>
+        <div id='blog'>
+            {{#each month}}
+            <div class='blog-post'>
+                <img src="{{image.secure_url}}" alt="">
+                <p>{{title}}</p>
+                <p>{{author}}</p>
+                <p><a href="/blog/{{slug}}">Continue reading..</a></p>
+            </div>
+                
+          
+            {{/each}}
         </div>
         {{>search}}
     </section>
     {{>footer}}
     <script src='/js/month.js'></script>
 </body>
-</html>
+</html>   

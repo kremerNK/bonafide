@@ -2,7 +2,7 @@ var keystone = require('keystone');
 var Post = keystone.list('Post')
 
 exports = module.exports = function (req, res) {
-	console.log(req);
+
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 
@@ -11,17 +11,35 @@ exports = module.exports = function (req, res) {
 	locals.section = 'blog';
 	
 	  
-	Post.model.find({}).sort('-dateCreated').exec(function(err, post) {
+	Post.model.find({}).sort('-dateCreated').exec(function(err, result) {
 		
 		var dates = []
-		post.forEach(post => {
-			dates.push(post.formattedDate)
+		result.forEach(result => {
+			dates.push({formatted: result.formattedDate, year: result.formattedYear,
+                month: result.formattedMonth})
 		})
-		dates = [...new Set(dates)]
+		
+		var dateSet = []
+        var formattedDates = []
+        for (i=0; i < dates.length; i++){
+            if (dateSet.length == 0){
+                dateSet.push(dates[i])
+                formattedDates.push(dates[i].formatted)
+            } else {  
+                if (formattedDates.includes(dates[i].formatted)){
+                
+                } else {
+                
+                formattedDates.push(dates[i].formatted)
+                dateSet.push(dates[i])
+                }
+            }
+        }
+
 		view.query('post', Post.model.find({}).sort('-dateCreated'))
 		view.query('postLimit5', Post.model.find({}).sort('-dateCreated').limit(5))
 		// Render the view
-		view.render('blog', {dates:dates});
+		view.render('blog', {dates:dateSet});
 	})
 };
      

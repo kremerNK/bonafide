@@ -2,7 +2,6 @@ var keystone = require('keystone');
 var Post = keystone.list('Post')
 
 exports = module.exports = function (req, res) {
-    console.log(req.params);
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 
@@ -20,28 +19,45 @@ exports = module.exports = function (req, res) {
     view.on('init', function (next) {
         var q = keystone.list('Post').model.findOne({
             slug: locals.filters.post,
-            // slug: 'blog-1',
         })
 
         q.exec(function (err, results) {
-            // console.log(results);
             locals.data.post = results;
             next(err)
             
         })
     }) 
 
-    Post.model.find({}).sort('-dateCreated').exec(function(err, post) {
+    Post.model.find({}).sort('-dateCreated').exec(function(err, result) {
 		
 		var dates = []
-		post.forEach(post => {
-			dates.push(post.formattedDate)
-		})
-		dates = [...new Set(dates)]
+		result.forEach(result => {
+			dates.push({formatted: result.formattedDate, year: result.formattedYear,
+                month: result.formattedMonth})
+        })
+        
+        var dateSet = []
+        var formattedDates = []
+        for (i=0; i < dates.length; i++){
+            if (dateSet.length == 0){
+                dateSet.push(dates[i])
+                formattedDates.push(dates[i].formatted)
+            } else {  
+                if (formattedDates.includes(dates[i].formatted)){
+        
+                } else {
+ 
+                formattedDates.push(dates[i].formatted)
+                dateSet.push(dates[i])
+                }
+            }
+        }
+        
+
 		view.query('post', Post.model.find({}).sort('-dateCreated'))
 		view.query('postLimit5', Post.model.find({}).sort('-dateCreated').limit(5))
 		// Render the view
-		view.render('blogPost', {dates:dates}); 
+		view.render('blogPost', {dates:dateSet}); 
 	})
     
     // Load other posts

@@ -2,3 +2,13 @@ h5 {
     color: blue;
     text-align: center;
 }
+
+.section-404 {
+    display: flex;
+    padding: 0 40px 0 40px;
+    margin: 40px 0 40px 0;
+}
+
+.section-404 > div {
+    width: 100%;
+}

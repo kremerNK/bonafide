@@ -25,6 +25,8 @@ body {
     justify-content: space-around;
     width: 90%;
     margin: 0 auto;
+    padding: 0 40px 0 40px;
+    margin: 40px 0 40px 0;
 }
 
 #blog {
@@ -40,4 +42,4 @@ body {
 .blog-post > img {
     height: 150px;
     width: 175px;
-}
+} 

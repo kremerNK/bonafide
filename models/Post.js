@@ -38,7 +38,7 @@ Post.schema.virtual('formattedYear').get(function(){
 })
 
 Post.schema.virtual('formattedMonth').get(function(){
-    return this._.dateCreated.format('MMMM');
+    return this._.dateCreated.format('M');
 })
 
 Post.defaultColumns = 'title';
