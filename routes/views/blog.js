@@ -1,6 +1,6 @@
 var keystone = require('keystone');
 var Post = keystone.list('Post')
-
+ 
 exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
@@ -10,7 +10,7 @@ exports = module.exports = function (req, res) {
 	// item in the header navigation.
 	locals.section = 'blog';
 	
-	  
+	   
 	Post.model.find({}).sort('-dateCreated').exec(function(err, result) {
 		
 		var dates = []

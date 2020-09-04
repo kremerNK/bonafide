@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/employment.css">
+     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"> 
+    <title>Document</title>
+</head>
+<body> 
+    {{>nav}}
+        <div id='wood-pane'>
+            <p>Employment</p>    
+        </div>
+        <section class='employment-section'>
+            <div class='employment-header'>
+                <h3>Apply With Us Now</h3>
+                <p>Bona Fide Juicery is looking for team members that are energetic, 
+                    excited, and eager about promoting a healthy lifestyle.</p>
+            </div>
+            <div class='employment-form'>
+                <form method="post" action="">
+                    <input type="hidden" name="action" value="contact">
+                    <div id='name'>
+                        <p>Name <span style='color: #790000'>*</span></p>
+                        
+                        <div>
+                            <span>
+                                <input name='namefirst' id='firstname-input' type="text">
+                                <label for="firstname-input">First</label>
+                            </span>
+                            <span>
+                                
+                                <input name='namelast' id='lastname-input'type="text">
+                                <label for="lastname-input">Last</label>
+                            </span>
+                        </div>
+                        
+                        
+                    </div>
+                    <div id='email'>
+                        <p>Email <span style='color: #790000'>*</span></p>
+                        <input name='email' type="text">
+                    </div>
+                    <div id='phone'>
+                        <p>Phone <span style='color: #790000'>*</span></p>
+                        <input id='phone-input' name='phone' type="text">
+                    </div>
+                    <div id='role'>
+                        <p>Job Role <span style='color: #790000'>*</span></p>
+                        <select name="role" id="" multiple='multiple' size='4'>
+                            <option value="barista">Barista</option>
+                            <option value="juicer">Juicer/ Back of House (De Pere Only)</option>
+                            <option value="assistmanager">Assistant Manager</option>
+                            <option value="manager">Manager</option>
+                        </select>
+                    </div> 
+                    <div id='hours-available'>
+                        <p>Hours Available</p>
+                        
+                        <textarea name="hoursavailable" id="" rows="10"></textarea>
+                    </div>
+                    <div id='pay'>
+                        <p>Desired Pay</p>
+                        <input name='desiredpay' type="text">
+                    </div>
+                    <div id='locations'>
+                        <p>Locations Applied For <span style='color: #790000'>*</span></p>
+                        <select name="locationsapplied" id="" multiple='multiple' size='2'>
+                            <option value="depere">De Pere, WI</option>
+                            <option value="appleton">Appleton, WI</option>
+                        </select>
+                        <p>May select more than one</p>
+                    </div>
+                    <div id='start-date'>
+                        <p>Date Available to Start</p>
+                        <input name='startdate' type="date">
+                    </div>
+                    <div id='skills'>
+                        <p>Cover Letter or Special Skills</p>
+                        <textarea name="skills" id="" rows="10"></textarea>
+                    </div>
+                    <div id='resume'>   
+                        <p>Resume Upload</p>
+                        <input name='resume' type="file">
+                    </div>
+                    <button id='submit' type='submit'>Submit</button>
+                </form>
+            </div>
+        </section> 
+        
+    {{>footer}}
+    <script src='/js/employment.js'></script>
+</body>
+</html>   

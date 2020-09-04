@@ -33,7 +33,7 @@ Enquiry.schema.post('save', function () {
 	if (this.wasNew) {
 		this.sendNotificationEmail();
 	}
-});
+}); 
 
 Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 	if (typeof callback !== 'function') {
@@ -74,3 +74,4 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 Enquiry.defaultSort = '-createdAt';
 Enquiry.defaultColumns = 'name, email, enquiryType, createdAt';
 Enquiry.register();
+ 

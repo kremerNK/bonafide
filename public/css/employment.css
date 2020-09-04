@@ -1,0 +1,157 @@
+body {
+    margin: 0;
+}
+
+#wood-pane {
+    background-image: url('https://www.bonafidejuicery.com/wp-content/uploads/2017/09/kraftbackground-1.jpg');
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}  
+
+#wood-pane > p {
+    color: #51a246;
+    font-weight: 600;
+    line-height: 0.5;
+    font-size: 44px;
+    font-family: 'Dancing Script', cursive;
+}
+
+.employment-section {
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    padding: 5% 5% 5% 5%;
+}
+
+.employment-header {
+    width: 50%;
+}
+
+.employment-header > h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+}
+
+.employment-header > p {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.employment-form {
+    width: 50%;
+}
+
+.employment-form > form > div > p:first-child {
+    font-size: 1.3rem;
+    margin: 1.8rem 0 0.5rem 0;
+}
+
+#employment-form > form > div  p {
+    margin: 0 !important;
+}
+
+/* NAME */
+#name {
+
+} 
+
+#name > div > span {
+    display: flex;
+    flex-direction: column;
+}
+
+#name > div {
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+}
+
+#name > div > span:first-child {
+    margin-right: 2rem;
+}
+
+#name > div > span > label {
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    padding-left: 0.1rem;
+}
+
+/* EMAIL */
+#email > input {
+
+}
+
+/* PHONE  */
+
+/* JOB ROLE */
+#role {
+
+}
+
+#role > select > option {
+    font-size: 1.2rem;
+}
+
+/* HOURS AVAILABLE */
+#hours-available {
+
+}
+
+#hours-available > textarea {
+    width: 100%;
+    
+}
+
+/* DESIRED PAY */
+#pay {
+
+}
+
+/* LOCATIONS APPLIED */
+#locations {
+
+}
+
+#locations > p:last-child {
+    margin: 0.8rem 0 0 0;
+    font-size: 0.8rem;
+}
+
+#locations > select {
+    width: 100%;
+    height: 9rem;
+}
+
+#locations > select > option {
+    font-size: 1.1rem;
+}
+
+
+/* START DATE */
+
+#start-date {
+
+}
+
+/* SKILLS */
+#skills {
+
+}
+
+#skills > textarea {
+    width: 100%;
+}
+
+/* RESUME */
+#resume {
+
+}
+
+/* SUBMIT BTN */
+#submit {
+    margin-top: 2rem;
+}

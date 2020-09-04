@@ -29,26 +29,27 @@ body {
 #post {
     width: 80%;
     border-right: 1px solid #eaeaea;
+    margin-right: 40px;
 }
 
 #post > img {
-    width: 90%;
-    /* display: block;
-    margin: 0 auto; */
+    width: 100%;
+    display: block;
+    margin: 0 auto;
 }
 
 #post-author {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
 }   
 
 #post-title {
     color: #07b515;
     font-family: 'Oswald';
     font-size: 34px;
-    margin: 25px 0 25px 0;
 }
 
 #blog-search {
-    width: 20%;
-    padding: 0 20px 0 20px;
+    /* width: 20%; */
+    /* padding: 0 20px 0 20px; */
 }
+ 

@@ -22,15 +22,12 @@ body {
 }  
 .blog-section {
     display: flex;
-    justify-content: space-around;
-    width: 90%;
-    margin: 0 auto;
     padding: 0 40px 0 40px;
     margin: 40px 0 40px 0;
 }
 
 #blog {
-    width: 75%;
+    width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
