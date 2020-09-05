@@ -10,18 +10,18 @@ var Types = keystone.Field.Types;
      nocreate: true,
      noedit: true,
  })
-
+ 
  Application.add({
-    namefirst: { type: String },
-    namelast: { type: String }, 
-    email: {type: Types.Email },
-    phone: { type: String},
-    role: { type: String},
-    hoursavailable: { type: String },
-    desiredpay: { type: String}, 
-    locationsapplied: { type: String},
-    startdate: {type: String},
-    skills: {type: String},
+    namefirst: { type: String, required: true },
+    namelast: { type: String, required: true }, 
+    email: {type: Types.Email, required: true },
+    phone: { type: String, required: true},
+    role: { type: Types.TextArray, required: true},
+    hoursavailable: { type: String, required: true },
+    desiredpay: { type: String, required: true}, 
+    locationsapplied: { type: Types.TextArray, required: true},
+    startdate: {type: String, required: true},
+    skills: {type: String, required: true},
     // resume: {},
     createdAt: {type: Date, default: Date.now},
 

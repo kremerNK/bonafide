@@ -74,22 +74,49 @@ body {
     margin-right: 2rem;
 }
 
-#name > div > span > label {
+/* #name > div > span > label {
     font-size: 0.8rem;
     margin-top: 0.3rem;
     padding-left: 0.1rem;
+} */
+
+#name > div > span > p {
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0px;
+    padding-left: 0.1rem;
+}
+
+#name > div > span {
+    display: block;
 }
 
 /* EMAIL */
-#email > input {
+
+#email {
 
 }
 
-/* PHONE  */
+#email > input {
+    display: block;
+}
 
+
+/* PHONE  */
+#phone {
+
+}
+
+#phone > input {
+    display: block;
+}
 /* JOB ROLE */
 #role {
 
+}
+
+#role > select {
+    display: block;
 }
 
 #role > select > option {
@@ -103,12 +130,16 @@ body {
 
 #hours-available > textarea {
     width: 100%;
-    
+    display: block;
 }
 
 /* DESIRED PAY */
 #pay {
+    
+}
 
+#pay > input {
+    display: block;
 }
 
 /* LOCATIONS APPLIED */
@@ -124,6 +155,7 @@ body {
 #locations > select {
     width: 100%;
     height: 9rem;
+    display: block;
 }
 
 #locations > select > option {
@@ -137,6 +169,10 @@ body {
 
 }
 
+#start-date > input {
+    display: block;
+}
+
 /* SKILLS */
 #skills {
 
@@ -144,6 +180,7 @@ body {
 
 #skills > textarea {
     width: 100%;
+    display: block;
 }
 
 /* RESUME */
@@ -151,7 +188,48 @@ body {
 
 }
 
+#resume > input {
+    display: block;
+}
+
 /* SUBMIT BTN */
 #submit {
     margin-top: 2rem;
+}
+
+#flash-messages {
+    margin: 0 auto;
+}
+
+.has-error > p:first-child {
+    background-color: rgba(255, 0, 0, 0.4);
+    padding-left: 1px;
+}
+
+.has-error > span > p {
+    background-color: rgba(255, 0, 0, 0.4);
+    padding-left: 1px;
+}
+
+.has-error > label {
+    background-color: rgba(255, 0, 0, 0.4);
+   
+}
+
+p {
+    display: inline-block;
+    width: auto;
+}
+
+.application-submitted {
+    margin-top: 10vh;
+    text-align: center;
+    font-size: 2rem;
+  
+}
+
+.application-submitted > p {
+    margin: 0;
+    height: 100%;
+    font-size: 2rem;
 }

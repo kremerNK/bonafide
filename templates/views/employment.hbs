@@ -12,6 +12,36 @@
         <div id='wood-pane'>
             <p>Employment</p>    
         </div>
+        {{#if applicationSubmitted}}
+        <section class='application-submitted'>
+            <p>Application successfully submitted, thank you!</p>
+        </section>
+        
+        {{else}}
+        {{#if messages}}
+			<div id="flash-messages" class="container">
+				{{#if messages.info}}
+				<div class="alert alert-info">
+						{{{flashMessages messages.info}}}
+				</div>
+				{{/if}}
+				{{#if messages.success}}
+				<div class="alert alert-success">
+						{{{flashMessages messages.success}}}
+				</div>
+				{{/if}}
+				{{#if messages.warning}}
+				<div class="alert alert-warning">
+						{{{flashMessages messages.warning}}}
+				</div>
+				{{/if}}
+				{{#if messages.error}}
+				<div class="alert alert-danger">
+						{{{flashMessages messages.error}}}
+				</div>
+				{{/if}}
+			</div>
+		{{/if}}
         <section class='employment-section'>
             <div class='employment-header'>
                 <h3>Apply With Us Now</h3>
@@ -24,70 +54,74 @@
                     <div id='name'>
                         <p>Name <span style='color: #790000'>*</span></p>
                         
-                        <div>
+                        <div class='{{#if validationErrors.namefirst}}has-error{{/if}}'>
                             <span>
-                                <input name='namefirst' id='firstname-input' type="text">
-                                <label for="firstname-input">First</label>
+                                <input value='{{formData.namefirst}}' name='namefirst' id='firstname-input' type="text">
+                                {{!-- <label for="firstname-input">First</label> --}}
+                                <p>First</p>
                             </span>
                             <span>
                                 
-                                <input name='namelast' id='lastname-input'type="text">
-                                <label for="lastname-input">Last</label>
+                                <input value='{{formData.namelast}}'name='namelast' id='lastname-input'type="text">
+                                {{!-- <label for="lastname-input">Last</label> --}}
+                                <p>Last</p>
                             </span>
                         </div>
                         
                         
                     </div>
-                    <div id='email'>
+                    <div class='{{#if validationErrors.email}}has-error{{/if}}' id='email'>
                         <p>Email <span style='color: #790000'>*</span></p>
-                        <input name='email' type="text">
+                        <input value='{{formData.email}}' name='email' type="text">
                     </div>
-                    <div id='phone'>
+                    <div class='{{#if validationErrors.phone}}has-error{{/if}}' id='phone'>
                         <p>Phone <span style='color: #790000'>*</span></p>
-                        <input id='phone-input' name='phone' type="text">
+                        <input value='{{formData.phone}}' id='phone-input' name='phone' type="text">
                     </div>
-                    <div id='role'>
+                    <div class='{{#if validationErrors.role}}has-error{{/if}}' id='role'>
                         <p>Job Role <span style='color: #790000'>*</span></p>
-                        <select name="role" id="" multiple='multiple' size='4'>
-                            <option value="barista">Barista</option>
-                            <option value="juicer">Juicer/ Back of House (De Pere Only)</option>
-                            <option value="assistmanager">Assistant Manager</option>
-                            <option value="manager">Manager</option>
+                        <select value='{{formData.role}}' name="role" id="selectRole" multiple='multiple' size='4'>
+                            <option id='role-option' value="Barista">Barista</option>
+                            <option id='role-option' value="Juicer">Juicer/ Back of House (De Pere Only)</option>
+                            <option id='role-option' value="Assistmanager">Assistant Manager</option>
+                            <option id='role-option' value="Manager">Manager</option>
                         </select>
                     </div> 
-                    <div id='hours-available'>
+                    <div class='{{#if validationErrors.hoursavailable}}has-error{{/if}}' id='hours-available'>
                         <p>Hours Available</p>
                         
-                        <textarea name="hoursavailable" id="" rows="10"></textarea>
+                        <textarea name="hoursavailable" id="" rows="10">{{#if formData.hoursavailable}}{{formData.hoursavailable}}{{/if}}</textarea>
                     </div>
-                    <div id='pay'>
+                    <div class='{{#if validationErrors.desiredpay}}has-error{{/if}}' id='pay'>
                         <p>Desired Pay</p>
-                        <input name='desiredpay' type="text">
+                        <input value='{{formData.desiredpay}}' name='desiredpay' type="text">
                     </div>
-                    <div id='locations'>
+                    <div class='{{#if validationErrors.locationsapplied}}has-error{{/if}}' id='locations'>
                         <p>Locations Applied For <span style='color: #790000'>*</span></p>
                         <select name="locationsapplied" id="" multiple='multiple' size='2'>
-                            <option value="depere">De Pere, WI</option>
-                            <option value="appleton">Appleton, WI</option>
+                            <option id='location-option' value="Depere">De Pere, WI</option>
+                            <option id='location-option' value="Appleton">Appleton, WI</option>
                         </select>
                         <p>May select more than one</p>
                     </div>
-                    <div id='start-date'>
+                    <div class='{{#if validationErrors.startdate}}has-error{{/if}}' id='start-date'>
                         <p>Date Available to Start</p>
-                        <input name='startdate' type="date">
+                        <input value='{{formData.startdate}}' name='startdate' type="date">
                     </div>
-                    <div id='skills'>
+                    <div class='{{#if validationErrors.skills}}has-error{{/if}}' id='skills'>
                         <p>Cover Letter or Special Skills</p>
-                        <textarea name="skills" id="" rows="10"></textarea>
+                        <textarea value='test' name="skills" id="test1" rows="10">{{#if formData.skills}}{{formData.skills}}{{/if}}</textarea>
                     </div>
                     <div id='resume'>   
                         <p>Resume Upload</p>
                         <input name='resume' type="file">
                     </div>
                     <button id='submit' type='submit'>Submit</button>
+                    
                 </form>
             </div>
         </section> 
+        {{/if}}
         
     {{>footer}}
     <script src='/js/employment.js'></script>

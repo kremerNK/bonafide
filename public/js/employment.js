@@ -1,4 +1,4 @@
-console.log('test');
+
 
 const phoneInput = document.querySelector('#phone-input');
  
@@ -61,3 +61,40 @@ const formatPhoneInput = (inputNumber) => {
 
   return formattedInput;
 }
+
+var submitBtn = document.querySelector('#submit');
+var selectedRoles = document.querySelectorAll('#role-option')
+var selectedLocation = document.querySelectorAll('#location-option')
+
+submitBtn.addEventListener('click', function(){
+  var roleArr = []
+  var locationArr = []
+
+  var getItem = localStorage.setItem('roleStorage', [])
+  var getItemLocation = localStorage.setItem('locationStorage', [])
+  for (i=0; i < selectedRoles.length; i++){
+    roleArr.push(selectedRoles[i].selected)
+  }
+  for (i=0; i < selectedLocation.length; i++){
+    locationArr.push(selectedLocation[i].selected)
+  }
+  console.log(locationArr);
+  localStorage.setItem('roleStorage', JSON.stringify(roleArr))
+  localStorage.setItem('locationStorage', JSON.stringify(locationArr))
+  console.log(JSON.parse(localStorage.getItem('locationStorage')))
+})
+
+function setRoles(){
+  var parsedRole = JSON.parse(localStorage.getItem('roleStorage'))
+  var parsedLocation = JSON.parse(localStorage.getItem('locationStorage'))
+  for (i=0; i < selectedRoles.length; i++){
+    selectedRoles[i].selected = parsedRole[i]
+  }
+  for (i=0; i < selectedLocation.length; i++ ){
+    selectedLocation[i].selected = parsedLocation[i]
+  }
+}
+
+setRoles()
+
+var test1 = document.querySelector('#test1')
