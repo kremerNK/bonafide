@@ -12,12 +12,12 @@
         <div id='wood-pane'>
             <p>Employment</p>    
         </div>
-        {{#if applicationSubmitted}}
+        {{#if applicationSubmitted}} 
         <section class='application-submitted'>
             <p>Application successfully submitted, thank you!</p>
         </section>
         
-        {{else}}
+        {{else}} 
         {{#if messages}}
 			<div id="flash-messages" class="container">
 				{{#if messages.info}}
@@ -37,7 +37,9 @@
 				{{/if}}
 				{{#if messages.error}}
 				<div class="alert alert-danger">
+                        
 						{{{flashMessages messages.error}}}
+                        
 				</div>
 				{{/if}}
 			</div>
@@ -50,19 +52,21 @@
             </div>
             <div class='employment-form'>
                 <form method="post" action="">
-                    <input type="hidden" name="action" value="contact">
+                    <input type="hidden" name="action" value="application">
                     <div id='name'>
+                        
+                        
                         <p>Name <span style='color: #790000'>*</span></p>
                         
-                        <div class='{{#if validationErrors.namefirst}}has-error{{/if}}'>
+                        <div id='testinggg' class='{{#if validationErrors.firstname}}has-error{{/if}}'>
                             <span>
-                                <input value='{{formData.namefirst}}' name='namefirst' id='firstname-input' type="text">
+                                <input value='{{formData.firstname}}' name='firstname' id='firstname-input' type="text">
                                 {{!-- <label for="firstname-input">First</label> --}}
                                 <p>First</p>
                             </span>
                             <span>
                                 
-                                <input value='{{formData.namelast}}'name='namelast' id='lastname-input'type="text">
+                                <input value='{{formData.lastname}}'name='lastname' id='lastname-input'type="text">
                                 {{!-- <label for="lastname-input">Last</label> --}}
                                 <p>Last</p>
                             </span>
@@ -108,9 +112,9 @@
                         <p>Date Available to Start</p>
                         <input value='{{formData.startdate}}' name='startdate' type="date">
                     </div>
-                    <div class='{{#if validationErrors.skills}}has-error{{/if}}' id='skills'>
+                    <div class='{{#if validationErrors.coverletter}}has-error{{/if}}' id='skills'>
                         <p>Cover Letter or Special Skills</p>
-                        <textarea value='test' name="skills" id="test1" rows="10">{{#if formData.skills}}{{formData.skills}}{{/if}}</textarea>
+                        <textarea value='test' name="coverletter" id="test1" rows="10">{{#if formData.coverletter}}{{formData.coverletter}}{{/if}}</textarea>
                     </div>
                     <div id='resume'>   
                         <p>Resume Upload</p>

@@ -278,7 +278,7 @@ module.exports = function () {
 	//  to the front-end client and rendered in a html-block.  FlashMessage mirrors the Pug Mixin
 	//  for creating the message.  But part of the logic is in the default.layout.  Decision was to
 	//  surface more of the interface in the client html rather than abstracting behind a helper.
-	//
+	// 
 	//  @messages:[]
 	//
 	//  *Usage example:*
@@ -289,6 +289,7 @@ module.exports = function () {
 	//   {{/if}}`
 
 	_helpers.flashMessages = function (messages) {
+		// console.log(messages, 'messages');
 		var output = '';
 		for (var i = 0; i < messages.length; i++) {
 
@@ -304,9 +305,10 @@ module.exports = function () {
 				output += '<ul>';
 				for (var ctr = 0; ctr < messages[i].list.length; ctr++) {
 					output += '<li>' + messages[i].list[ctr] + '</li>';
+					// console.log(messages[i], 'messages.i');
 				}
 				output += '</ul>';
-			}
+			} 
 		}
 		return new hbs.SafeString(output);
 	};
@@ -328,3 +330,4 @@ module.exports = function () {
 
 	return _helpers;
 };
+ 

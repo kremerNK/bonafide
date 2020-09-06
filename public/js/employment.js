@@ -61,7 +61,7 @@ const formatPhoneInput = (inputNumber) => {
 
   return formattedInput;
 }
-
+ 
 var submitBtn = document.querySelector('#submit');
 var selectedRoles = document.querySelectorAll('#role-option')
 var selectedLocation = document.querySelectorAll('#location-option')
@@ -74,7 +74,7 @@ submitBtn.addEventListener('click', function(){
   var getItemLocation = localStorage.setItem('locationStorage', [])
   for (i=0; i < selectedRoles.length; i++){
     roleArr.push(selectedRoles[i].selected)
-  }
+  } 
   for (i=0; i < selectedLocation.length; i++){
     locationArr.push(selectedLocation[i].selected)
   }
@@ -98,3 +98,4 @@ function setRoles(){
 setRoles()
 
 var test1 = document.querySelector('#test1')
+ 

@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+const { LocalFileAdapter } = require('@keystonejs/file-adapters');
 
 /**
  * Application Model
@@ -10,19 +11,27 @@ var Types = keystone.Field.Types;
      nocreate: true,
      noedit: true,
  })
- 
+
+ var fileAdapter = new LocalFileAdapter({
+    src: './public/uploads/files'
+    // path: keystone.expandPath('./public/uploads/files'),
+    // publicPath: './public/uploads/files/'
+    
+ })
+
+
  Application.add({
-    namefirst: { type: String, required: true },
-    namelast: { type: String, required: true }, 
-    email: {type: Types.Email, required: true },
-    phone: { type: String, required: true},
-    role: { type: Types.TextArray, required: true},
-    hoursavailable: { type: String, required: true },
-    desiredpay: { type: String, required: true}, 
-    locationsapplied: { type: Types.TextArray, required: true},
-    startdate: {type: String, required: true},
-    skills: {type: String, required: true},
-    // resume: {},
+    // firstname: { type: String, required: true },
+    // lastname: { type: String, required: true }, 
+    // email: {type: Types.Email, required: true },
+    // phone: { type: String, required: true},
+    // role: { type: Types.TextArray, required: true},
+    // hoursavailable: { type: String, required: true },
+    // desiredpay: { type: String, required: true}, 
+    // locationsapplied: { type: Types.TextArray, required: true},
+    // startdate: {type: String, required: true},
+    // coverletter: {type: String, required: true},
+    // resume: { type: File, storage: fileAdapter},
     createdAt: {type: Date, default: Date.now},
 
 
@@ -32,3 +41,4 @@ var Types = keystone.Field.Types;
  Application.defaultColumns = 'namefirst, namelast';
  Application.register();
 
+ 

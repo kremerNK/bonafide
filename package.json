@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@keystonejs/file-adapters": "^7.0.4",
     "async": "2.1.4",
     "cloudinary": "1.7.0",
     "dotenv": "4.0.0",
@@ -28,4 +29,3 @@
     "start": "node keystone.js"
   }
 }
- 
