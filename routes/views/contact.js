@@ -13,38 +13,38 @@ exports = module.exports = function async (req, res) {
 	locals.fileSubmitted = false
 	locals.validationErrors = {};
 
-	const filename = 'peppermint-eo.jpg';
-    const file = '/public/uploads/files/${filename}';
-    const mimetype = mime.getType(file); // yarn add mime // installed already with keystonejs
-    const createReadStream = () => fs.createReadStream(file);
-    const encoding = 'utf-8'
-	const image = { createReadStream, filename, mimetype, encoding };
+	// const filename = 'peppermint-eo.jpg';
+    // const file = '/public/uploads/files/${filename}';
+    // const mimetype = mime.getType(file); // yarn add mime // installed already with keystonejs
+    // const createReadStream = () => fs.createReadStream(file);
+    // const encoding = 'utf-8'
+	// const image = { createReadStream, filename, mimetype, encoding };
 
 
 
-	// view.on('post', { action: 'submit'}, function(next){
-	// 	console.log(req.body);
+	view.on('post', { action: 'submit'}, function(next){
+		console.log(req.body);
 
-	// 	var newFile = new FileUpload.model();
-	// 	var updater = newFile.getUpdateHandler(req);
+		var newFile = new FileUpload.model();
+		var updater = newFile.getUpdateHandler(req);
 
-	// 	updater.process(req.body, {
-	// 		flashErrors: true,
-	// 		fields: 'file', 
-	// 		errorMessage: 'Upload failed'
-	// 	}, function(err){
-	// 		if (err){
-	// 			locals.validationErrors = err.detail
-	// 			console.log('upload fail');
-	// 			console.log(err);
-	// 		} else {
-	// 			console.log('upload success');
-	// 			locals.fileSubmitted = true
-	// 		}
-	// 	})
+		updater.process(req.body, {
+			flashErrors: true,
+			fields: 'file', 
+			errorMessage: 'Upload failed'
+		}, function(err){
+			if (err){
+				locals.validationErrors = err.detail
+				console.log('upload fail');
+				console.log(err);
+			} else {
+				console.log('upload success');
+				locals.fileSubmitted = true
+			}
+		})
 
-	// 	next()
-	// })
+		next()
+	})
 
 	// Render the view
 	view.render('contact');
