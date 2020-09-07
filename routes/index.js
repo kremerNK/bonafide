@@ -29,11 +29,12 @@ keystone.pre('render', middleware.flashMessages);
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views'),
+	api: importRoutes('./api'),
 };  
   
 // Setup Route Bindings  
 exports = module.exports = function (app) {
-	// Views
+	// Views 
 	app.get('/', routes.views.homepage);
 	app.get('/menu', routes.views.menu);
 	app.get('/shop', routes.views.shop);
@@ -41,7 +42,7 @@ exports = module.exports = function (app) {
 	app.get('/blog/:post', routes.views.blogPosts)
 	app.all('/employment', routes.views.employment);
 	
-	app.get('/contact', routes.views.contact);
+	app.all('/contact', routes.views.contact);
 	app.get('/order-now', routes.views.ordernow);
 	app.get('/cart', routes.views.cart);
 	app.get('/:year', routes.views.year);
@@ -50,6 +51,15 @@ exports = module.exports = function (app) {
 	// app.get('/blog/:category?', routes.views.blog);
 	// app.get('/blog/post/:post', routes.views.post);
 	// app.all('/contact', routes.views.contact);
+
+	// COPY THE CODE FROM HERE...
+	//File Upload Route
+	app.get('/api/fileupload/list', keystone.middleware.api, routes.api.fileupload.list);
+	app.get('/api/fileupload/:id', keystone.middleware.api, routes.api.fileupload.get);
+	app.all('/api/fileupload/:id/update', keystone.middleware.api, routes.api.fileupload.update);
+	app.all('/api/fileupload/create', keystone.middleware.api, routes.api.fileupload.create);
+	app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
+	// ...TO HERE.
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
@@ -60,3 +70,4 @@ exports = module.exports = function (app) {
 };
  
 
+ 

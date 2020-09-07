@@ -12,13 +12,20 @@ const { LocalFileAdapter } = require('@keystonejs/file-adapters');
      noedit: true,
  })
 
- var fileAdapter = new LocalFileAdapter({
-    src: './public/uploads/files'
-    // path: keystone.expandPath('./public/uploads/files'),
-    // publicPath: './public/uploads/files/'
+//  var fileAdapter = new LocalFileAdapter({
+//     src: './public/uploads/files',
+//     path: keystone.expandPath('./public/uploads/files'),
+//     publicPath: './public/uploads/files/'
     
- })
+//  })
 
+var myStorage = new keystone.Storage({
+   adapter: keystone.Storage.Adapters.FS,
+   fs: {
+     path: keystone.expandPath('./public/uploads/files'), // required; path where the files should be stored
+     publicPath: '/public/uploads/files', // path where files will be served
+   }
+ });
 
  Application.add({
     // firstname: { type: String, required: true },
@@ -31,7 +38,17 @@ const { LocalFileAdapter } = require('@keystonejs/file-adapters');
     // locationsapplied: { type: Types.TextArray, required: true},
     // startdate: {type: String, required: true},
     // coverletter: {type: String, required: true},
-    // resume: { type: File, storage: fileAdapter},
+    firstname: { type: String },
+    lastname: { type: String}, 
+    email: {type: Types.Email},
+    phone: { type: String},
+    role: { type: Types.TextArray},
+    hoursavailable: { type: String},
+    desiredpay: { type: String}, 
+    locationsapplied: { type: Types.TextArray},
+    startdate: {type: String},
+    coverletter: {type: String},
+    resume: { type: Types.File, storage: myStorage},
     createdAt: {type: Date, default: Date.now},
 
 
