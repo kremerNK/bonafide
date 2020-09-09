@@ -30,19 +30,35 @@ exports.initLocals = function (req, res, next) {
 };
 
  
-/**
+/** 
 	Fetches and clears the flashMessages before a view is rendered
 */
 exports.flashMessages = function (req, res, next) {
-	
+
 	var flashMessages = {
 		info: req.flash('info'),
 		success: req.flash('success'),
 		warning: req.flash('warning'),
 		error: req.flash('error'),
-	};
+	}; 
+	if (req.body.resume == ''){
+		if (flashMessages.error.length > 0){
+			// console.log(flashMessages.error[0].list, 'if flash');
+			flashMessages.error[0].list.push('Resume is required')
+		} else {
+			flashMessages.error.push({
+				title: 'Problem with your application, please check highlighted fields for \
+				invalid responses',
+				list: ['Resume is required']
+			})
+			// flashMessages.error.push('Resume is required')
+		}
+		// flashMessages.error[0].list.push('Resume is required')
+		// console.log(flashMessages, 'flash message');
+	}
+	
 	res.locals.messages = _.some(flashMessages, function (msgs) { return msgs.length; }) ? flashMessages : false;
-
+	// console.log(res.locals.messages, 'local.messages');
 	next();
 };
 

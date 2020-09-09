@@ -11,126 +11,238 @@ exports = module.exports = function (req, res) {
 
 	locals.section = 'contact';
 	locals.formData = req.body || {};
-	locals.validationErrors = {};
+
 	locals.applicationSubmitted = false;
 
- 
+
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
 	locals.section = 'application';
-	
 
-	// console.log(testFile);
-	
-  
-	view.on('post', { action: 'application'}, function(next) {
 
-		var testModel = new Application.model()
-		var updater = testModel.getUpdateHandler(req)
 
-		updater.process(req.files.resume, {
+
+	view.on('post', { action: 'application' }, function (next) {
+		var newApplication = new Application.model()
+		var updateHandler = new keystone.updateHandler(Application, newApplication,
+			req, req.files.resume)
+		
+		updateHandler.process(newApplication, req.body, req.files.resume, {
 			flashErrors: true,
-			fields: 'resume',
-			errorMessage: 'Upload Failed'
-		}, function(err) {
-			console.log(req.files.resume);
-			if (err){
-				locals.validationErrors = err.detail
-				console.log('upload file filed');
-				console.log(err);
-			} else {
-				console.log('file upload success');
-				updater.process(req.body, {
-					flashErrors: true,
-					fields: ['firstname', 'lastname', 'email', 'phone',
+			files: req.files.resume,
+			fields: ['firstname', 'lastname', 'email', 'phone',
 					'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
-					'startdate', 'coverletter'],
-					errorMessage: 'Upload Failed'
-				}, function(err){
-					console.log(req.body);
-					if (err){
-						console.log('other info not successful');
-					} else {
-						console.log('other info successful');
-						locals.fileSubmitted = true
-					}
-				})
+					'startdate', 'coverletter', 'resume'],
+		}, function(err){
+			if (err){
+				console.log('error');
+				locals.validationErrors = err.detail
 			}
-		})	
+			else {
+				console.log('success');
+				locals.applicationSubmitted = true
+			}
+		})
+	})
+
+	view.render('employment');
+}
 
 
 
-		// var form = new formidable.IncomingForm()
-		// form.type = 'multipart'
-		
-		// form.uploadDir = 'tmp'
-		
-		// form.parse(req, function(err, fields, files) {
-		// 	console.log('test');
-		// 	if (err){
-		// 		console.log('error');
-		// 	}
-		// 	console.log('no error formidable');
-		// })
-		// console.log(Object.keys(req));
-		next()
-	});
+	
 
-		// locals.testFile = []
-		// var getFile = Upload.model.find({name: 'testfile'}).exec(function(err, file){
-		// 	// console.log(file);
-		// 	locals.testFile.push(file)
-		// }).then( () => {
-		// 	var addFile = locals.testFile[0][0]._doc.file
-		// 	console.log(addFile);
-		// 	// console.log(Object.keys(locals.testFile[0][0]));
-			 
-			
-			// var newApplication = new Application.model();
-			// var updater = newApplication.getUpdateHandler(req);
-			// updater.req.body.resume = addFile
-			// console.log(updater.req.body);
-			// updater.process(req.body, {
-			// 	flashErrors: true,
-			// 	// fields: ['firstname', 'lastname', 'email', 'phone',
-			// 	// 	'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
-			// 	// 	'startdate', 'coverletter'],
-			// 	fields: 'resume',
-			// 	errorMessage: 'Problem with your application, please check highlighted \
-			// 	fields for invalid responses'
-			// }, function(err) {
-			// 	if (err) {
-			// 		locals.validationErrors = err.detail
-			// 	} else {
-					
-			// 		locals.applicationSubmitted = true;
-			// 	}
-			// 	next();   
-			// }) 
-		// 	})
-  
-		// var newApplication = new Application.model();
-		// var updater = newApplication.getUpdateHandler(req);
-		
-		// updater.process(req.body, {
-		// 	flashErrors: true,
-		// 	// fields: ['firstname', 'lastname', 'email', 'phone',
-		// 	// 	'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
-		// 	// 	'startdate', 'coverletter'],
-		// 	fields: 'resume',
-		// 	errorMessage: 'Problem with your application, please check highlighted \
-		// 	fields for invalid responses'
-		// }, function(err) {
-		// 	if (err) {
-		// 		locals.validationErrors = err.detail
-		// 	} else {
-				
-		// 		locals.applicationSubmitted = true;
-		// 	}
-		// 	next();   
-		// }) 
+
+
+	// var newApplication = new Application.model();
+	// var updater = newApplication.getUpdateHandler(req);
+	// updater.req.body.resume = addFile
+	// console.log(updater.req.body);
+	// updater.process(req.body, {
+	// 	flashErrors: true,
+	// 	// fields: ['firstname', 'lastname', 'email', 'phone',
+	// 	// 	'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
+	// 	// 	'startdate', 'coverletter'],
+	// 	fields: 'resume',
+	// 	errorMessage: 'Problem with your application, please check highlighted \
+	// 	fields for invalid responses'
+	// }, function(err) {
+	// 	if (err) {
+	// 		locals.validationErrors = err.detail
+	// 	} else {
+
+	// 		locals.applicationSubmitted = true;
+	// 	}
+	// 	next();   
+	// }) 
+	// 	})
+
+	// 	var newApplication = new Application.model();
+	// 	var updater = newApplication.getUpdateHandler(req);
+
+	// 	updater.process(req.body, {
+	// 		flashErrors: true,
+	// 		fields: ['firstname', 'lastname', 'email', 'phone',
+	// 			'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
+	// 			'startdate', 'coverletter', 'resume'],
+	// 		errorMessage: 'Problem with your application, please check highlighted \
+	// 		fields for invalid responses'
+	// 	}, function(err) {
+	// 		if (err) {
+	// 			locals.validationErrors = err.detail
+	// 		} else {
+
+	// 			locals.applicationSubmitted = true;
+	// 		}
+	// 		next();   
+	// 	}) 
 	// })
 	// Render the view
-	view.render('employment'); 
-};
-	   
+
+
+
+	// ATTEMPT #1ATTEMPT #1ATTEMPT #1ATTEMPT #1ATTEMPT #1
+
+	// view.on('post', {
+	//     action: 'application'
+	// }, function(next) {
+	//     var newApplication = new Application.model();
+	//     var updater = newApplication.getUpdateHandler(req);
+
+	//     updater.process(req.body, {
+	//         flashErrors: true,
+	//         fields: ['firstname', 'lastname', 'email', 'phone',
+	//             'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
+	//             'startdate', 'coverletter', 'resume'
+	//         ],
+	//         errorMessage: 'Problem with your application, please check highlighted \
+	// 		fields for invalid responses'
+	//     }, function(err) {
+	//         if (err) {
+	//             locals.validationErrors = err.detail
+	//         } else {
+
+	//             locals.applicationSubmitted = true;
+	//         }
+	//         next();
+	//     })
+	// })
+
+	// ATTEMPT #2 ATTEMPT #2 ATTEMPT #2 ATTEMPT #2 ATTEMPT #2
+	// var newApplication = new Application.model()
+	// var updater = newApplication.getUpdateHandler(req)
+	// if (typeof req.files.resume === 'undefined'){
+	// 	req.body.resume = ''
+	// 	updater.process(req.body, {
+	// 		flashErrors: true,
+	// 		fields: ['firstname', 'lastname', 'email', 'phone',
+	// 			'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
+	// 			'startdate', 'coverletter', 'resume'],
+
+	// 		errorMessage: 'Problem with your application, please check highlighted \
+	// 		fields for invalid responses'
+	// 	}, function(err) {
+	// 		if (err) { 
+	// 			err.detail.resume = {
+	// 				type: 'required',
+	// 				error: 'Resume is required',
+	// 				detail: undefined, 
+	// 				fieldLabel: 'resume',
+	// 				fieldType: 'file'
+	// 			}
+	// 			locals.validationErrors = err.detail
+	// 		} else {
+	// 			locals.validationErrors = {}
+	// 			locals.validationErrors.resume = {
+	// 				type: 'required',
+	// 				error: 'Resume is required',
+	// 				detail: undefined,
+	// 				fieldLabel: 'resume',
+	// 				fieldType: 'file'
+	// 			}
+	// 			locals.applicationSubmitted = false;
+	// 		}
+	// 		next();   
+	// 	}) 
+	// } else {
+	// 	updater.process(req.files.resume, {
+	// 		flashErrors: true,
+	// 		fields: 'resume',
+	// 		errorMessage: 'Upload Failed'
+	// 	}, function(err) {
+	// 		if (err){
+	// 			locals.validationErrors = err.detail
+	// 		} else {
+	// 			locals.applicationSubmitted = true
+	// 			updater.process(req.body, {
+	// 				flashErrors: true,
+	// 				fields: ['firstname', 'lastname', 'email', 'phone',
+	// 				'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
+	// 				'startdate', 'coverletter'],
+	// 				errorMessage: 'Upload Failed'
+	// 			}, function(err){
+	// 				if (err){
+	// 					location.validationErrors = err.detail
+	// 				} else {
+	// 					locals.applicationSubmitted = true
+	// 				}
+	// 			})
+	// 		}
+	// 		next()
+	// 	})	
+
+	// }
+	// })
+
+
+
+
+	// var newApplication = new Application.model()
+	// 	var updater = newApplication.getUpdateHandler(req)
+	// 	console.log(req.body.files);
+
+	// 	updater.process(req.body, {
+	// 		flashErrors: true,
+	// 		fields: ['firstname', 'lastname', 'email', 'phone',
+	// 			'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
+	// 			'startdate', 'coverletter', 'resume'],
+	// 		errorMeessage: 'Upload Failed'
+	// 	}, function (err) {
+	// 		if (err) {
+	// 			locals.validationErrors = err.detail
+	// 			console.log(locals.validationErrors);
+	// 		} else {
+	// 			console.log('upload success');
+	// 			locals.fileSubmitted = true
+	// 		}}
+				
+	// 	)
+	// 	next()
+	
+	// });
+
+
+
+
+
+
+// 	var testModel = new Application.model()
+// 	var updater = testModel.getUpdateHandler(req)
+// 	console.log(req.files.resume);
+
+// 	updater.process(req.files, {
+// 		flashErrors: true,
+// 		files: req.files,
+// 		fields: 'resume',
+// 		errorMeessage: 'Upload Failed'
+// 	}, function(err) {
+// 		if (err){
+// 			locals.validationErrors = err.detail
+// 			console.log('upload fail');
+// 			console.log(err);
+// 		} else {
+// 			console.log('upload success');
+// 			locals.fileSubmitted = true
+// 		}
+// 	}
+// });

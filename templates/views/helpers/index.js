@@ -290,6 +290,7 @@ module.exports = function () {
 
 	_helpers.flashMessages = function (messages) {
 		// console.log(messages, 'messages');
+		// console.log(messages, 'messages in index.js');
 		var output = '';
 		for (var i = 0; i < messages.length; i++) {
 
@@ -305,7 +306,6 @@ module.exports = function () {
 				output += '<ul>';
 				for (var ctr = 0; ctr < messages[i].list.length; ctr++) {
 					output += '<li>' + messages[i].list[ctr] + '</li>';
-					// console.log(messages[i], 'messages.i');
 				}
 				output += '</ul>';
 			} 
