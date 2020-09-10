@@ -1,7 +1,8 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
-var FileUpload = new keystone.List('FileUpload');
+var FileUpload = new keystone.List('FileUpload')
+
 
 var myStorage = new keystone.Storage({
   adapter: keystone.Storage.Adapters.FS,
@@ -13,11 +14,23 @@ var myStorage = new keystone.Storage({
 
 FileUpload.add({
   name: { type: String, index: true, default: 'default'},
+  testing: {type: String},
   file: {
     type: Types.File,
     storage: myStorage
   },
+  
   date: { type: String},
+  // firstname: { type: String},
+    // lastname: { type: String}, 
+    // email: {type: Types.Email},
+    // phone: { type: String},
+    // role: { type: Types.TextArray},
+    // hoursavailable: { type: String},
+    // desiredpay: { type: String}, 
+    // locationsapplied: { type: Types.TextArray},
+    // startdate: {type: String},
+    // coverletter: {type: String},
 
   // createdTimeStamp: { type: String },
   // alt1: { type: String },

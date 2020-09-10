@@ -95,87 +95,113 @@ function setRoles(){
 }
 
 setRoles()
-
+var firstName = document.querySelector('#firstname-input')
+  console.log(firstName.value);
 
 
 // ////API FOR FORM SUBMISSION////
-// $(document).ready(function() {
-//   //debugger;
+$(document).ready(function () {
+  //debugger;
 
-// });
+});
+
+function uploadFile() {
+  //debugger;
+  
+  var selectedFile = $('#file_upload').get(0).files[0];
+  var firstName = document.querySelector('#firstname-input').value
+  var lastName = document.querySelector('#firstname-input').value
+  var email = document.querySelector('#email-input').value
+  var phone = document.querySelector('#phone-input').value
+  var role = document.querySelector('#selectRole').value
+  var hoursavailable = document.querySelector('#hoursavailable').value
+  var desiredpay = document.querySelector('#desiredpay').value
+  var locationsapplied = document.querySelector('#locationsapplied').value
+  var startdate = document.querySelector('#startdate').value
+  var coverletter = document.querySelector('#coverletter').value
+
+  console.log(lastName, email, phone, role);
+  console.log(hoursavailable, desiredpay, locationsapplied);
+  console.log(startdate, coverletter);
+
+  function fieldValidation(){
+    
+  }
+  fieldValidation();
+  //Error handling
+  if (selectedFile == undefined)
+      alert('You did not select a file!');
+  console.log(selectedFile);
+  //Create the FormData data object and append the file to it.
+  var newFile = new FormData();
+  newFile.append('file_upload', selectedFile); //This is the raw file that was selected
+  // newFile.append('testing', firstName)
+  // for (var pair of newFile.entries()){
+  //   console.log(pair);
+  // }
  
-// function uploadFile() {
+  //Set the form options.
+  var opts = {
+      url: '/api/fileupload/create',
+      data: newFile,
+      cache: false,
+      contentType: false,
+      processData: false,
+      type: 'POST',
 
-//   var selectedFile = $('#resume').get(0).files[0]; 
- 
-//   alert(console.log(selectedFile))
-//   //Error handling
-//   if(selectedFile == undefined)
-//     alert('You did not select a file!');
+      //This function is executed when the file uploads successfully.
+      success: function (data) {
+        ///manipulate DOM here upon success to show success page
+        console.log(data);
+          //Dev Note: KeystoneAPI only allows file and image uploads with the file itself. Any extra metadata will have to
+          //be uploaded/updated with a second call.
 
-//   //Create the FormData data object and append the file to it.
-//   var newFile = new FormData();
-//   newFile.append('file_upload', selectedFile); //This is the raw file that was selected
+          //debugger;
+          console.log('File upload succeeded! ID: ' + data.file_upload._id);
 
-//   //Set the form options.
-//   var opts = {
-//     url: '/api/fileupload/create',
-//     data: newFile,
-//     cache: false,
-//     contentType: false,
-//     processData: false,
-//     type: 'POST',
+          //Fill out the file metadata information
+          data.file_upload.name = $('#file_name').val();
+          data.file_upload.testing = firstName;
+          data.file_upload.url = '/uploads/files/' + data.file_upload.file.filename;
+          data.file_upload.fileType = data.file_upload.file.mimetype;
+          data.file_upload.createdTimeStamp = new Date();
 
-//     //This function is executed when the file uploads successfully.
-//     success: function(data){
-//       //Dev Note: KeystoneAPI only allows file and image uploads with the file itself. Any extra metadata will have to
-//       //be uploaded/updated with a second call.
+          //Update the file with the information above.
+          $.get('/api/fileupload/' + data.file_upload._id + '/update', data.file_upload, function (data) {
+              //debugger;
 
-//       //debugger;
-//       console.log('File upload succeeded! ID: ' + data.file_upload._id);
+              console.log('File information updated.');
 
-//       //Fill out the file metadata information
-//       data.file_upload.name = $('#file_name').val();
-//       data.file_upload.url = '/uploads/files/'+data.file_upload.file.filename;
-//       data.file_upload.fileType = data.file_upload.file.mimetype;
-//       data.file_upload.createdTimeStamp = new Date();
+              //Add the uploaded file to the uploaded file list.
+              $('#file_list').append('<li><a href="' + data.collection.url + '" download>' + data.collection.name + '</a></li>');
 
-//       //Update the file with the information above.
-//       $.get('/api/fileupload/'+data.file_upload._id+'/update', data.file_upload, function(data) {
-//         //debugger;
+          })
 
-//         console.log('File information updated.');
+              //If the metadata update fails:
+              .fail(function (data) {
+                  debugger;
 
-//         //Add the uploaded file to the uploaded file list.
-//         $('#file_list').append('<li><a href="'+data.collection.url+'" download>'+data.collection.name+'</a></li>');
+                  console.error('The file metadata was not updated. Here is the error message from the server:');
+                  console.error('Server status: ' + err.status);
+                  console.error('Server message: ' + err.statusText);
 
-//       })
+                  alert('Failed to connect to the server while trying to update file metadata!');
+              });
+      },
 
-//       //If the metadata update fails:
-//       .fail(function(data) {
-//         debugger;
+      //This error function is called if the POST fails for submitting the file itself.
+      error: function (err) {
+          //debugger;
 
-//         console.error('The file metadata was not updated. Here is the error message from the server:');
-//         console.error('Server status: '+err.status);
-//         console.error('Server message: '+err.statusText);
+          console.error('The file was not uploaded to the server. Here is the error message from the server:');
+          console.error('Server status: ' + err.status);
+          console.error('Server message: ' + err.statusText);
 
-//         alert('Failed to connect to the server while trying to update file metadata!');
-//       });
-//     },
+          alert('Failed to connect to the server!');
+      }
+  };
 
-//     //This error function is called if the POST fails for submitting the file itself.
-//     error: function(err) {
-//       //debugger;
+  //Execute the AJAX call.
+  // jQuery.ajax(opts);
 
-//       console.error('The file was not uploaded to the server. Here is the error message from the server:');
-//       console.error('Server status: '+err.status);
-//       console.error('Server message: '+err.statusText);
-
-//       alert('Failed to connect to the server!');
-//     }
-//   };
-
-//   //Execute the AJAX call.
-//   jQuery.ajax(opts);
-
-// }
+} 

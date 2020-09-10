@@ -5,7 +5,6 @@ var exec = require('child_process').exec;
 var FileData = keystone.list('FileUpload');
 
 
-console.log('api');
 /**
  * List Files
  */
@@ -18,7 +17,7 @@ exports.list = function(req, res) {
       collections: items
     }); 
 
-  });
+  });  
 }
 
 /**
