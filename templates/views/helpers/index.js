@@ -311,7 +311,7 @@ module.exports = function () {
 			} 
 		}
 		return new hbs.SafeString(output);
-	};
+	}; 
 
 
 	//  ### underscoreMethod call + format helper

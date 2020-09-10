@@ -1,7 +1,12 @@
 var keystone = require('keystone');
 var Application = keystone.list('Application')
-var Upload = keystone.list('FileUpload')
-var formidable = require('formidable')
+var mime = require('mime')
+var fs = require('fs')
+
+const { Keystone } = require('@keystonejs/keystone');
+const { GraphQLApp } = require('@keystonejs/app-graphql');
+const { AdminUIApp } = require('@keystonejs/app-admin-ui');
+const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 
 exports = module.exports = function (req, res) {
 	// console.log(Storage);
@@ -22,28 +27,33 @@ exports = module.exports = function (req, res) {
 
 
 
-	view.on('post', { action: 'application' }, function (next) {
-		var newApplication = new Application.model()
-		var updateHandler = new keystone.updateHandler(Application, newApplication,
-			req, req.files.resume)
+	// view.on('post', { action: 'application' }, function (next) {
 		
-		updateHandler.process(newApplication, req.body, req.files.resume, {
-			flashErrors: true,
-			files: req.files.resume,
-			fields: ['firstname', 'lastname', 'email', 'phone',
-					'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
-					'startdate', 'coverletter', 'resume'],
-		}, function(err){
-			if (err){
-				console.log('error');
-				locals.validationErrors = err.detail
-			}
-			else {
-				console.log('success');
-				locals.applicationSubmitted = true
-			}
-		})
-	})
+
+		
+	// 	var newApplication = new Application.model()
+	// 	var updateHandler = new newApplication.getUpdateHandler(req)
+	// 	console.log(updateHandler);
+	// 	updateHandler.process(req.body, {
+	// 		flashErrors: true,
+	// 		files: req.files.resume,
+	// 		fields: ['firstname', 'lastname', 'email', 'phone',
+	// 				'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
+	// 				'startdate', 'coverletter', 'resume'],
+			
+	// 	}, function(err){
+	// 		if (err){
+	// 			console.log('error');
+	// 			console.log(err);
+	// 			locals.validationErrors = err.detail
+	// 		}
+	// 		else { 
+	// 			console.log('success');
+	// 			locals.applicationSubmitted = true
+	// 		}
+	// 	})
+	// 	next() 
+	// })
 
 	view.render('employment');
 }

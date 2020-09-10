@@ -7,17 +7,12 @@ const { LocalFileAdapter } = require('@keystonejs/file-adapters');
  * =============
  */
 
+
+ ///////////////MAY NEED TO JUST MODIFY THE NOEDIT FEATURE. IF DISABLED, PERHAPS SEQUENTIAL PROCESSING ENABLED
  var Application = new keystone.List('Application', {
      nocreate: true,
      noedit: true,
  })
-
-//  var fileAdapter = new LocalFileAdapter({
-//     src: './public/uploads/files',
-//     path: keystone.expandPath('./public/uploads/files'),
-//     publicPath: './public/uploads/files/'
-    
-//  })
 
 var myStorage = new keystone.Storage({
    adapter: keystone.Storage.Adapters.FS,
@@ -29,16 +24,16 @@ var myStorage = new keystone.Storage({
  });
 
  Application.add({
-    firstname: { type: String, required: true },
-    lastname: { type: String, required: true }, 
-    email: {type: Types.Email, required: true },
-    phone: { type: String, required: true},
-    role: { type: Types.TextArray, required: true},
-    hoursavailable: { type: String, required: true },
-    desiredpay: { type: String, required: true}, 
-    locationsapplied: { type: Types.TextArray, required: true},
-    startdate: {type: String, required: true},
-    coverletter: {type: String, required: true},
+    // firstname: { type: String, required: true }, 
+    // lastname: { type: String, required: true }, 
+    // email: {type: Types.Email, required: true },
+    // phone: { type: String, required: true},
+    // role: { type: Types.TextArray, required: true},
+    // hoursavailable: { type: String, required: true },
+    // desiredpay: { type: String, required: true}, 
+    // locationsapplied: { type: Types.TextArray, required: true},
+    // startdate: {type: String, required: true},
+    // coverletter: {type: String, required: true},
 
     // firstname: { type: String},
     // lastname: { type: String}, 
