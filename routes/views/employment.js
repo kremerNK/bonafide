@@ -1,12 +1,6 @@
 var keystone = require('keystone');
+const { lowerCase } = require('lodash');
 var Application = keystone.list('Application')
-var mime = require('mime')
-var fs = require('fs')
-
-const { Keystone } = require('@keystonejs/keystone');
-const { GraphQLApp } = require('@keystonejs/app-graphql');
-const { AdminUIApp } = require('@keystonejs/app-admin-ui');
-const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 
 exports = module.exports = function (req, res) {
 	// console.log(Storage);
@@ -28,35 +22,74 @@ exports = module.exports = function (req, res) {
 
 
 	// view.on('post', { action: 'application' }, function (next) {
-		
 
-		
-	// 	var newApplication = new Application.model()
-	// 	var updateHandler = new newApplication.getUpdateHandler(req)
-	// 	console.log(updateHandler);
-	// 	updateHandler.process(req.body, {
+	// 	req.body.role === undefined ? req.body.role = '' : null;
+	// 	req.body.locationsapplied === undefined ? req.body.locationsapplied = '' : null;
+	// 	var missingValues = []
+	// 	for (const [key, value] of Object.entries(req.body)){
+	// 		if (value ==''){
+	// 			missingValues.push(key)
+	// 		}
+	// 	}
+	// 	///make sure to check for file and change color also///
+
+	// 	var newApplication = Application.model()
+	// 	var updater = newApplication.getUpdateHandler(req)
+	
+	// 	updater.process(req.body, {
 	// 		flashErrors: true,
-	// 		files: req.files.resume,
-	// 		fields: ['firstname', 'lastname', 'email', 'phone',
-	// 				'role', 'hoursavailable', 'desiredpay', 'locationsapplied',
-	// 				'startdate', 'coverletter', 'resume'],
-			
+	// 		fields: 'firstname, lastname, email, phone, role, hoursavailable, desiredpay,\
+	// 		locationsapplied, startdate, coverletter', 
+	// 		errorMessage: 'Problem with your application, please check highlighted fields',
 	// 	}, function(err){
-	// 		if (err){
-	// 			console.log('error');
-	// 			console.log(err);
+	// 		if(err){
+	// 			console.log('fail');
+	// 				for (i=0; i < missingValues.length; i++){
+	// 					var key = missingValues[i]
+	// 					err.detail[key] = {
+	// 						type: 'required',
+	// 						error: `${missingValues[i]} is required`,
+	// 						detail: undefined, 
+	// 						fieldLabel: `${missingValues[i]}`,
+	// 						// fieldType: 'probably doesn't matter',
+	// 					}
+	// 				}
 	// 			locals.validationErrors = err.detail
-	// 		}
-	// 		else { 
+	// 			// console.log(locals.validationErrors, 'error');
+	// 			// console.log(err, 'error');
+				
+	// 		} else {
 	// 			console.log('success');
-	// 			locals.applicationSubmitted = true
-	// 		}
-	// 	})
-	// 	next() 
-	// })
+	// 			// locals.applicationSubmitted = true;
+	// 	}
+	// 	next()
+	// 	// console.log(locals.validationErrors, 'validation_errors');
+	// 	// if (req.files.resume !== undefined){
+	// 	// 	updater.process(req.files.resume, {
+	// 	// 	flashErrors: true,
+	// 	// 	fields: 'resume',
+	// 	// 	errorMessage: 'File upload problem',
+	// 	// }, function(err){
+	// 	// 	if (err){
+	// 	// 		console.log('failed file upload');
+	// 	// 	}	
+	// 	// 	else {
+	// 	// 		console.log('successful file upload');
+	// 	// 		locals.applicationSubmitted = true;
+	// 	// 	}
+			
+	// 	// 	})
+			
+	// 	// } else {
+	// 	// 	console.log(locals.validationErrors, 'validation errors');
+			
 
+	// 	// }
+		
+	
+	// })
 	view.render('employment');
-}
+	}
 
 
 
@@ -255,4 +288,3 @@ exports = module.exports = function (req, res) {
 // 			locals.fileSubmitted = true
 // 		}
 // 	}
-// });

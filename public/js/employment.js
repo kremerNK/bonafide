@@ -86,6 +86,8 @@ submitBtn.addEventListener('click', function(){
 function setRoles(){
   var parsedRole = JSON.parse(localStorage.getItem('roleStorage'))
   var parsedLocation = JSON.parse(localStorage.getItem('locationStorage'))
+  console.log(parsedRole);
+  console.log(parsedLocation);
   for (i=0; i < selectedRoles.length; i++){
     selectedRoles[i].selected = parsedRole[i]
   }
@@ -95,8 +97,6 @@ function setRoles(){
 }
 
 setRoles()
-var firstName = document.querySelector('#firstname-input')
-  console.log(firstName.value);
 
 
 // ////API FOR FORM SUBMISSION////
@@ -109,20 +109,31 @@ function uploadFile() {
   //debugger;
   
   var selectedFile = $('#file_upload').get(0).files[0];
+
+
+  ////VALIDATING FORM FIELDS EXCEPT FILE
   var firstName = document.querySelector('#firstname-input').value
-  var lastName = document.querySelector('#firstname-input').value
+  var lastName = document.querySelector('#lastname-input').value
   var email = document.querySelector('#email-input').value
   var phone = document.querySelector('#phone-input').value
-  var role = document.querySelector('#selectRole').value
+  var role = []
   var hoursavailable = document.querySelector('#hoursavailable').value
   var desiredpay = document.querySelector('#desiredpay').value
-  var locationsapplied = document.querySelector('#locationsapplied').value
+  var locationsapplied = []
   var startdate = document.querySelector('#startdate').value
   var coverletter = document.querySelector('#coverletter').value
 
-  console.log(lastName, email, phone, role);
-  console.log(hoursavailable, desiredpay, locationsapplied);
-  console.log(startdate, coverletter);
+  var locationSelection = [...document.querySelector('#locationsapplied').options]
+  for (i=0; i < locationSelection.length; i++){
+    locationsapplied.push(locationSelection[i].value)
+  }
+  var roleSelection = [...document.querySelector('#selectRole')]
+  for (i=0; i < roleSelection.length; i++){
+    role.push(roleSelection[i].value)
+  }
+
+  console.log(role);
+  console.log(locationsapplied);
 
   function fieldValidation(){
     
@@ -160,13 +171,23 @@ function uploadFile() {
           console.log('File upload succeeded! ID: ' + data.file_upload._id);
 
           //Fill out the file metadata information
-          data.file_upload.name = $('#file_name').val();
-          data.file_upload.testing = firstName;
-          data.file_upload.url = '/uploads/files/' + data.file_upload.file.filename;
-          data.file_upload.fileType = data.file_upload.file.mimetype;
-          data.file_upload.createdTimeStamp = new Date();
+          
+          data.file_upload.firstname = firstName;
+          data.file_upload.lastname = lastName;
+          data.file_upload.email = email;
+          data.file_upload.phone = phone;
+          data.file_upload.role = role;
+          data.file_upload.hoursavailable = hoursavailable;
+          data.file_upload.desiredpay = desiredpay;
+          data.file_upload.locationsapplied = locationsapplied;
+          data.file_upload.startdate = startdate;
+          data.file_upload.coverletter = coverletter
+        
+          
+          // data.file_upload.fileType = data.file_upload.file.mimetype;
+          // data.file_upload.createdTimeStamp = new Date();
 
-          //Update the file with the information above.
+          // Update the file with the information above.
           $.get('/api/fileupload/' + data.file_upload._id + '/update', data.file_upload, function (data) {
               //debugger;
 
@@ -202,6 +223,6 @@ function uploadFile() {
   };
 
   //Execute the AJAX call.
-  // jQuery.ajax(opts);
+  jQuery.ajax(opts);
 
 } 

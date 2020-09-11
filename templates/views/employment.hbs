@@ -66,7 +66,7 @@
 
                     <p>Name <span style='color: #790000'>*</span></p>
 
-                    <div id='testinggg'>
+                    <div>
                         <span>
                             <input value='{{formData.firstname}}' name='firstname' id='firstname-input' type="text">
                             <label class='{{#if validationErrors.firstname}}has-error{{/if}}'
@@ -97,7 +97,7 @@
                 <div id='role'>
                     <p class='{{#if validationErrors.role}}has-error{{/if}}'>Job Role <span
                             style='color: #790000'>*</span></p>
-                    <select value='{{formData.role}}' name="role" id="selectRole" multiple='multiple' size='4'>
+                    <select value='{{formData.role}}' name="role" id="role" multiple='multiple' size='4'>
                         <option id='role-option' value="Barista">Barista</option>
                         <option id='role-option' value="Juicer">Juicer/ Back of House (De Pere Only)</option>
                         <option id='role-option' value="Assistmanager">Assistant Manager</option>
@@ -117,7 +117,7 @@
                 <div id='locations'>
                     <p class='{{#if validationErrors.locationsapplied}}has-error{{/if}}'>Locations Applied For <span
                             style='color: #790000'>*</span></p>
-                    <select name="locationsapplied" id="" multiple='multiple' size='2'>
+                    <select name="locationsapplied" id="" multiple='multiple' size='2' value=''>
                         <option id='location-option' value="Depere">De Pere, WI</option>
                         <option id='location-option' value="Appleton">Appleton, WI</option>
                     </select>
@@ -142,7 +142,7 @@
             </form>
         </div>
     </section> --}}
-    {{/if}}
+    
 
 
     <h1>Upload a new file</h1>
@@ -166,14 +166,14 @@
                                 <input value='{{formData.firstname}}' name='firstname' id='firstname-input' type="text">
                                 <label class='{{#if validationErrors.firstname}}has-error{{/if}}'
                                     for="firstname-input">First</label>
-                                {{!-- <p>First</p> --}}
+                         
                             </span>
                             <span>
 
                                 <input value='{{formData.lastname}}' name='lastname' id='lastname-input' type="text">
                                 <label class='{{#if validationErrors.lastname}}has-error{{/if}}'
                                     for="lastname-input">Last</label>
-                                {{!-- <p>Last</p> --}}
+                            
                             </span>
                         </div>
 
@@ -231,7 +231,7 @@
                     <div id='resume'>
                         <p class='{{#if validationErrors.resume}}has-error{{/if}}'>Resume Upload</p>
                         <input id='resume' name='resume' type="file">
-                        {{!-- add type="file" --}}
+                   
                     </div>
                     <button id='submit' type='submit'>Submit</button>
                     <div>
@@ -245,6 +245,7 @@
 
                     <div>
                         <center><input type="button" value="Upload" onclick="uploadFile()"></center>
+              
                     </div>
                 </form>
             </div>
@@ -257,6 +258,7 @@
         <ul id="file_list">
         </ul>
     </div>
+    {{/if}}
     {{>footer}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src='/js/employment.js'></script>

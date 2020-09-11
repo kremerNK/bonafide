@@ -3,6 +3,7 @@ keystone = require('keystone');
 var exec = require('child_process').exec;
 
 var FileData = keystone.list('FileUpload');
+var Application = keystone.list('Application')
 
 
 /**
@@ -42,17 +43,19 @@ exports.get = function(req, res) {
  * Update File by ID
  */
 exports.update = function(req, res) {
-  FileData.model.findById(req.params.id).exec(function(err, item) {
+  console.log(req.params.id);
+  Application.model.findById(req.params.id).exec(function(err, item) {
     if (err) return res.apiError('database error', err);
     if (!item) return res.apiError('not found');
 
     var data = (req.method == 'POST') ? req.body : req.query;
-
+    console.log(data);
     item.getUpdateHandler(req).process(data, function(err) {
 
       if (err) return res.apiError('create error', err);
-
+    
       res.apiResponse({
+    
         collection: item
       });
 
@@ -65,7 +68,7 @@ exports.update = function(req, res) {
  */
 exports.create = function(req, res) {
 
-  var item = new FileData.model(),
+  var item = new Application.model(),
   data = (req.method == 'POST') ? req.body : req.query;
 
   item.getUpdateHandler(req).process(req.files, function(err) {

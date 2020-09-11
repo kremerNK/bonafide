@@ -41,24 +41,35 @@ exports.flashMessages = function (req, res, next) {
 		warning: req.flash('warning'),
 		error: req.flash('error'),
 	}; 
-	if (req.body.resume == ''){
-		if (flashMessages.error.length > 0){
-			// console.log(flashMessages.error[0].list, 'if flash');
-			flashMessages.error[0].list.push('Resume is required')
-		} else {
-			flashMessages.error.push({
-				title: 'Problem with your application, please check highlighted fields for \
-				invalid responses',
-				list: ['Resume is required']
-			})
-			// flashMessages.error.push('Resume is required')
-		}
-		// flashMessages.error[0].list.push('Resume is required')
-		// console.log(flashMessages, 'flash message');
-	}
+	// console.log(flashMessages);
+
+
+
+	// flashMessages.error.push( {
+	// 	title: 'Problem with your application, please check highlighted fields for \
+	//  			invalid responses',
+	// 	list: ['Firstname is required']
+	// })
+
+	// if (req.body.resume == ''){
+	// 	if (flashMessages.error.length > 0){
+	// 		// console.log(flashMessages.error[0].list, 'if flash');
+	// 		flashMessages.error[0].list.push('Resume is required')
+	// 	} else {
+	// 		flashMessages.error.push({
+	// 			title: 'Problem with your application, please check highlighted fields for \
+	// 			invalid responses',
+	// 			list: ['Resume is required']
+	// 		})
+	// 		//  flashMessages.error.push('Resume is required')
+	// 	}
+	// 	flashMessages.error[0].list.push('Resume is required')
+	// 	console.log(flashMessages, 'flash message');
+	// }
 	
 	res.locals.messages = _.some(flashMessages, function (msgs) { return msgs.length; }) ? flashMessages : false;
-	// console.log(res.locals.messages, 'local.messages');
+	// console.log(res.locals.messages, 'local.messages'); 
+
 	next();
 };
 

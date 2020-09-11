@@ -19,7 +19,7 @@ FileUpload.add({
     type: Types.File,
     storage: myStorage
   },
-  
+   
   date: { type: String},
   // firstname: { type: String},
     // lastname: { type: String}, 

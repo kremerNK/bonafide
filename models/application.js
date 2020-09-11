@@ -9,18 +9,18 @@ const { LocalFileAdapter } = require('@keystonejs/file-adapters');
 
 
  ///////////////MAY NEED TO JUST MODIFY THE NOEDIT FEATURE. IF DISABLED, PERHAPS SEQUENTIAL PROCESSING ENABLED
- var Application = new keystone.List('Application', {
-     nocreate: true,
-     noedit: true,
- })
+//  var Application = new keystone.List('Application', {
+//      nocreate: true,
+//      noedit: true,
+//  })
+ var Application = new keystone.List('Application')
 
 var myStorage = new keystone.Storage({
    adapter: keystone.Storage.Adapters.FS,
    fs: {
      path: keystone.expandPath('./public/uploads/files'), // required; path where the files should be stored
      publicPath: '/public/uploads/files', // path where files will be served
-   },
-   isRequired: true
+   }
  });
 
  Application.add({
@@ -46,8 +46,20 @@ var myStorage = new keystone.Storage({
     // startdate: {type: String},
     // coverletter: {type: String},
 
+  // initial: false to possibly override an error. worth experimenting with
+    firstname: { type: String},
+    lastname: { type: String, default:''}, 
+    email: {type: Types.Email, default:''},
+    phone: { type: String, default:''},
+    role: { type: Types.TextArray, default:''},
+    hoursavailable: { type: String, default:''},
+    desiredpay: { type: String, default:''}, 
+    locationsapplied: { type: Types.TextArray, default:''},
+    startdate: {type: String, default:''},
+    coverletter: {type: String, default:''},
+
     // resume: { type: Types.File, storage: myStorage, required: true},
-    resume: {type: Types.File, storage: myStorage, required: true},
+    file: {type: Types.File, storage: myStorage},
     createdAt: {type: Date, default: Date.now},
 
 
