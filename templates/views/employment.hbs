@@ -23,35 +23,31 @@
 
     {{else}}
 
-    {{#if messages}}
-    <p>locals.messages showing up</p>
+
+
     <div id="flash-messages" class="container">
-        {{#if messages.info}}
+
         <div class="alert alert-info">
-            {{{flashMessages messages.info}}}
-        </div>
-        {{/if}}
-        {{#if messages.success}}
-        <div class="alert alert-success">
-            {{{flashMessages messages.success}}}
-        </div>
-        {{/if}}
-        {{#if messages.warning}}
-        <div class="alert alert-warning">
-            {{{flashMessages messages.warning}}}
-        </div>
-        {{/if}}
-        {{#if messages.error}}
-        <div class="alert alert-danger">
-            {{!-- {{#each validationErrors}}
-                            {{fieldLabel}}
-                        {{/each}} --}}
-            {{{flashMessages messages.error}}}
 
         </div>
-        {{/if}}
+
+
+        <div class="alert alert-success hide">
+            <p>successful application submission</p>
+        </div>
+
+
+        <div class="alert alert-warning">
+
+        </div>
+
+        <div class="alert alert-danger hide"> 
+            <p>check highlighted fields</p>
+
+        </div>
+
     </div>
-    {{/if}}
+
     {{!-- <section class='employment-section'>
         <div class='employment-header'>
             <h3>Apply With Us Now</h3>

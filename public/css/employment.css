@@ -255,3 +255,20 @@ p {
     margin-top: 3rem;
     width: 100%;
 }
+
+
+.alert.alert-success {
+
+}
+
+.alert.alert-success.hide {
+    display: none;
+}
+
+.alert.alert-danger {
+
+}
+
+.alert.alert-danger.hide {
+    display: none;
+}

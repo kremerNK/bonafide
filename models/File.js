@@ -14,36 +14,16 @@ var myStorage = new keystone.Storage({
 
 FileUpload.add({
   name: { type: String, index: true, default: 'default'},
-  testing: {type: String},
   file: {
     type: Types.File,
     storage: myStorage
   },
-   
-  date: { type: String},
-  // firstname: { type: String},
-    // lastname: { type: String}, 
-    // email: {type: Types.Email},
-    // phone: { type: String},
-    // role: { type: Types.TextArray},
-    // hoursavailable: { type: String},
-    // desiredpay: { type: String}, 
-    // locationsapplied: { type: Types.TextArray},
-    // startdate: {type: String},
-    // coverletter: {type: String},
-
-  // createdTimeStamp: { type: String },
-  // alt1: { type: String },
-  // attributes1: { type: String },
-  // category: { type: String },      //Used to categorize widgets.
-  // priorityId: { type: String },    //Used to prioritize display order.
-  // parent: { type: String },
-  // children: { type: String },
-  // url: {type: String},
-  // fileType: {type: String}
+  application: { type: Types.Relationship, ref: 'Application' },
+  //application: {type: String, default:'test'},
+  date: { type: String, default: Date.now()},
  
 }); 
 
 
-FileUpload.defaultColumns = 'name';
+FileUpload.defaultColumns = '_id';
 FileUpload.register();

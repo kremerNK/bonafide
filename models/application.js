@@ -47,9 +47,10 @@ var myStorage = new keystone.Storage({
     // coverletter: {type: String},
 
   // initial: false to possibly override an error. worth experimenting with
-    firstname: { type: String},
+    // firstname: { type: String},
+    firstname: { type: String, },
     lastname: { type: String, default:''}, 
-    email: {type: Types.Email, default:''},
+    email: {type: Types.Email, },
     phone: { type: String, default:''},
     role: { type: Types.TextArray, default:''},
     hoursavailable: { type: String, default:''},
@@ -59,14 +60,18 @@ var myStorage = new keystone.Storage({
     coverletter: {type: String, default:''},
 
     // resume: { type: Types.File, storage: myStorage, required: true},
-    file: {type: Types.File, storage: myStorage},
+    // file: {type: Types.File, storage: myStorage},
+    
+    // add , filters: {file: 'file'}
     createdAt: {type: Date, default: Date.now},
 
 
  })
+//relationships//
+Application.relationship({ ref: 'FileUpload', path: 'File', refPath: 'application' });
 
  Application.defaultSort = '-createdAt';
- Application.defaultColumns = 'namefirst, namelast';
+ Application.defaultColumns = 'firstname, lastname, _id';
  Application.register();
 
  

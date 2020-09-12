@@ -132,38 +132,38 @@ function uploadFile() {
     role.push(roleSelection[i].value)
   }
 
-  console.log(role);
-  console.log(locationsapplied);
-
   function fieldValidation(){
     
   }
   fieldValidation();
   //Error handling
-  if (selectedFile == undefined)
-      alert('You did not select a file!');
-  console.log(selectedFile);
+  
+  // if (selectedFile == undefined)
+      // alert('You did not select a file!');
+      
   //Create the FormData data object and append the file to it.
   var newFile = new FormData();
   newFile.append('file_upload', selectedFile); //This is the raw file that was selected
-  // newFile.append('testing', firstName)
-  // for (var pair of newFile.entries()){
-  //   console.log(pair);
-  // }
+
  
   //Set the form options.
   var opts = {
-      url: '/api/fileupload/create',
+      url: '/api/fileupload/create', 
       data: newFile,
       cache: false,
       contentType: false,
       processData: false,
-      type: 'POST',
-
+      type: 'POST', 
+ 
       //This function is executed when the file uploads successfully.
       success: function (data) {
         ///manipulate DOM here upon success to show success page
-        console.log(data);
+          
+          data.file_upload.application = data.newApplication._id
+
+          console.log(data.file_upload.application);
+          // var fileId = data.file_upload._id
+
           //Dev Note: KeystoneAPI only allows file and image uploads with the file itself. Any extra metadata will have to
           //be uploaded/updated with a second call.
 
@@ -172,16 +172,19 @@ function uploadFile() {
 
           //Fill out the file metadata information
           
-          data.file_upload.firstname = firstName;
-          data.file_upload.lastname = lastName;
-          data.file_upload.email = email;
-          data.file_upload.phone = phone;
-          data.file_upload.role = role;
-          data.file_upload.hoursavailable = hoursavailable;
-          data.file_upload.desiredpay = desiredpay;
-          data.file_upload.locationsapplied = locationsapplied;
-          data.file_upload.startdate = startdate;
-          data.file_upload.coverletter = coverletter
+          
+          // data.file_upload.firstname = firstName;
+          // // data.file_upload.firstname = 'test';
+          // data.file_upload.lastname = lastName;
+          // data.file_upload.email = email;
+          // // data.file_upload.email = 'a';
+          // data.file_upload.phone = phone;
+          // data.file_upload.role = role;
+          // data.file_upload.hoursavailable = hoursavailable;
+          // data.file_upload.desiredpay = desiredpay;
+          // data.file_upload.locationsapplied = locationsapplied;
+          // data.file_upload.startdate = startdate;
+          // data.file_upload.coverletter = coverletter
         
           
           // data.file_upload.fileType = data.file_upload.file.mimetype;
@@ -200,13 +203,19 @@ function uploadFile() {
 
               //If the metadata update fails:
               .fail(function (data) {
-                  debugger;
-
+                  // debugger;
+                  console.log(data);
+                  // var dataResponse = (Object.keys(data.responseJSON.detail.detail))
+                  // console.log(dataResponse);
+                  // var subFailure = document.querySelector('.alert.alert-danger.hide')
+                  // var subSuccess = document.querySelector('.alert.alert-success.hide')
+                  // subSuccess.classList.toggle('hide')
+                  // subFailure.classList.toggle('hide')
                   console.error('The file metadata was not updated. Here is the error message from the server:');
                   console.error('Server status: ' + err.status);
                   console.error('Server message: ' + err.statusText);
 
-                  alert('Failed to connect to the server while trying to update file metadata!');
+                  // alert('Failed to connect to the server while trying to update file metadata!');
               });
       },
 
