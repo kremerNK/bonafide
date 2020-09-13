@@ -48,7 +48,7 @@ var myStorage = new keystone.Storage({
 
   // initial: false to possibly override an error. worth experimenting with
     // firstname: { type: String},
-    firstname: { type: String, },
+    firstname: { type: String, default: ''},
     lastname: { type: String, default:''}, 
     email: {type: Types.Email, },
     phone: { type: String, default:''},
@@ -61,7 +61,7 @@ var myStorage = new keystone.Storage({
 
     // resume: { type: Types.File, storage: myStorage, required: true},
     // file: {type: Types.File, storage: myStorage},
-    
+    test: {type: String},
     // add , filters: {file: 'file'}
     createdAt: {type: Date, default: Date.now},
 

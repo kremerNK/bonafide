@@ -26,7 +26,7 @@ exports.list = function(req, res) {
  * Get File by ID
  */
 exports.get = function(req, res) {
-
+  console.log('get ran');
   FileData.model.findById(req.params.id).exec(function(err, item) {
 
     if (err) return res.apiError('database error', err);
@@ -45,11 +45,9 @@ exports.get = function(req, res) {
  */
 exports.update = function(req, res) {
   
-  var test = Application.model.findById(req.query.application)
-  var itemToUpdate = {
-    item: test
-  }
-  console.log(test);
+  var newApplication = Application.model.findById(req.query.application)
+
+
   // Application.model.findOne(itemToUpdate, function(error, object){
   //   console.log(object);
   //   // Application.updateItem(
@@ -58,7 +56,7 @@ exports.update = function(req, res) {
 
   // })
 
-  test.updateItem()
+  // test.updateItem()
   // Application.model.findById(req.query.application).exec(function(err, item){
   //   // console.log(req.body, 'req.body');
   //   // console.log(item, 'item');
@@ -73,31 +71,53 @@ exports.update = function(req, res) {
   //     })
   //   })
   // })
+  // console.log(req.query);
+  newApplication.exec(function(err, item){
+    if (err) console.log(err);
+    console.log(item);
+    item.getUpdateHandler(req).process(req.query, {
+      fields: 'email, firstname'
+    }, function(err){
+      if (err) console.log(err);
+      console.log('success');
+    })
 
-  
-  
+  })
+
+  // var testApplication = new Application.model()
+  // newApplication.getUpdateHandler(req).process(req.query, {
+  //   fields: 'test',
+
+  // }, function(err){
+  //   if (err){
+  //     console.log(err);
+  //   }
+  //   console.log('successfully updated new app');
+  // })
   // newApplication.save()
   // console.log(newApplication.schema.paths._id);
 
-  // FileData.model.findById(req.params.id).exec(function(err, item) {
-  //   if (err) return res.apiError('database error', err);
-  //   if (!item) return res.apiError('not found');
-  //   // console.log(req.query.application);
-  //   // console.log(item._doc.application);
-  //   item._doc.application = newApplication
-  //   var data = (req.method == 'POST') ? req.body : req.query;
-  //   // console.log(data);
-  //   item.getUpdateHandler(req).process(data, function(err) {
-  //     // console.log(err, 'api err');
-  //     if (err) return res.apiError('create error', err);
-      
-  //     res.apiResponse({
-    
-  //       collection: item
-  //     });
+  FileData.model.findById(req.params.id).exec(function(err, item) {
+    if (err) return res.apiError('database error', err);
+    if (!item) return res.apiError('not found');
 
-  //   });
-  // });
+    item._doc.application = newApplication
+    // console.log(item._doc, 'application added');
+    item._doc.test = req.query.testing
+    // console.log(item._doc, 'testing added');
+    var data = (req.method == 'POST') ? req.body : req.query;
+    // console.log(data);
+    item.getUpdateHandler(req).process(data, function(err) {
+      // console.log(err, 'api err');
+      if (err) return res.apiError('create error', err);
+      
+      res.apiResponse({
+    
+        collection: item
+      });
+
+    });
+  });
 }
 
 /**
@@ -111,9 +131,7 @@ exports.create = function(req, res) {
     if (err){
       console.log(err);
     }
-    newApplication._doc.firstname = 'test'
-    // console.log(newApplication._doc);
-    console.log('saved');
+    
   })
   var item = new FileData.model(),
   data = (req.method == 'POST') ? req.body : req.query;

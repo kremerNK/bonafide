@@ -158,16 +158,16 @@
                         <p>Name <span style='color: #790000'>*</span></p>
 
                         <div id='testinggg'>
-                            <span>
+                            <span class='input'>
                                 <input value='{{formData.firstname}}' name='firstname' id='firstname-input' type="text">
-                                <label class='{{#if validationErrors.firstname}}has-error{{/if}}'
+                                <label id='alert' class='{{#if validationErrors.firstname}}has-error{{/if}}'
                                     for="firstname-input">First</label>
                          
                             </span>
-                            <span>
+                            <span class='input'>
 
                                 <input value='{{formData.lastname}}' name='lastname' id='lastname-input' type="text">
-                                <label class='{{#if validationErrors.lastname}}has-error{{/if}}'
+                                <label id='alert' class='{{#if validationErrors.lastname}}has-error{{/if}}'
                                     for="lastname-input">Last</label>
                             
                             </span>
@@ -175,18 +175,18 @@
 
 
                     </div>
-                    <div id='email'>
-                        <p class='{{#if validationErrors.email}}has-error{{/if}}'>Email <span
+                    <div class='input' id='email'>
+                        <p id='alert' class='{{#if validationErrors.email}}has-error{{/if}}'>Email <span
                                 style='color: #790000'>*</span></p>
                         <input value='{{formData.email}}' id='email-input' name='email' type="text">
                     </div>
-                    <div id='phone'>
-                        <p class='{{#if validationErrors.phone}}has-error{{/if}}'>Phone <span
+                    <div class='input' id='phone'>
+                        <p id='alert' class='{{#if validationErrors.phone}}has-error{{/if}}'>Phone <span
                                 style='color: #790000'>*</span></p>
                         <input value='{{formData.phone}}' id='phone-input' name='phone' type="text">
                     </div>
-                    <div id='role'>
-                        <p class='{{#if validationErrors.role}}has-error{{/if}}'>Job Role <span
+                    <div class='input' id='role'>
+                        <p id='alert' class='{{#if validationErrors.role}}has-error{{/if}}'>Job Role <span
                                 style='color: #790000'>*</span></p>
                         <select value='{{formData.role}}' name="role" id="selectRole" multiple='multiple' size='4'>
                             <option id='role-option' value="Barista">Barista</option>
@@ -195,18 +195,18 @@
                             <option id='role-option' value="Manager">Manager</option>
                         </select>
                     </div>
-                    <div id='hours-available'>
-                        <p class='{{#if validationErrors.hoursavailable}}has-error{{/if}}'>Hours Available</p>
+                    <div class='input' id='hours-available'>
+                        <p id='alert' class='{{#if validationErrors.hoursavailable}}has-error{{/if}}'>Hours Available</p>
 
                         <textarea name="hoursavailable" id="hoursavailable"
                             rows="10">{{#if formData.hoursavailable}}{{formData.hoursavailable}}{{/if}}</textarea>
                     </div>
-                    <div id='pay'>
-                        <p class='{{#if validationErrors.desiredpay}}has-error{{/if}}'>Desired Pay</p>
+                    <div class='input' id='pay'>
+                        <p id='alert' class='{{#if validationErrors.desiredpay}}has-error{{/if}}'>Desired Pay</p>
                         <input value='{{formData.desiredpay}}' id='desiredpay' name='desiredpay' type="text">
                     </div>
-                    <div id='locations'>
-                        <p class='{{#if validationErrors.locationsapplied}}has-error{{/if}}'>Locations Applied For <span
+                    <div class='input' id='locations'>
+                        <p id='alert' class='{{#if validationErrors.locationsapplied}}has-error{{/if}}'>Locations Applied For <span
                                 style='color: #790000'>*</span></p>
                         <select name="locationsapplied" id="locationsapplied" multiple='multiple' size='2'>
                             <option id='location-option' value="Depere">De Pere, WI</option>
@@ -214,22 +214,22 @@
                         </select>
                         <p>May select more than one</p>
                     </div>
-                    <div id='start-date'>
-                        <p class='{{#if validationErrors.startdate}}has-error{{/if}}'>Date Available to Start</p>
+                    <div class='input' id='start-date'>
+                        <p id='alert' class='{{#if validationErrors.startdate}}has-error{{/if}}'>Date Available to Start</p>
                         <input value='{{formData.startdate}}' id='startdate' name='startdate' type="date">
                     </div>
-                    <div id='skills'>
-                        <p class='{{#if validationErrors.coverletter}}has-error{{/if}}'>Cover Letter or Special Skills
+                    <div class='input' id='skills'>
+                        <p id='alert' class='{{#if validationErrors.coverletter}}has-error{{/if}}'>Cover Letter or Special Skills
                         </p>
                         <textarea name="coverletter" id="coverletter"
                             rows="10">{{#if formData.coverletter}}{{formData.coverletter}}{{/if}}</textarea>
                     </div>
-                    <div id='resume'>
-                        <p class='{{#if validationErrors.resume}}has-error{{/if}}'>Resume Upload</p>
+                    <div class='input' id='resume'>
+                        <p id='alert' class='{{#if validationErrors.resume}}has-error{{/if}}'>Resume Upload</p>
                         <input id='resume' name='resume' type="file">
                    
                     </div>
-                    <button id='submit' type='submit'>Submit</button>
+                    <button id='submit' type=''>Submit</button>
                     <div>
                         <input type="file" id="file_upload" />
                         <br>
@@ -240,7 +240,7 @@
                     <br>
 
                     <div>
-                        <center><input type="button" value="Upload" onclick="uploadFile()"></center>
+                        <center><input id='submit-btn' type="button" value="Upload" onclick="uploadFile()"></center>
               
                     </div>
                 </form>

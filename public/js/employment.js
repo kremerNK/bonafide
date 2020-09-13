@@ -61,7 +61,7 @@ const formatPhoneInput = (inputNumber) => {
  
 
 ////CONSERVE SELECTED OPTIONS FROM SELECT ELEMENTS////
-var submitBtn = document.querySelector('#submit');
+var submitBtn = document.querySelector('#submit-btn');
 var selectedRoles = document.querySelectorAll('#role-option')
 var selectedLocation = document.querySelectorAll('#location-option')
 
@@ -86,8 +86,6 @@ submitBtn.addEventListener('click', function(){
 function setRoles(){
   var parsedRole = JSON.parse(localStorage.getItem('roleStorage'))
   var parsedLocation = JSON.parse(localStorage.getItem('locationStorage'))
-  console.log(parsedRole);
-  console.log(parsedLocation);
   for (i=0; i < selectedRoles.length; i++){
     selectedRoles[i].selected = parsedRole[i]
   }
@@ -107,32 +105,53 @@ $(document).ready(function () {
 
 function uploadFile() {
   //debugger;
-  
+  // setRoles()
   var selectedFile = $('#file_upload').get(0).files[0];
 
 
   ////VALIDATING FORM FIELDS EXCEPT FILE
-  var firstName = document.querySelector('#firstname-input').value
-  var lastName = document.querySelector('#lastname-input').value
-  var email = document.querySelector('#email-input').value
-  var phone = document.querySelector('#phone-input').value
-  var role = []
-  var hoursavailable = document.querySelector('#hoursavailable').value
-  var desiredpay = document.querySelector('#desiredpay').value
-  var locationsapplied = []
-  var startdate = document.querySelector('#startdate').value
-  var coverletter = document.querySelector('#coverletter').value
+  var firstName = document.querySelector('#firstname-input')
+  var lastName = document.querySelector('#lastname-input')
+  var email = document.querySelector('#email-input')
+  var phone = document.querySelector('#phone-input')
+  var role = document.querySelector('#selectRole')
+  var hoursavailable = document.querySelector('#hoursavailable')
+  var desiredpay = document.querySelector('#desiredpay')
+  var locationsapplied = [...document.querySelector('#locationsapplied').options].filter((item) => item.selected === true)
+  var startdate = document.querySelector('#startdate')
+  var coverletter = document.querySelector('#coverletter')
 
-  var locationSelection = [...document.querySelector('#locationsapplied').options]
-  for (i=0; i < locationSelection.length; i++){
-    locationsapplied.push(locationSelection[i].value)
+  var stringFields = [firstName, lastName, phone, hoursavailable, desiredpay, startdate, coverletter]
+  var listFields = [role, locationsapplied]
+  var invalidFields = []
+  console.log(locationsapplied);
+  function validateEmail(email){
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   }
-  var roleSelection = [...document.querySelector('#selectRole')]
-  for (i=0; i < roleSelection.length; i++){
-    role.push(roleSelection[i].value)
-  }
-
+// poorly done manual validation
   function fieldValidation(){
+    if (validateEmail(email.value) !== true){
+      email.closest('.input').querySelector('#alert').className = 'has-error'
+    } else {
+      email.closest('.input').querySelector('#alert').className = ''
+    }
+    for (i=0; i < stringFields.length; i++){
+      if (stringFields[i].value == ''){
+        stringFields[i].closest('.input').querySelector('#alert').className = 'has-error'
+      } else {
+        stringFields[i].closest('.input').querySelector('#alert').className = ''
+      }
+    }
+    for (i=0; i < listFields.length; i++){
+      console.log(listFields[i].length);
+      if (listFields[i].length === 0){
+        console.log(listFields[i]);
+      } else {
+        console.log('more than 0');
+      }
+
+    }
     
   }
   fieldValidation();
@@ -140,7 +159,7 @@ function uploadFile() {
   
   // if (selectedFile == undefined)
       // alert('You did not select a file!');
-      
+
   //Create the FormData data object and append the file to it.
   var newFile = new FormData();
   newFile.append('file_upload', selectedFile); //This is the raw file that was selected
@@ -160,6 +179,8 @@ function uploadFile() {
         ///manipulate DOM here upon success to show success page
           
           data.file_upload.application = data.newApplication._id
+          data.file_upload.test = 'testing2'
+          // data.file_upload.test = 'testing'
 
           console.log(data.file_upload.application);
           // var fileId = data.file_upload._id
@@ -173,11 +194,13 @@ function uploadFile() {
           //Fill out the file metadata information
           
           
+          data.file_upload.email = 'aawefawef@oal.com';
+          data.file_upload.firstname = 'test';
           // data.file_upload.firstname = firstName;
-          // // data.file_upload.firstname = 'test';
+          
           // data.file_upload.lastname = lastName;
           // data.file_upload.email = email;
-          // // data.file_upload.email = 'a';
+          
           // data.file_upload.phone = phone;
           // data.file_upload.role = role;
           // data.file_upload.hoursavailable = hoursavailable;

@@ -19,11 +19,12 @@ FileUpload.add({
     storage: myStorage
   },
   application: { type: Types.Relationship, ref: 'Application' },
+  test: {type: String},
   //application: {type: String, default:'test'},
   date: { type: String, default: Date.now()},
  
 }); 
 
-
+FileUpload.defaultSort = '-date';
 FileUpload.defaultColumns = '_id';
 FileUpload.register();

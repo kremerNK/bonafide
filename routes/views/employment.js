@@ -1,9 +1,7 @@
 var keystone = require('keystone');
-const { lowerCase } = require('lodash');
 var Application = keystone.list('Application')
 
 exports = module.exports = function (req, res) {
-	// console.log(Storage);
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
@@ -12,13 +10,14 @@ exports = module.exports = function (req, res) {
 	locals.formData = req.body || {};
 
 	locals.applicationSubmitted = false;
-
+	console.log(req.body);
 
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
 	locals.section = 'application';
 
-
+	view.render('employment');
+}
 
 
 	// view.on('post', { action: 'application' }, function (next) {
@@ -88,8 +87,7 @@ exports = module.exports = function (req, res) {
 		
 	
 	// })
-	view.render('employment');
-	}
+	
 
 
 
