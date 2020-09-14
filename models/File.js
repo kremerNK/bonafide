@@ -13,14 +13,12 @@ var myStorage = new keystone.Storage({
 });
 
 FileUpload.add({
-  name: { type: String, index: true, default: 'default'},
+  name: { type: String, index: true},
   file: {
     type: Types.File,
     storage: myStorage
   },
   application: { type: Types.Relationship, ref: 'Application' },
-  test: {type: String},
-  //application: {type: String, default:'test'},
   date: { type: String, default: Date.now()},
  
 }); 

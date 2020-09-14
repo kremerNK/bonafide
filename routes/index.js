@@ -54,11 +54,13 @@ exports = module.exports = function (app) {
 
 	// COPY THE CODE FROM HERE...
 	//File Upload Route
+	app.all('/api/fileupload/mailforward', keystone.middleware.api, routes.api.applicationAPI.mailforward);
 	app.get('/api/fileupload/list', keystone.middleware.api, routes.api.applicationAPI.list);
 	app.get('/api/fileupload/:id', keystone.middleware.api, routes.api.applicationAPI.get);
 	app.all('/api/fileupload/:id/update', keystone.middleware.api, routes.api.applicationAPI.update);
 	app.all('/api/fileupload/create', keystone.middleware.api, routes.api.applicationAPI.create);
 	app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.applicationAPI.remove);
+	
 	// ...TO HERE.
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

@@ -18,12 +18,13 @@
     "fs": "0.0.1-security",
     "handlebars": "4.0.6",
     "keystone": "4.0.0-beta.5",
-    "keystone-email": "1.0.5",
+    "keystone-email": "^1.0.5",
     "lodash": "^4.13.1",
     "mime": "^2.4.6",
     "moment": "2.17.1",
     "mongodb": "^3.6.0",
     "mongoose": "^5.10.0",
+    "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4"
   },
   "devDependencies": {

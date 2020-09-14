@@ -62,10 +62,12 @@ const formatPhoneInput = (inputNumber) => {
 
 ////CONSERVE SELECTED OPTIONS FROM SELECT ELEMENTS////
 var submitBtn = document.querySelector('#submit-btn');
-var selectedRoles = document.querySelectorAll('#role-option')
-var selectedLocation = document.querySelectorAll('#location-option')
+
+
 
 submitBtn.addEventListener('click', function(){
+  selectedRoles = document.querySelectorAll('#role-option')
+  selectedLocation = document.querySelectorAll('#location-option')
   var roleArr = []
   var locationArr = []
 
@@ -77,15 +79,18 @@ submitBtn.addEventListener('click', function(){
   for (i=0; i < selectedLocation.length; i++){
     locationArr.push(selectedLocation[i].selected)
   }
-  console.log(locationArr);
+
   localStorage.setItem('roleStorage', JSON.stringify(roleArr))
   localStorage.setItem('locationStorage', JSON.stringify(locationArr))
-  console.log(JSON.parse(localStorage.getItem('locationStorage')))
+  
 })
 
-function setRoles(){
+function setRoles(roles, location){
   var parsedRole = JSON.parse(localStorage.getItem('roleStorage'))
   var parsedLocation = JSON.parse(localStorage.getItem('locationStorage'))
+  selectedRoles = document.querySelectorAll('#role-option')
+  selectedLocation = document.querySelectorAll('#location-option')
+
   for (i=0; i < selectedRoles.length; i++){
     selectedRoles[i].selected = parsedRole[i]
   }
@@ -97,6 +102,7 @@ function setRoles(){
 setRoles()
 
 
+
 // ////API FOR FORM SUBMISSION////
 $(document).ready(function () {
   //debugger;
@@ -105,9 +111,9 @@ $(document).ready(function () {
 
 function uploadFile() {
   //debugger;
-  // setRoles()
-  var selectedFile = $('#file_upload').get(0).files[0];
 
+  
+  selectedFile = $('#resume').get(0).files[0];
 
   ////VALIDATING FORM FIELDS EXCEPT FILE
   var firstName = document.querySelector('#firstname-input')
@@ -117,44 +123,79 @@ function uploadFile() {
   var role = document.querySelector('#selectRole')
   var hoursavailable = document.querySelector('#hoursavailable')
   var desiredpay = document.querySelector('#desiredpay')
-  var locationsapplied = [...document.querySelector('#locationsapplied').options].filter((item) => item.selected === true)
+  var locationsapplied = document.querySelector('#locationsapplied')
   var startdate = document.querySelector('#startdate')
   var coverletter = document.querySelector('#coverletter')
+  var resume = document.querySelector('#resume')
 
-  var stringFields = [firstName, lastName, phone, hoursavailable, desiredpay, startdate, coverletter]
+  var stringFields = [firstName, lastName, hoursavailable, desiredpay, startdate, coverletter]
   var listFields = [role, locationsapplied]
-  var invalidFields = []
-  console.log(locationsapplied);
+ 
   function validateEmail(email){
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 // poorly done manual validation
-  function fieldValidation(){
-    if (validateEmail(email.value) !== true){
-      email.closest('.input').querySelector('#alert').className = 'has-error'
-    } else {
-      email.closest('.input').querySelector('#alert').className = ''
-    }
-    for (i=0; i < stringFields.length; i++){
-      if (stringFields[i].value == ''){
-        stringFields[i].closest('.input').querySelector('#alert').className = 'has-error'
-      } else {
-        stringFields[i].closest('.input').querySelector('#alert').className = ''
-      }
-    }
-    for (i=0; i < listFields.length; i++){
-      console.log(listFields[i].length);
-      if (listFields[i].length === 0){
-        console.log(listFields[i]);
-      } else {
-        console.log('more than 0');
-      }
+  // function fieldValidation(){
+  //   ifErrors = false
+  //   if (resume.files.length === 0){
+  //     ifErrors = true
+  //     resume.closest('.input').querySelector('#alert').className = 'has-error'
+  //   } else {
+  //     resume.closest('.input').querySelector('#alert').className = ''
+  //   }
 
-    }
-    
-  }
-  fieldValidation();
+  //   if (phone.value.length < 12){
+  //     ifErrors = true
+  //     phone.closest('.input').querySelector('#alert').className = 'has-error'
+      
+  //   } else {
+  //     phone.closest('.input').querySelector('#alert').className = ''
+  //   }
+  //   if (validateEmail(email.value) !== true){
+  //     ifErrors = true
+  //     email.closest('.input').querySelector('#alert').className = 'has-error'
+  //   } else {
+  //     email.closest('.input').querySelector('#alert').className = ''
+  //   }
+  //   for (i=0; i < stringFields.length; i++){
+  //     if (stringFields[i].value == ''){
+  //       ifErrors = true
+  //       stringFields[i].closest('.input').querySelector('#alert').className = 'has-error'
+  //     } else {
+  //       stringFields[i].closest('.input').querySelector('#alert').className = ''
+  //     }
+  //   }
+  //   for (i=0; i < listFields.length; i++){
+     
+  //     if ([...listFields[i].options].filter((item) => item.selected === true).length > 0){
+  //       console.log([...listFields[i].options].filter((item) => item.selected === true));
+  //       listFields[i].closest('.input').querySelector("#alert").className = ''
+  //     } else {
+  //       ifErrors = true
+  //       listFields[i].closest('.input').querySelector("#alert").className = 'has-error'
+  //     }
+  //   }
+
+  //   ////show/hide alert div///
+  //   var alertDiv = document.querySelector('#alert-div')
+  //   console.log(alertDiv);
+  //   if (ifErrors === true){
+  //     if (alertDiv.classList.contains('hide')){
+  //       alertDiv.classList.remove('hide')
+  //     }
+  //   } else {
+  //     if (!alertDiv.classList.contains('hide')){
+  //       alertDiv.classList.add('hide')
+  //     }
+  //   }
+
+  // }
+  // fieldValidation();
+  // if (ifErrors === true){
+  //   window.scrollTo({top: 0, behavior: 'smooth'});
+  //   return
+  // }
   //Error handling
   
   // if (selectedFile == undefined)
@@ -176,48 +217,41 @@ function uploadFile() {
  
       //This function is executed when the file uploads successfully.
       success: function (data) {
-        ///manipulate DOM here upon success to show success page
-          
-          data.file_upload.application = data.newApplication._id
-          data.file_upload.test = 'testing2'
-          // data.file_upload.test = 'testing'
-
-          console.log(data.file_upload.application);
-          // var fileId = data.file_upload._id
 
           //Dev Note: KeystoneAPI only allows file and image uploads with the file itself. Any extra metadata will have to
           //be uploaded/updated with a second call.
 
           //debugger;
-          console.log('File upload succeeded! ID: ' + data.file_upload._id);
+          // console.log('File upload succeeded! ID: ' + data.file_upload._id);
 
           //Fill out the file metadata information
           
+          data.file_upload.application = data.newApplication._id
+     
+          // data.file_upload.firstname = firstName.value;
+          // data.file_upload.lastname = lastName.value;
+          // data.file_upload.email = email.value;
+          // data.file_upload.phone = phone.value;
+          data.file_upload.role = JSON.stringify([...role.options].filter((item) => item.selected === true).map(x => x.value))
           
-          data.file_upload.email = 'aawefawef@oal.com';
-          data.file_upload.firstname = 'test';
-          // data.file_upload.firstname = firstName;
+   
+          // data.file_upload.hoursavailable = hoursavailable.value;
+          // data.file_upload.desiredpay = desiredpay.value;
+          data.file_upload.locationsapplied = JSON.stringify([...locationsapplied.options].filter((item) => item.selected === true).map(x => x.value))
           
-          // data.file_upload.lastname = lastName;
-          // data.file_upload.email = email;
-          
-          // data.file_upload.phone = phone;
-          // data.file_upload.role = role;
-          // data.file_upload.hoursavailable = hoursavailable;
-          // data.file_upload.desiredpay = desiredpay;
-          // data.file_upload.locationsapplied = locationsapplied;
-          // data.file_upload.startdate = startdate;
-          // data.file_upload.coverletter = coverletter
+          // data.file_upload.startdate = startdate.value;
+          // data.file_upload.coverletter = coverletter.value
         
-          
-          // data.file_upload.fileType = data.file_upload.file.mimetype;
-          // data.file_upload.createdTimeStamp = new Date();
-
           // Update the file with the information above.
+          
           $.get('/api/fileupload/' + data.file_upload._id + '/update', data.file_upload, function (data) {
               //debugger;
-
-              console.log('File information updated.');
+            var appSubmitted = document.querySelector('.application-submitted')
+            var appForm = document.querySelector('#application-form')
+            appForm.classList.add('hidden')
+            appSubmitted.classList.add('active')
+            window.scrollTo({top: 0, behavior: 'smooth'});
+              // console.log('File information updated.');
 
               //Add the uploaded file to the uploaded file list.
               $('#file_list').append('<li><a href="' + data.collection.url + '" download>' + data.collection.name + '</a></li>');
@@ -240,12 +274,15 @@ function uploadFile() {
 
                   // alert('Failed to connect to the server while trying to update file metadata!');
               });
+            $.get('/api/fileupload/mailforward', data.file_upload, function(data){
+
+            })
       },
 
       //This error function is called if the POST fails for submitting the file itself.
       error: function (err) {
           //debugger;
-
+          resume.closest('.input').querySelector('#alert').className = 'has-error'
           console.error('The file was not uploaded to the server. Here is the error message from the server:');
           console.error('Server status: ' + err.status);
           console.error('Server message: ' + err.statusText);

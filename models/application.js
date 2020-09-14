@@ -52,16 +52,16 @@ var myStorage = new keystone.Storage({
     lastname: { type: String, default:''}, 
     email: {type: Types.Email, },
     phone: { type: String, default:''},
-    role: { type: Types.TextArray, default:''},
+    role: { type: String, default:''},
     hoursavailable: { type: String, default:''},
     desiredpay: { type: String, default:''}, 
-    locationsapplied: { type: Types.TextArray, default:''},
+    locationsapplied: { type: String, default:''},
     startdate: {type: String, default:''},
     coverletter: {type: String, default:''},
-
+   
     // resume: { type: Types.File, storage: myStorage, required: true},
     // file: {type: Types.File, storage: myStorage},
-    test: {type: String},
+
     // add , filters: {file: 'file'}
     createdAt: {type: Date, default: Date.now},
 

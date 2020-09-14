@@ -19,6 +19,10 @@ body {
     font-family: 'Dancing Script', cursive;
 }
 
+#application-form.hidden {
+    display: none;
+}
+
 .employment-section {
     width: 80%;
     display: flex;
@@ -184,11 +188,11 @@ body {
 }
 
 /* RESUME */
-#resume {
+#resume-div {
 
 }
 
-#resume > input {
+#resume-div > input {
     display: block;
 }
 
@@ -226,11 +230,15 @@ p {
 }
 
 .application-submitted {
-    text-align: center;
-    
+    display: none;
 }
 
-.application-submitted > p {
+.application-submitted.active {
+    text-align: center;
+    display: block;
+}
+
+.application-submitted.active > p {
 
     font-size: 2.5rem;
     color: #155724;

@@ -2,10 +2,76 @@ var async = require('async'),
 keystone = require('keystone');
 const { application } = require('express');
 var exec = require('child_process').exec;
-
+var nodemailer = require('nodemailer');
+const list = require('keystone/lib/core/list');
 var FileData = keystone.list('FileUpload');
 var Application = keystone.list('Application')
+var fs = require('fs')
 
+exports.mailforward = async function(req, res) {
+
+  ///get file///
+  var getFile = new Promise((resolve, reject) => {
+    FileData.model.findById(req.query._id).exec(function(err, item){
+      if (err) return res.apiError('database error', err);
+      if (!item) return res.apiError('not found');
+      
+      resolve(item)
+      
+
+  }) 
+  })
+  getFile
+  .then((getFile) => {
+    ////get application
+    var getApp = new Promise((resolve, reject) => {
+      Application.model.findById(req.query.application).exec(function(err, item){
+        if (err) return res.apiError('database error', err);
+        if (!item) return res.apiError('not found');
+        
+        resolve(item)
+      })
+      
+    }).then((app) => {
+      var fileName = getFile._doc.file.filename
+      // console.log(app._doc, 'application');
+      console.log(getFile._doc.file.filename);
+      // console.log(getFile._doc._id, 'file');
+      ////then send email///
+      // content: new Buffer('hello world!','utf-8') for sending list, maybe something like that 
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'kremer55550@gmail.com',
+          pass: '/kremer51'
+        }
+      });
+     
+      var mailOptions = {
+        from: 'test2@gmail.com',
+        to: 'kremer55550@gmail.com',
+        subject: 'new test',
+        text: JSON.stringify(app._doc), 
+        attachments: [
+          {
+            path: 'public/uploads/files/' + fileName
+          }
+        ]
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+          console.log(error);
+        } else {
+          console.log('email sent: ' + info.response);
+        }
+      })
+
+    })
+  })
+  
+  
+
+}
 
 /**
  * List Files
@@ -47,36 +113,11 @@ exports.update = function(req, res) {
   
   var newApplication = Application.model.findById(req.query.application)
 
-
-  // Application.model.findOne(itemToUpdate, function(error, object){
-  //   console.log(object);
-  //   // Application.updateItem(
-
-  //   // )
-
-  // })
-
-  // test.updateItem()
-  // Application.model.findById(req.query.application).exec(function(err, item){
-  //   // console.log(req.body, 'req.body');
-  //   // console.log(item, 'item');
-  //   // console.log(item._doc);
-  //   item._doc.lastname = 'test'
-  //   // console.log(item._doc);
-  //   item.save()
-  //   item.getUpdateHandler(data).process(data, function(err){
-  //     if (err) return res.apiError('create error', err)
-  //     res.apiResponse({
-  //       collection: item
-  //     })
-  //   })
-  // })
-  // console.log(req.query);
   newApplication.exec(function(err, item){
     if (err) console.log(err);
-    console.log(item);
     item.getUpdateHandler(req).process(req.query, {
-      fields: 'email, firstname'
+      fields: 'firstname, lastname, email, phone, role, hoursavailable, desiredpay, \
+      locationsapplied, startdate, coverletter'
     }, function(err){
       if (err) console.log(err);
       console.log('success');
@@ -84,18 +125,8 @@ exports.update = function(req, res) {
 
   })
 
-  // var testApplication = new Application.model()
-  // newApplication.getUpdateHandler(req).process(req.query, {
-  //   fields: 'test',
 
-  // }, function(err){
-  //   if (err){
-  //     console.log(err);
-  //   }
-  //   console.log('successfully updated new app');
-  // })
-  // newApplication.save()
-  // console.log(newApplication.schema.paths._id);
+
 
   FileData.model.findById(req.params.id).exec(function(err, item) {
     if (err) return res.apiError('database error', err);
