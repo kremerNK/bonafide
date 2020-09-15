@@ -8,8 +8,46 @@ var FileData = keystone.list('FileUpload');
 var Application = keystone.list('Application')
 var fs = require('fs')
 
-exports.mailforward = async function(req, res) {
+exports.contactforward = async function(req, res){ 
 
+  var formData = req._doc
+  var transporter = nodemailer.createTransport({
+    service: 'gmail', 
+    auth: {
+      user: 'kremer55550@gmail.com',
+      pass: '/kremer51'
+    }
+  });
+ 
+  var mailOptions = {
+    from: 'test2@gmail.com',
+    to: 'kremer55550@gmail.com',
+    subject: 'new test',
+    html: `<p><b>Name:</b> ${formData.firstname} ${formData.lastname}</p> \
+    <br> \
+    <p><b>Email:</b> ${formData.email}</p> \
+    <br>
+    <p><b>Phone:</b> ${formData.phone} </p> \
+    <br> \
+    <p><b>Message:</b> ${formData.message}</p> \
+    <br>
+    `, 
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+      console.log(error);
+      res.apiResponse({fail: 'Mail not sent'})
+    } else {
+      console.log('email sent: ' + info.response);
+      res.apiResponse({success: 'Application submitted'})
+    }
+  })
+}
+
+exports.mailforward = async function(req, res) {
+  console.log(req);
+  console.log(res);
+  ////need to add res to stop this from sticking and resending the email//
   ///get file///
   var getFile = new Promise((resolve, reject) => {
     FileData.model.findById(req.query._id).exec(function(err, item){
@@ -17,8 +55,6 @@ exports.mailforward = async function(req, res) {
       if (!item) return res.apiError('not found');
       
       resolve(item)
-      
-
   }) 
   })
   getFile
@@ -34,11 +70,10 @@ exports.mailforward = async function(req, res) {
       
     }).then((app) => {
       var fileName = getFile._doc.file.filename
-      // console.log(app._doc, 'application');
-      console.log(getFile._doc.file.filename);
-      // console.log(getFile._doc._id, 'file');
+      var details = app._doc
+      
       ////then send email///
-      // content: new Buffer('hello world!','utf-8') for sending list, maybe something like that 
+     
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -51,7 +86,27 @@ exports.mailforward = async function(req, res) {
         from: 'test2@gmail.com',
         to: 'kremer55550@gmail.com',
         subject: 'new test',
-        text: JSON.stringify(app._doc), 
+        html:  `\
+        <p><b>Name:</b> ${details.firstname} ${details.lastname}</p> \
+        <br> \
+        <p><b>Phone:</b> ${details.phone}</p> \
+        <br>
+        <p><b>Email:</b> ${details.email}</p> \
+        <br>
+        <p><b>Roles:</b> ${JSON.parse(details.role).toString().replace(/,/g, ', ')}</p> \
+        <br>
+        <p><b>Hours available:</b> ${details.hoursavailable}</p> \
+        <br>
+        <p><b>Desired pay:</b> ${details.desiredpay}</p> \
+        <br>
+        <p><b>Locations applied:</b> ${JSON.parse(details.locationsapplied).toString().replace(/,/g, ', ')}</p> \
+        <br>
+        <p><b>Start date:</b> ${details.startdate}</p> \
+        <br>
+        <p><b>Cover letter:</b> ${details.coverletter}</p> \
+        <br>
+        <p><b>Submitted on:</b> ${details.createdAt}</p> \
+        `, 
         attachments: [
           {
             path: 'public/uploads/files/' + fileName
@@ -61,16 +116,16 @@ exports.mailforward = async function(req, res) {
       transporter.sendMail(mailOptions, function(error, info){
         if(error){
           console.log(error);
+          res.apiResponse({fail: 'Mail not sent'})
         } else {
           console.log('email sent: ' + info.response);
+          res.apiResponse({success: 'Application submitted'})
         }
       })
 
     })
   })
   
-  
-
 }
 
 /**
@@ -92,7 +147,6 @@ exports.list = function(req, res) {
  * Get File by ID
  */
 exports.get = function(req, res) {
-  console.log('get ran');
   FileData.model.findById(req.params.id).exec(function(err, item) {
 
     if (err) return res.apiError('database error', err);

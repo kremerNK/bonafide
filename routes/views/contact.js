@@ -1,8 +1,8 @@
 var keystone = require('keystone');
-var FileUpload = keystone.list('FileUpload')
-var mime = require('mime')
-
-exports = module.exports = function async (req, res) {
+const { mailforward } = require('../api/applicationAPI');
+const { contactforward } = require('../api/applicationAPI')
+var Inquiry = keystone.list('Inquiry')
+exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
@@ -11,46 +11,41 @@ exports = module.exports = function async (req, res) {
 	// item in the header navigation.
 	locals.section = 'contact';
 	locals.fileSubmitted = false
+	locals.formData = req.body || {}
 	locals.validationErrors = {};
-
-	// const filename = 'peppermint-eo.jpg';
-    // const file = '/public/uploads/files/${filename}';
-    // const mimetype = mime.getType(file); // yarn add mime // installed already with keystonejs
-    // const createReadStream = () => fs.createReadStream(file);
-    // const encoding = 'utf-8'
-	// const image = { createReadStream, filename, mimetype, encoding };
-
-
+	locals.inquirySubmitted = false;
 
 	view.on('post', { action: 'submit'}, function(next){
-		console.log(req.body);
-
-		var newFile = new FileUpload.model();
-		var updater = newFile.getUpdateHandler(req);
+		console.log(locals.formData);
+		var newInquiry = new Inquiry.model()
+		var updater = newInquiry.getUpdateHandler(req)
 
 		updater.process(req.body, {
 			flashErrors: true,
-			fields: 'file', 
-			errorMessage: 'Upload failed'
+			fields: 'firstname, lastname, email, phone, message', 
+			errorMessage: 'There was a problem submitting your enquiry',
 		}, function(err){
-			if (err){
-				locals.validationErrors = err.detail
-				console.log('upload fail');
+			if (err) {
 				console.log(err);
+
+				locals.validationErrors = err.detail
 			} else {
-				console.log('upload success');
-				locals.fileSubmitted = true
+				console.log('success');
+				locals.inquirySubmitted = true
+				contactforward(newInquiry)
 			}
+			next()
 		})
-
-		next()
+		
 	})
-
+	
 	// Render the view
 	view.render('contact');
 };
 	
- 
+  
+
+
 // //original contact.js file below///
 
 // var keystone = require('keystone');

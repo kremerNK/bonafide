@@ -302,13 +302,13 @@ module.exports = function () {
 				output += '<p>' + messages[i].detail + '</p>';
 			}
 
-			// if (messages[i].list) {
-			// 	output += '<ul>';
-			// 	for (var ctr = 0; ctr < messages[i].list.length; ctr++) {
-			// 		output += '<li>' + messages[i].list[ctr] + '</li>';
-			// 	}
-			// 	output += '</ul>';
-			// } 
+			if (messages[i].list) {
+				output += '<ul>';
+				for (var ctr = 0; ctr < messages[i].list.length; ctr++) {
+					output += '<li>' + messages[i].list[ctr] + '</li>';
+				}
+				output += '</ul>';
+			} 
 		}
 		return new hbs.SafeString(output);
 	}; 

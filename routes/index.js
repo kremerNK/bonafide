@@ -44,6 +44,8 @@ exports = module.exports = function (app) {
 	
 	app.all('/contact', routes.views.contact);
 	app.get('/order-now', routes.views.ordernow);
+	app.get('/pick-up', routes.views.pickup);
+	app.get('/delivery', routes.views.delivery); 
 	app.get('/cart', routes.views.cart);
 	app.get('/:year', routes.views.year);
 	app.get('/:year/:month', routes.views.month);
@@ -54,6 +56,7 @@ exports = module.exports = function (app) {
 
 	// COPY THE CODE FROM HERE...
 	//File Upload Route
+	app.all('/api/fileupload/contactforward', keystone.middleware.api, routes.api.applicationAPI.contactforward);
 	app.all('/api/fileupload/mailforward', keystone.middleware.api, routes.api.applicationAPI.mailforward);
 	app.get('/api/fileupload/list', keystone.middleware.api, routes.api.applicationAPI.list);
 	app.get('/api/fileupload/:id', keystone.middleware.api, routes.api.applicationAPI.get);

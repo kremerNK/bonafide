@@ -9,7 +9,7 @@ exports = module.exports = function (req, res) {
 	locals.section = 'contact';
 	locals.formData = req.body || {};
 
-	locals.applicationSubmitted = false;
+	locals.applicationSubmitted = false; 
 	console.log(req.body);
 
 	// locals.section is used to set the currently selected

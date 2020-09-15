@@ -2,127 +2,167 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/contact.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/0f023ecc43.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/contact.css">
+
+  <title>Document</title>
 </head>
 
 <body>
-    {{>nav}}
-    <div id='wood-pane'>
-        <p>Contact</p>
+  {{>nav}}
+  <div id='wood-pane'> 
+    <p>Contact</p>
+  </div>
+
+
+
+  <section class='contact-section'>
+    <div class='location'>
+      <h1>Appleton Location</h1>
+      <p>Located near the Fox Cities Performing Art Center and just walking distance
+        from Lawrence University. Relaxed environment to get together and have a
+        healthy meal. Offering great outdoor seating when the weather permits.</p>
+      <div id='location-info'>
+        <ul>
+          <li>
+            <i class="fas fa-map-marker-alt fa-lg"></i>
+            <div>
+              <p>Address:</p>
+              <p>111 E College Ave, Appleton</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-phone-volume fa-lg"></i>
+            <div>
+              <p>Phone:</p>
+              <p>920-757-3454</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-envelope-square fa-lg"></i>
+            <div>
+              <p>Email:</p>
+              <p>contact@bonafidejuicery.com</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-link fa-lg"></i>
+            <div>
+              <p>Website: </p>
+              <p>www.bonafidejuicery.com</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2857.352097597649!2d-88.40763294947597!3d44.261575420793775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8803b733eb06d77d%3A0xcf19b9fda259f960!2s111%20E%20College%20Ave%2C%20Appleton%2C%20WI%2054911!5e0!3m2!1sen!2sus!4v1600115656874!5m2!1sen!2sus"
+        width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+        tabindex="0"></iframe>
+      <h1>De Pere Location</h1>
+      <p>Proudly serving the De Pere area, we are located within walking distance of
+        St. Norbert College. Offering comfortable seating for work or meeting friends.
+        Also offering a fun kids corner.</p>
+      <div id='location-info'>
+        <ul>
+          <li>
+            <i class="fas fa-map-marker-alt fa-lg"></i>
+            <div>
+              <p>Address:</p>
+              <p>409 Main Avenue, De Pere, WI</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-phone-volume fa-lg"></i>
+            <div>
+              <p>Phone:</p>
+              <p>920-461-6955</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-envelope-square fa-lg"></i>
+            <div>
+              <p>Email:</p>
+              <p>contact@bonafidejuicery.com</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-link fa-lg"></i>
+            <div>
+              <p>Website: </p>
+              <p>www.bonafidejuicery.com</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.3064366753333!2d-88.07324134946896!3d44.44738730862857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8802fc12cfdd1f01%3A0x41818fcf83e80e60!2s409%20Main%20Ave%2C%20De%20Pere%2C%20WI%2054115!5e0!3m2!1sen!2sus!4v1600115873886!5m2!1sen!2sus"
+        width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+        tabindex="0"></iframe>
     </div>
+    <div class='contact'>
 
-    <body>
-        <h1>Upload a new file</h1>
-        <form id="form2" action="/api/fileupload/create" method="POST" enctype='multipart/form-data'>
-            <div>
-                <input type="file" id="file_upload" />
-                <br>
-                <label for="file_name">Give the file a name:
-                  <input type="text" name="file_name" id="file_name" />
-                </label>
-               
-            </div>
-            <br>
-            <div>
-                <center><input type="button" value="Upload" onclick="uploadFile()"></center>
-            </div>
-        </form>
-        <br>
-        <div>
-            <h2>Uploaded File List:</h2>
-            <ul id="file_list">
-            </ul>
+
+      {{#if inquirySubmitted}}
+      
+
+     
+      <div class="alert alert-success">
+        <h2>Thanks for getting in touch!</h2>
+      </div>
+      
+
+      {{else}}
+
+      {{#if messages.error}}
+      <div class="alert alert-danger">
+   
+        {{{flashMessages messages.error}}}
+      </div>
+      {{/if}}
+
+
+      <h1>Contact Us</h1>
+      <form class='contact-form' method="post">
+        <input type="hidden" name="action" value="submit">
+        <div id='name'>
+          <p>Name</p>
+          <div>
+            <span class='input'>
+              <input id='firstname' name='firstname' type="text" value='{{{formData.firstname}}}'>
+              <label type='text'>First</label>
+            </span>
+            <span class='input'>
+              <input id='lastname' name='lastname' type="text" value='{{{formData.lastname}}}'>
+              <label>Last</label>
+            </span>
+          </div>
         </div>
-        {{>footer}}
- 
- 
-    <script src='/js/contact.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-      //debugger;
+        <div>
+          <p>Email</p>
+          <input id='email' name='email' type="text"value='{{{formData.emailname}}}'>
+        </div>
+        <div>
+          <p>Phone</p>
+          <input name='phone' id='phone-input' type="text" placeholder='xxx-xxx-xxxx' value='{{{formData.phone}}}'>
+        </div>
+        <div>
+          <p>Message / Question / Comments</p>
+          <textarea id='message' name='message' rows="10">{{#if formData.message}}{{formData.message}}{{/if}}</textarea>
+        </div>
+        <button id='submit-btn' type=''>Submit</button>
+      </form>
+      {{/if}}
+    </div>
+  
+  </section>
 
-    });
+  {{>footer}}
 
-    function uploadFile() {
-      //debugger;
-      console.log('upload file')
-      var selectedFile = $('#file_upload').get(0).files[0];
-      console.log(selectedFile)
-      //Error handling
-      if(selectedFile == undefined)
-        alert('You did not select a file!');
 
-      //Create the FormData data object and append the file to it.
-      var newFile = new FormData();
-      newFile.append('file_upload', selectedFile); //This is the raw file that was selected
+  <script src='/js/contact.js'></script>
+</body>
 
-      //Set the form options.
-      var opts = {
-        url: '/api/fileupload/create',
-        data: newFile,
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-
-        //This function is executed when the file uploads successfully.
-        success: function(data){
-          //Dev Note: KeystoneAPI only allows file and image uploads with the file itself. Any extra metadata will have to
-          //be uploaded/updated with a second call.
-
-          //debugger;
-          console.log('File upload succeeded! ID: ' + data.file_upload._id);
-
-          //Fill out the file metadata information
-          data.file_upload.name = $('#file_name').val();
-          data.file_upload.url = '/uploads/files/'+data.file_upload.file.filename;
-          data.file_upload.fileType = data.file_upload.file.mimetype;
-          data.file_upload.createdTimeStamp = new Date();
-
-          //Update the file with the information above.
-          $.get('/api/fileupload/'+data.file_upload._id+'/update', data.file_upload, function(data) {
-            //debugger;
-
-            console.log('File information updated.');
-
-            //Add the uploaded file to the uploaded file list.
-            $('#file_list').append('<li><a href="'+data.collection.url+'" download>'+data.collection.name+'</a></li>');
-
-          })
-
-          //If the metadata update fails:
-          .fail(function(data) {
-            debugger;
-
-            console.error('The file metadata was not updated. Here is the error message from the server:');
-            console.error('Server status: '+err.status);
-            console.error('Server message: '+err.statusText);
-
-            alert('Failed to connect to the server while trying to update file metadata!');
-          });
-        },
-
-        //This error function is called if the POST fails for submitting the file itself.
-        error: function(err) {
-          //debugger;
-
-          console.error('The file was not uploaded to the server. Here is the error message from the server:');
-          console.error('Server status: '+err.status);
-          console.error('Server message: '+err.statusText);
-
-          alert('Failed to connect to the server!');
-        }
-      };
-
-      //Execute the AJAX call.
-      jQuery.ajax(opts);
-
-    }
-    </script>
-    </body>
 
 </html>

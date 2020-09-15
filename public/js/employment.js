@@ -136,66 +136,72 @@ function uploadFile() {
     return re.test(String(email).toLowerCase());
   }
 // poorly done manual validation
-  // function fieldValidation(){
-  //   ifErrors = false
-  //   if (resume.files.length === 0){
-  //     ifErrors = true
-  //     resume.closest('.input').querySelector('#alert').className = 'has-error'
-  //   } else {
-  //     resume.closest('.input').querySelector('#alert').className = ''
-  //   }
+  function fieldValidation(){
+    ifErrors = false
+    if (resume.files.length === 0){
+      ifErrors = true
+      resume.closest('.input').querySelector('#alert').className = 'has-error'
+    } else {
+      resume.closest('.input').querySelector('#alert').className = ''
+    }
 
-  //   if (phone.value.length < 12){
-  //     ifErrors = true
-  //     phone.closest('.input').querySelector('#alert').className = 'has-error'
+    if (phone.value.length < 12){
+      ifErrors = true
+      phone.closest('.input').querySelector('#alert').className = 'has-error'
       
-  //   } else {
-  //     phone.closest('.input').querySelector('#alert').className = ''
-  //   }
-  //   if (validateEmail(email.value) !== true){
-  //     ifErrors = true
-  //     email.closest('.input').querySelector('#alert').className = 'has-error'
-  //   } else {
-  //     email.closest('.input').querySelector('#alert').className = ''
-  //   }
-  //   for (i=0; i < stringFields.length; i++){
-  //     if (stringFields[i].value == ''){
-  //       ifErrors = true
-  //       stringFields[i].closest('.input').querySelector('#alert').className = 'has-error'
-  //     } else {
-  //       stringFields[i].closest('.input').querySelector('#alert').className = ''
-  //     }
-  //   }
-  //   for (i=0; i < listFields.length; i++){
+    } else {
+      phone.closest('.input').querySelector('#alert').className = ''
+    }
+    if (validateEmail(email.value) !== true){
+      ifErrors = true
+      email.closest('.input').querySelector('#alert').className = 'has-error'
+    } else {
+      email.closest('.input').querySelector('#alert').className = ''
+    }
+    for (i=0; i < stringFields.length; i++){
+      if (stringFields[i].value == ''){
+        ifErrors = true
+        stringFields[i].closest('.input').querySelector('#alert').className = 'has-error'
+      } else {
+        stringFields[i].closest('.input').querySelector('#alert').className = ''
+      }
+    }
+    for (i=0; i < listFields.length; i++){
      
-  //     if ([...listFields[i].options].filter((item) => item.selected === true).length > 0){
-  //       console.log([...listFields[i].options].filter((item) => item.selected === true));
-  //       listFields[i].closest('.input').querySelector("#alert").className = ''
-  //     } else {
-  //       ifErrors = true
-  //       listFields[i].closest('.input').querySelector("#alert").className = 'has-error'
-  //     }
-  //   }
+      if ([...listFields[i].options].filter((item) => item.selected === true).length > 0){
+        console.log([...listFields[i].options].filter((item) => item.selected === true));
+        listFields[i].closest('.input').querySelector("#alert").className = ''
+      } else {
+        ifErrors = true
+        listFields[i].closest('.input').querySelector("#alert").className = 'has-error'
+      }
+    }
+    if (selectedFile == undefined){
+      resume.closest('.input').querySelector('#alert').className = 'has-error'
+    } else {
+      resume.closest('.input').querySelector('#alert').className = ''
+    }
+  }
+  fieldValidation();
 
-  //   ////show/hide alert div///
-  //   var alertDiv = document.querySelector('#alert-div')
-  //   console.log(alertDiv);
-  //   if (ifErrors === true){
-  //     if (alertDiv.classList.contains('hide')){
-  //       alertDiv.classList.remove('hide')
-  //     }
-  //   } else {
-  //     if (!alertDiv.classList.contains('hide')){
-  //       alertDiv.classList.add('hide')
-  //     }
-  //   }
+  //////show/hide alert div///
+  var alertDiv = document.querySelector('#alert-div')
 
-  // }
-  // fieldValidation();
-  // if (ifErrors === true){
-  //   window.scrollTo({top: 0, behavior: 'smooth'});
-  //   return
-  // }
+  if (ifErrors === true){
+    if (alertDiv.classList.contains('hide')){
+      alertDiv.classList.remove('hide')
+    }
+  } else {
+    if (!alertDiv.classList.contains('hide')){
+      alertDiv.classList.add('hide')
+    }
+  } 
+  
+  
+  if (ifErrors === true){
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    return
+  }
   //Error handling
   
   // if (selectedFile == undefined)
@@ -228,19 +234,19 @@ function uploadFile() {
           
           data.file_upload.application = data.newApplication._id
      
-          // data.file_upload.firstname = firstName.value;
-          // data.file_upload.lastname = lastName.value;
-          // data.file_upload.email = email.value;
-          // data.file_upload.phone = phone.value;
+          data.file_upload.firstname = firstName.value;
+          data.file_upload.lastname = lastName.value;
+          data.file_upload.email = email.value;
+          data.file_upload.phone = phone.value;
           data.file_upload.role = JSON.stringify([...role.options].filter((item) => item.selected === true).map(x => x.value))
           
    
-          // data.file_upload.hoursavailable = hoursavailable.value;
-          // data.file_upload.desiredpay = desiredpay.value;
+          data.file_upload.hoursavailable = hoursavailable.value;
+          data.file_upload.desiredpay = desiredpay.value;
           data.file_upload.locationsapplied = JSON.stringify([...locationsapplied.options].filter((item) => item.selected === true).map(x => x.value))
-          
-          // data.file_upload.startdate = startdate.value;
-          // data.file_upload.coverletter = coverletter.value
+          data.file_upload.locationsapplied = '["Depere", "Appleton"]'
+          data.file_upload.startdate = startdate.value;
+          data.file_upload.coverletter = coverletter.value
         
           // Update the file with the information above.
           
