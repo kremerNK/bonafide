@@ -15,10 +15,13 @@ Product.add({
     title: { type: String, required: true },
     description1: { type: String},
     description2: { type: String,},
+    originalprice: {type: String},
     price: { type: String},
-    stock: { type: String, default: '0'},
+    stock: { type: String},
+    features: {type: Types.TextArray},
     image: { type: Types.CloudinaryImage },
-    category: { type: String, default:''},
+    category: { type: Types.Select, options: 'Essential Oils, Bakery, \
+    Collagen, Gift Card, Retail Products'},
     dateCreated: { type: Types.Date, default:Date.now }
 });
 

@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    
+}
+
+#wood-pane {
+    background-image: url('https://www.bonafidejuicery.com/wp-content/uploads/2017/09/kraftbackground-1.jpg');
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}  
+
+#wood-pane > p {
+    color: #51a246;
+    font-weight: 600;
+    line-height: 0.5;
+    font-size: 44px;
+    font-family: 'Dancing Script', cursive;
+}
+
+.product-section {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1140px;
+    margin-top: 4rem;
+    display: flex;
+
+}
+
+.product-div {
+    width: 80%;
+}
+
+#product-top {
+    display: flex;
+    
+} 
+
+#product-price {
+    margin-bottom: 5rem;
+}
+
+#product-price > div {
+    display: flex;
+}
+
+#product-price > ul > li {
+    /* list-style-type: none; */
+    color: white;
+}
+
+.product-description {
+
+}
+
+#category {
+    padding: 0.8rem 0 0.8rem 0;
+    font-size: 0.8rem;
+    
+    display: flex;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+#category > p:first-child{
+    color: black;
+    margin-right: 0.5rem;
+}
+
+#category > p:last-child {
+    color: #777;
+}
+
+ /* plus/minus button */
+
+.input-group {
+    width: auto;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 2rem 0 2rem 0;
+}
+
+.input-group > button {
+    border-radius: none;
+    background-color: #13aff0;
+    color: white;
+    border: none;
+    margin-left: 1rem;
+    padding: 0 2rem 0 2rem;
+    text-transform: uppercase;
+}
+
+#myNumber {
+    background-color: transparent;
+    border: 1px solid #e4e4e4;
+    border-left: none;
+    border-right: none;
+    color: #777;
+    text-align: center;
+    width: 2.5rem;
+    
+}
+
+#up, #down {
+    color: #777;
+    font-size: 1rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: transparent;
+    border: 1px solid #e4e4e4;
+}
+
+#up:hover, #down:hover {
+    cursor: pointer;
+}
+
+/* product description */
+
+#product-description {
+
+}
+
+#top-bar {
+    display: flex;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    justify-content: center;
+   
+    margin-bottom: 1.5rem;
+}
+
+#top-bar > p {
+    text-transform: uppercase;
+}
+
+#top-bar > p:first-child {
+    padding: 1.5rem 0 1.5rem 0;
+    margin: 0 1rem 0 0;
+}
+
+#top-bar > p:last-child{
+    padding: 1.5rem 0 1.5rem 0;
+    margin: 0 0 0 1rem;
+}
+
+#top-bar > p:hover {
+    cursor: pointer;
+    color: #13aff0;
+    
+}

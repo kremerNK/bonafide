@@ -38,8 +38,9 @@ exports = module.exports = function (app) {
 	app.get('/', routes.views.homepage);
 	app.get('/menu', routes.views.menu);
 	app.get('/shop', routes.views.shop);
+	app.get('/product/:product', routes.views.product)
 	app.get('/blog', routes.views.blog);
-	app.get('/blog/:post', routes.views.blogPosts)
+	app.get('/blog/:post', routes.views.blogPosts);
 	app.all('/employment', routes.views.employment);
 	
 	app.all('/contact', routes.views.contact);
@@ -48,7 +49,7 @@ exports = module.exports = function (app) {
 	app.get('/delivery', routes.views.delivery); 
 	app.get('/cart', routes.views.cart);
 	app.get('/:year', routes.views.year);
-	app.get('/:year/:month', routes.views.month);
+	app.get('/:year/:month', routes.views.month); 
  
 	// app.get('/blog/:category?', routes.views.blog);
 	// app.get('/blog/post/:post', routes.views.post);

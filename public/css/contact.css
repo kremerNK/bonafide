@@ -153,3 +153,13 @@ input {
     color: #721c24;
     font-weight: 500;
 }
+
+#submit-btn {
+    font-size: 1.3rem;
+    background-color: #13aff0;
+    color: white;
+    border: none;
+    border-radius: none;
+    padding: 13px;
+    margin-top: 2rem;
+}

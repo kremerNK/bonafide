@@ -53,6 +53,7 @@ exports = module.exports = function (req, res) {
         }
         
         view.query('postLimit5', Post.model.find({}).sort('-dateCreated').limit(5))
+        console.log(locals.postLimit5);
         if (locals.data.results.length > 0){
             view.render('year', {year:locals.data.results, dates:dateSet})
         } else {

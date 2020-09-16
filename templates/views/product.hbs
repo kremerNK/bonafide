@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/product.css">
+    <title>Document</title>
+</head>
+
+<body>
+    {{>nav}}
+    <div id='wood-pane'>
+        <p>{{product.title}}</p>
+    </div>
+
+    <section class='product-section'>
+        {{>productsearch}}
+
+        <div class='product-div'>
+
+            <div id='product-top'>
+                <div id='product-image'>
+
+                    <img src="{{product.image.secure_url}}" alt="">
+                </div>
+                <div id='product-price'>
+
+                    <h1>{{product.title}}</h1>
+                    <div>
+                        <p><s>{{product.originalprice}}</s></p>
+                        <p>{{product.price}}</p>
+                    </div>
+
+                    <ul>
+
+                        {{#each product.features}}
+                        <li>{{feature}}</li>
+                        {{/each}}
+                    </ul>
+
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button id="down" class="btn btn-default" onclick=" down('0')">-</button>
+                        </div>
+                        <input type="text" id="myNumber" class="form-control input-number" value="1" />
+                        <div class="input-group-btn">
+                            <button id="up" class="btn btn-default" onclick="up('10')">+</button>
+                        </div>
+                        <button>Add to cart</button>
+                    </div>
+                    <div id='category'>
+                        <p>Category:   </p>
+                        <p> {{product.category}}</p>
+                    </div>
+                    
+
+                </div>
+            </div>
+            <div id='product-description'>
+                <div id='top-bar'>
+                    <p>Description</p>
+                    <p>Additional Information</p>
+                </div>
+                <div id='description'>
+
+                </div>
+            </div>
+            {{!-- make another partial here for related products --}}
+        </div>
+
+    </section>
+    {{>footer}}
+    <script src='/js/product.js'></script>
+</body>
+
+</html>

@@ -25,10 +25,10 @@ body {
     justify-content: center;
     margin: auto;
     max-width: 1140px;
-    
+    margin-top: 4rem;
 }
 
-.search-product {
+/* .search-product {
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@ body {
     height: 2rem;
     text-indent: 10px;
     box-sizing: border-box;
-}
+} 
 
 .search > div > button {
     background-color: #13aff0;
@@ -63,11 +63,12 @@ body {
     border-left: 2.5px solid #13aff0;
     padding-left: 10px;
 }
+*/
 
 .shop-sorting {
     width: 100%;
     
-    margin: 30px 0 20px 0;
+    /* margin: 30px 0 20px 0; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,7 +111,7 @@ body {
 .product {
     display: grid;
     width: 70%;
-    margin-left: 35px;
+    /* margin-left: 35px; */
 }
 
 .items {
@@ -141,9 +142,60 @@ body {
     flex-direction: column;
 }
 
-#item > img {
+#item {
+    padding: 0 15px 0 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#item > div:first-child {
+    text-align: center;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+#item > div:last-child {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#item-category {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+#item-title {
+    font-size: 0.9rem;
+}
+
+#item-price {
+    color: #57bf6d;
+}
+
+#item > a > img {
     width: 100%;
 }
+
+#item > div > a > button {
+    color: #848494;
+    background-color: transparent;
+    padding: 10px;
+    border: 3px double #e4e4e4;
+    transition: all 0.2s;
+    background-color: transparent;
+}
+
+#item > div > a > button:hover {
+    color: #13aff0;
+    border: 3px double #13aff0;
+    /* padding: 10px; */
+    cursor: pointer;
+}
+
 
 .checkbox:hover {
     cursor: pointer;

@@ -10,9 +10,10 @@
     {{>nav}}
         <div id='wood-pane'>
             <p>Products</p>
-        </div>
+        </div> 
         <section class='shop-body'>
-            <div class='search-product'>
+            {{>productsearch}}
+            {{!-- <div class='search-product'>
                 <div class='search'>
                     <p>Product Search</p>
                     <div>
@@ -38,9 +39,9 @@
                     <label for="retail-products">Retail Products</label><br>
                     <input type="checkbox" class="checkbox" autocomplete="off" name="" value="seasonal-cleanses">
                     <label for="seasonal-cleanses">Seasonal Cleanses</label><br>
-
+ 
                 </div>
-            </div>
+            </div> --}}
             <div class='product'>
                 <div class='shop-sorting'>
                     <div>
@@ -67,15 +68,23 @@
                     {{#each products}}
                         <div id='item' value='{{category}}'>
                             <input type="hidden" id='date-created' value='{{dateCreated}}'>
-                            <img src="{{image.secure_url}}" alt="">
+                            
+                            <a href="product/{{slug}}"><img src="{{image.secure_url}}" alt=""></a>
+                            <p id='item-category'>{{category}}</p>
                             <div>
+                                
                                 <p id='item-title'>{{title}}</p>
+                                
+                                
+                            </div>
+                            <div>
                                 <p id='item-price'>{{price}}</p>
-                                <button>Add to Cart</button>
+                                <a href=""><button>Add to Cart</button></a>
                             </div>
                             
-                        </div>
-                    {{/each}}
+                            
+                        </div> 
+                    {{/each}} 
                 </div>
                 
             </div>
