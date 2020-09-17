@@ -23,7 +23,10 @@ Product.add({
     category: { type: Types.Select, options: 'Essential Oils, Bakery, \
     Collagen, Gift Card, Retail Products'},
     description: {type: Types.Markdown, wysiwyg: true, height: 300},
-    test: {type: Types.Html, wysiwyg: true},
+    weight: {type: String},
+    dimensions: {type: String},
+    howtouse: {type: String},
+    // reviews: {type: String},
     dateCreated: { type: Types.Date, default:Date.now }
 });
 

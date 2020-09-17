@@ -27,7 +27,7 @@
                 <div id='product-price'>
 
                     <h1>{{product.title}}</h1>
-                    <div>
+                    <div id='price-info'>
                         <p><s>{{product.originalprice}}</s></p>
                         <p>{{product.price}}</p>
                     </div>
@@ -74,6 +74,7 @@
                 {{!-- {{#if product.additionalinfo}}
 
                 {{/if}} --}}
+                {{#if product.weight}}
                 <div id='additional-info'>
                     <h4>Additional Information</h4>
                     <table id='info-table'>
@@ -87,11 +88,13 @@
                         </tr>
                     </table>
                 </div>
+                {{/if}}
                 {{#if related}}
                 <h1>Related Products</h1>
-                {{>related}}
+                
 
                 {{/if}}
+                {{>related}}
             </div>
             {{!-- make another partial here for related products --}}
         </div>

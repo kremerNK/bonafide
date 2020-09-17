@@ -22,20 +22,21 @@ exports = module.exports = function (req, res) {
     
     
     view.query('product', Product.model.findOne({slug: req.params.product}, function(err, result){
-        console.log(result._doc.title);
+        
         Product.model.find({category: result._doc.category})
         .limit(4)
         .exec()
         .then(function(results) {
+            console.log(results.length, '*****');
             for (i=0; i < results.length; i++){
-                console.log(results[i]._doc.title);
+                // console.log(results[i]._doc.title, '*****');
                 if (results[i]._doc.title == result._doc.title){
                     results.splice(i, 1)
                     
                 } else {
-                    if (results.length > 3){
-                        results.splice(0, 1)
-                    }
+                    // if (results.length > 3){
+                    //     results.splice(Math.floor(Math.random() * 7), 1)
+                    // }
                 }
             }
             locals.related = results
