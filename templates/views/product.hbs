@@ -13,7 +13,7 @@
     <div id='wood-pane'>
         <p>{{product.title}}</p>
     </div>
-
+    
     <section class='product-section'>
         {{>productsearch}}
 
@@ -50,21 +50,48 @@
                         <button>Add to cart</button>
                     </div>
                     <div id='category'>
-                        <p>Category:   </p>
+                        <p>Category: </p>
                         <p> {{product.category}}</p>
                     </div>
-                    
+
 
                 </div>
             </div>
             <div id='product-description'>
                 <div id='top-bar'>
-                    <p>Description</p>
-                    <p>Additional Information</p>
+                    <p id='description-tab' onclick='switchTab()'>Description</p>
+                    <p id='additional-tab' onclick='switchTab()'>Additional Information</p>
                 </div>
-                <div id='description'>
+                {{!-- {{#if product.description}}
 
+                {{/if}} --}}
+                <div id='description'>
+                    <h4>Description</h4>
+                    {{{product.description.html}}}
+                    
+                    
                 </div>
+                {{!-- {{#if product.additionalinfo}}
+
+                {{/if}} --}}
+                <div id='additional-info'>
+                    <h4>Additional Information</h4>
+                    <table id='info-table'>
+                        <tr>
+                            <th>Weight</td>
+                            <th>1 lbs</th>
+                        </tr>
+                        <tr>
+                            <th>Dimensions</th>
+                            <th>6 x 6 x 6 inch</th>
+                        </tr>
+                    </table>
+                </div>
+                {{#if related}}
+                <h1>Related Products</h1>
+                {{>related}}
+
+                {{/if}}
             </div>
             {{!-- make another partial here for related products --}}
         </div>
@@ -73,5 +100,5 @@
     {{>footer}}
     <script src='/js/product.js'></script>
 </body>
- 
+
 </html>

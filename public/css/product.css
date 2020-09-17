@@ -3,6 +3,8 @@ body {
     
 }
 
+
+
 #wood-pane {
     background-image: url('https://www.bonafidejuicery.com/wp-content/uploads/2017/09/kraftbackground-1.jpg');
     height: 125px;
@@ -42,17 +44,35 @@ body {
     margin-bottom: 5rem;
 }
 
+#product-price > h1 {
+    color: #07b515;
+    font: 'Oswald' !important;
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
 #product-price > div {
     display: flex;
+    align-items: flex-end;
+}
+
+/* #product-price > div > p:first-child {
+    margin: 0;
+} */
+
+#product-price > div > p > s:first-child {
+    color: #b6b6b6;
+
+}
+
+#product-price > div > p:last-child {
+    color: #57bf6d;
+    font-size: 1.5rem;
+    margin: 0;
 }
 
 #product-price > ul > li {
-    /* list-style-type: none; */
     color: white;
-}
-
-.product-description {
-
 }
 
 #category {
@@ -116,17 +136,15 @@ body {
 
 /* product description */
 
-#product-description {
-
-}
 
 #top-bar {
     display: flex;
     border-top: 1px solid #e4e4e4;
     border-bottom: 1px solid #e4e4e4;
     justify-content: center;
-   
+    color: #9b9b9b;
     margin-bottom: 1.5rem;
+
 }
 
 #top-bar > p {
@@ -134,17 +152,161 @@ body {
 }
 
 #top-bar > p:first-child {
-    padding: 1.5rem 0 1.5rem 0;
-    margin: 0 1rem 0 0;
+    padding: 1.5rem 1rem 1.5rem 0;
+    margin: 0 0 0 0;
+    display: flex;
+    align-items: center;
 }
 
 #top-bar > p:last-child{
-    padding: 1.5rem 0 1.5rem 0;
-    margin: 0 0 0 1rem;
+    padding: 1.5rem 0 1.5rem 1rem;
+    margin: 0 0 0 0;
+    display: flex;
+    align-items: center;
 }
 
 #top-bar > p:hover {
     cursor: pointer;
-    color: #13aff0;
+    color: #13aff0 !important;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #13aff0 !important;
+    border-bottom: 1px solid #13aff0 !important;
+    padding-top: -1px;
+    padding-bottom: -1px;
     
+}   
+
+#description {
+ 
+}
+
+#description > h4, #additional-info > h4 {
+    color: #07b515;
+    text-transform: uppercase;
+}
+
+#description > h1 {
+    color: #9b9b9b;
+    text-transform: uppercase;
+}
+
+#description > p {
+    color: #9b9b9b;
+}
+
+#description-tab {
+    color: #13aff0;
+    border-top: 1px solid #13aff0;
+    border-bottom: 1px solid #13aff0;
+ 
+}
+
+#product-description {
+    
+}
+
+#product-description > h1 {
+    margin-top: 5rem;
+    color: #07b515;
+}
+
+
+/* bottom of product page */
+
+#additional-info {
+    display: none;
+    
+}
+
+#additional-info > table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+    text-indent: 0.5rem;
+}
+
+#info-table tr {
+ 
+    border: 1px solid #e4e4e4;
+    border-left: none;
+    border-right: none;
+    
+}
+
+#info-table tr th {
+    padding: 0.5rem;
+}
+
+#info-table tr th:last-child {
+    color: #666666
+}
+
+#info-table tr th:last-child{
+    border-left: 1px solid #e4e4e4;
+}
+
+.product-description {
+    margin-bottom: 3rem;
+}
+
+/* RELATED ITEMS */
+
+#related-products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 5rem;
+}
+
+#item {
+    padding: 0 15px 0 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+#item > div:first-child {
+    text-align: center;
+}
+
+#item > div:last-child {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#item-category {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+#item-title {
+    font-size: 0.9rem;
+}
+
+#item-price {
+    color: #57bf6d;
+}
+
+#item > a > img {
+    width: 100%;
+}
+
+#item > div > a > button {
+    color: #848494;
+    background-color: transparent;
+    padding: 10px;
+    border: 3px double #e4e4e4;
+    transition: all 0.2s;
+    background-color: transparent;
+}
+
+#item > div > a > button:hover {
+    color: #13aff0;
+    border: 3px double #13aff0;
+    /* padding: 10px; */
+    cursor: pointer;
 }

@@ -12,16 +12,38 @@ exports = module.exports = function (req, res) {
     // Product.model.find({slug: req.params.product}).exec(function(err, result){
     //     if (err || result.length === 0){
     //         view.render('404')
-    //     } else {
+    //     } else { 
     //         locals.product = result[0]._doc
     //         view.render('product')
     //     }
        
-        
+    
     // })
-     
+    
+    
     view.query('product', Product.model.findOne({slug: req.params.product}, function(err, result){
+        console.log(result._doc.title);
+        Product.model.find({category: result._doc.category})
+        .limit(4)
+        .exec()
+        .then(function(results) {
+            for (i=0; i < results.length; i++){
+                console.log(results[i]._doc.title);
+                if (results[i]._doc.title == result._doc.title){
+                    results.splice(i, 1)
+                    
+                } else {
+                    if (results.length > 3){
+                        results.splice(0, 1)
+                    }
+                }
+            }
+            locals.related = results
+
+        })
         
+        // view.query('related', Product.model.find({category: result._doc.category})).limit(3)
+        // view.query('related', Product.model.find({category: result._doc.category}).limit(3))
         if (result === null || err){
             view.render('404')
         } else {

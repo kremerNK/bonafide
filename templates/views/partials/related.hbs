@@ -1,0 +1,24 @@
+<div id='related-products'>
+    
+    {{#each related}}
+    
+    <div id='item' value='{{category}}'>
+        <input type="hidden" id='date-created' value='{{dateCreated}}'>
+
+        <a href="product/{{slug}}"><img src="{{image.secure_url}}" alt=""></a>
+        <p id='item-category'>{{category}}</p>
+        <div>
+
+            <p id='item-title'>{{title}}</p>
+
+
+        </div>
+        <div>
+            <p id='item-price'>{{price}}</p>
+            <a href=""><button>Add to Cart</button></a>
+        </div>
+
+
+    </div>
+    {{/each}}
+</div>

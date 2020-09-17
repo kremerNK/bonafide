@@ -22,7 +22,8 @@ Post.add({
     // default: new Date().toLocaleString('default', { month: 'long'})},
     // yearCreated: { type: String, default: new Date().getFullYear() },
     dateCreated: { type: Types.Date, default: Date.now}, 
-    postHtml: {type: Types.Markdown, height: 200}
+    postHtml: {type: Types.Markdown, height: 200},
+    testContent: {type: Types.Markdown, height: 200}
 });
  
 Post.schema.virtual('content.full').get(function () {
