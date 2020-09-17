@@ -4,7 +4,6 @@ const select = document.querySelector('#sort')
 const allItems = document.querySelectorAll('#item')
 
 function defaultSort(array, itemsDiv){
-    console.log('default');
     
     array.sort(function(a, b){
         if (a.querySelector('#item-title').textContent < 
@@ -124,10 +123,9 @@ function deactiveBtn(target){
         }
     }
     else {
-        console.log('grid activated, no toggle');
         return
     }
-}
+} 
 
 listBtn.onclick = () => {
     if (itemsDiv.classList.contains('activeList')){
@@ -139,7 +137,6 @@ listBtn.onclick = () => {
         (gridBtn.classList.remove('active'), 
         deactiveBtn(gridBtn)) : null;
         event.target.classList.toggle('active')
-        console.log(event.target.classList);
         if (event.target.classList.contains('active')){
             activeBtn(event.target)
             itemsDiv.classList.toggle('activeList') 
@@ -156,36 +153,59 @@ listBtn.onclick = () => {
 //////////search products///////
 
 const searchInput = document.querySelector('#search-input')
+var searchSubmitBtn = document.querySelector('#search-submit')
 var searchTerms = "";
+
+// function searchRegex(){
+
+// }
+
+function searchRegex(search){
+    
+    // const letterNumber = /^[0-9a-zA-Z\s]+$/;
+    // if (search.key.length == 1 && search.key.match(letterNumber)) {
+    //     (searchTerms.length > 0) ? searchTerms += search.key : searchTerms = search.key
+    // }
+    // else if (search.key == 'Backspace') {
+    //     searchTerms = searchTerms.slice(0, -1)
+    // }
+    console.log(search);
+    const items = document.querySelectorAll("#item")
+    items.forEach(item => {
+        const itemTitle = item.querySelector('#item-title').textContent
+        // const regex = searchTerms.toLowerCase()
+        const regex = search
+        if (!itemTitle.toLowerCase().match(regex)){
+            item.style.display = 'none';
+            
+        }
+        else {
+            item.style.display = 'flex';
+            item.style.flexDirection = 'column'
+            item.style.alignItems = 'center'
+        }
+    })
+}
 
 searchInput.onkeydown = (search) => {
     window.setTimeout( function () {
-        const items = document.querySelectorAll("#item")
         const letterNumber = /^[0-9a-zA-Z\s]+$/;
         if (search.key.length == 1 && search.key.match(letterNumber)) {
             (searchTerms.length > 0) ? searchTerms += search.key : searchTerms = search.key
         }
         else if (search.key == 'Backspace') {
             searchTerms = searchTerms.slice(0, -1)
-            console.log(search.target.value);
         }
-        items.forEach(item => {
-            const itemTitle = item.querySelector('#item-title').textContent
-            // const regex = searchTerms.toLowerCase()
-            const regex = search.target.value
-            if (!itemTitle.toLowerCase().match(regex)){
-                item.style.display = 'none';
-                
-            }
-            else {
-                item.style.display = 'flex';
-                item.style.flexDirection = 'column'
-                item.style.alignItems = 'center'
-            }
-        })
+        searchRegex(search.target.value)
     }, 10)
-    
 }
+
+searchSubmitBtn.onclick = (click) => {
+    console.log(searchInput.value)
+    searchRegex(searchInput.value)
+
+}
+
 
 /////////search by Product Categories /////////
 
@@ -228,3 +248,42 @@ checkBoxes.forEach((checkBox) => {
         }
       })
 }) 
+
+////product search///
+
+
+//filter by input boxes
+function sortProducts(){
+    var radio = document.querySelectorAll('.checkbox-input')
+    var allProducts = document.querySelectorAll('#item')
+    var checked = []
+
+    for (i=0; i < radio.length; i++){
+        radio[i].checked === true ? checked.push(radio[i].value) : null;
+    }
+    if (checked.length == 0){
+        for (ele of allProducts){
+            ele.style.display = 'flex';
+        }
+        return
+    }
+
+    if (checked.includes('All')){
+        for (ele of allProducts){
+            ele.style.display = 'flex'
+        }
+        return
+    }
+
+    for (ele of allProducts){
+        if (checked.includes(ele.getAttribute('value'))){
+            ele.style.display = 'flex'
+        } else{
+            ele.style.display = 'none';
+        }
+    }
+}
+
+//filter by Search
+
+

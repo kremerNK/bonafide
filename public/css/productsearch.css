@@ -13,7 +13,7 @@
     text-align: right;
 }
 
-.search > div > input {
+.search > div > input { 
     width: 100%;
     border: 1px solid #ddd;
     height: 2rem;

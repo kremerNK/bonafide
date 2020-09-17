@@ -60,7 +60,9 @@
             <div id='product-description'>
                 <div id='top-bar'>
                     <p id='description-tab' onclick='switchTab()'>Description</p>
+                    {{#if product.weight}}
                     <p id='additional-tab' onclick='switchTab()'>Additional Information</p>
+                    {{/if}}
                 </div>
                 {{!-- {{#if product.description}}
 
@@ -80,11 +82,11 @@
                     <table id='info-table'>
                         <tr>
                             <th>Weight</td>
-                            <th>1 lbs</th>
+                            <th>{{product.weight}}</th>
                         </tr>
                         <tr>
                             <th>Dimensions</th>
-                            <th>6 x 6 x 6 inch</th>
+                            <th>{{product.dimensions}}</th>
                         </tr>
                     </table>
                 </div>

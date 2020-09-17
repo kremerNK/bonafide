@@ -21,7 +21,7 @@ Product.add({
     features: {type: Types.TextArray},
     image: { type: Types.CloudinaryImage },
     category: { type: Types.Select, options: 'Essential Oils, Bakery, \
-    Collagen, Gift Card, Retail Products'},
+    Collagen, Gift Card, Retail Products, Seasonal Cleanses'},
     description: {type: Types.Markdown, wysiwyg: true, height: 300},
     weight: {type: String},
     dimensions: {type: String},

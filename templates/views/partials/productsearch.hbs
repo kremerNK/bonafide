@@ -6,28 +6,29 @@
                     <p>Product Search</p>
                     <div>
                         <input autocomplete="off" id='search-input' placeholder='Search products...'type="text">
-                        <button type='Submit' >Search</button>
+                        <button id='search-submit' type='Submit' >Search</button>
                     </div>
                 </div>
                 <div class='categories'>
                     <p>Product Categories</p>
-                    <input type="checkbox" class="checkbox" name="" autocomplete="off" value="all">
+                    <input type="checkbox" class="checkbox-input" name="" autocomplete="off" value="All" onclick='sortProducts()'>
                     <label for="all">All</label><br>
-                    <input type="checkbox" class="checkbox" name="" autocomplete="off" value="bakery">
+                    <input type="checkbox" class="checkbox-input" name="" autocomplete="off" value="Bakery" onclick='sortProducts()'>
                     <label for="bakery">Bakery</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="collagen">
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Collagen" onclick='sortProducts()'>
                     <label for="collagen">Collagen</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="essential-oil">
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Essential Oils" onclick='sortProducts()'>
                     <label for="essential-oil">Essential Oils</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="gift-card">
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Gift Card" onclick='sortProducts()'>
                     <label for="gift-card">Gift Card</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="juice-cleanse">
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Juice Cleanse" onclick='sortProducts()'>
                     <label for="juice-cleanse">Juice Cleanse</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="retail-products">
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Retail Products" onclick='sortProducts()'>
                     <label for="retail-products">Retail Products</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="seasonal-cleanses">
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Seasonal Cleanses" onclick='sortProducts()'>
                     <label for="seasonal-cleanses">Seasonal Cleanses</label><br>
 
                 </div>
             </div>
 
+<script src='/js/productsearch.js'></script>

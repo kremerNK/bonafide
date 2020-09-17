@@ -27,7 +27,6 @@ exports = module.exports = function (req, res) {
         .limit(4)
         .exec()
         .then(function(results) {
-            console.log(results.length, '*****');
             for (i=0; i < results.length; i++){
                 // console.log(results[i]._doc.title, '*****');
                 if (results[i]._doc.title == result._doc.title){
@@ -42,9 +41,6 @@ exports = module.exports = function (req, res) {
             locals.related = results
 
         })
-        
-        // view.query('related', Product.model.find({category: result._doc.category})).limit(3)
-        // view.query('related', Product.model.find({category: result._doc.category}).limit(3))
         if (result === null || err){
             view.render('404')
         } else {
