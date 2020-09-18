@@ -5,27 +5,27 @@
                 <div class='search'>
                     <p>Product Search</p>
                     <div>
-                        <input autocomplete="off" id='search-input' placeholder='Search products...'type="text">
-                        <button id='search-submit' type='Submit' >Search</button>
+                        <input autocomplete="off" id='search-input' placeholder='Search products...'type="text" onkeydown='filterProducts()'>
+                        <button id='search-submit' type='Submit' onclick='filterProducts()'>Search</button>
                     </div>
                 </div>
                 <div class='categories'>
                     <p>Product Categories</p>
-                    <input type="checkbox" class="checkbox-input" name="" autocomplete="off" value="All" onclick='sortProducts()'>
+                    <input type="checkbox" class="checkbox-input" name="" autocomplete="off" value="All" onclick='filterProducts()'>
                     <label for="all">All</label><br>
-                    <input type="checkbox" class="checkbox-input" name="" autocomplete="off" value="Bakery" onclick='sortProducts()'>
+                    <input type="checkbox" class="checkbox-input" name="" autocomplete="off" value="Bakery" onclick='filterProducts()'>
                     <label for="bakery">Bakery</label><br>
-                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Collagen" onclick='sortProducts()'>
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Collagen" onclick='filterProducts()'>
                     <label for="collagen">Collagen</label><br>
-                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Essential Oils" onclick='sortProducts()'>
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Essential Oils" onclick='filterProducts()'>
                     <label for="essential-oil">Essential Oils</label><br>
-                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Gift Card" onclick='sortProducts()'>
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Gift Card" onclick='filterProducts()'>
                     <label for="gift-card">Gift Card</label><br>
-                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Juice Cleanse" onclick='sortProducts()'>
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Juice Cleanse" onclick='filterProducts()'>
                     <label for="juice-cleanse">Juice Cleanse</label><br>
-                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Retail Products" onclick='sortProducts()'>
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Retail Products" onclick='filterProducts()'>
                     <label for="retail-products">Retail Products</label><br>
-                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Seasonal Cleanses" onclick='sortProducts()'>
+                    <input type="checkbox" class="checkbox-input" autocomplete="off" name="" value="Seasonal Cleanses" onclick='filterProducts()'>
                     <label for="seasonal-cleanses">Seasonal Cleanses</label><br>
 
                 </div>

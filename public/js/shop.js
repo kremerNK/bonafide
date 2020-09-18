@@ -3,81 +3,86 @@
 const select = document.querySelector('#sort')
 const allItems = document.querySelectorAll('#item')
 
-function defaultSort(array, itemsDiv){
-    
-    array.sort(function(a, b){
-        if (a.querySelector('#item-title').textContent < 
-        b.querySelector('#item-title').textContent) {
+function defaultSort(array, itemsDiv) {
+
+    array.sort(function (a, b) {
+        if (a.querySelector('#item-title').textContent <
+            b.querySelector('#item-title').textContent) {
             return -1;
         } else {
             return 1;
         }
     })
     itemsDiv.textContent = '';
-    for (i=0; i < array.length; i++){
+    for (i = 0; i < array.length; i++) {
         itemsDiv.appendChild(array[i].cloneNode(true))
-    } 
+    }
 
 }
 
-function latestSort(array, itemsDiv){
-    array.sort(function(a, b){
+function latestSort(array, itemsDiv) {
+    array.sort(function (a, b) {
         const date1 = a.querySelector('#date-created').value
         const date2 = b.querySelector('#date-created').value
-        return (new Date(date1) - new Date(date2) < 0) ? 1: -1;
+        return (new Date(date1) - new Date(date2) < 0) ? 1 : -1;
     })
-    itemsDiv.textContent ='';
-    for (i=0; i < array.length; i++){
+    itemsDiv.textContent = '';
+    for (i = 0; i < array.length; i++) {
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
 }
 
-function loHi(array, itemsDiv){
-    array.sort(function(a, b){
-        if (parseFloat(a.querySelector('#item-price').textContent.substring(1)) < 
-        parseFloat(b.querySelector('#item-price').textContent.substring(1))) {
+function loHi(array, itemsDiv) {
+    array.sort(function (a, b) {
+        if (parseFloat(a.querySelector('#item-price').textContent.substring(1)) <
+            parseFloat(b.querySelector('#item-price').textContent.substring(1))) {
             return -1;
         } else {
             return 1;
         }
     })
-    itemsDiv.textContent ='';
-    for (i=0; i < array.length; i++){
+    itemsDiv.textContent = '';
+    for (i = 0; i < array.length; i++) {
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
 }
 
-function hiLo(array, itemsDiv){
-    array.sort(function(a, b){
-        if (parseFloat(a.querySelector('#item-price').textContent.substring(1)) < 
-        parseFloat(b.querySelector('#item-price').textContent.substring(1))) {
+function hiLo(array, itemsDiv) {
+    array.sort(function (a, b) {
+        if (parseFloat(a.querySelector('#item-price').textContent.substring(1)) <
+            parseFloat(b.querySelector('#item-price').textContent.substring(1))) {
             return 1;
         } else {
             return -1;
         }
     })
-    itemsDiv.textContent ='';
-    for (i=0; i < array.length; i++){
+    itemsDiv.textContent = '';
+    for (i = 0; i < array.length; i++) {
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
 }
 
-function getSort(){
+function getSort() {
     const option = select.options[select.selectedIndex].value
     const allItems = document.querySelectorAll('#item')
-    const allItemsArray = Array.prototype.slice.call(allItems, 0);
+    // const allItemsArray = Array.prototype.slice.call(allItems, 0);
+    var allItemsArray = [...allItems]
     const itemsDiv = document.querySelector('.items')
+    console.log(listBtn);
+    if (listBtn.classList.contains('active')){
+        console.log('active list');
+    }
 
-    if (option == 'default'){
+    if (option == 'default') {
         defaultSort(allItemsArray, itemsDiv)
     }
-    else if (option =='latest'){
+    else if (option == 'latest') {
         latestSort(allItemsArray, itemsDiv)
     }
-    else if (option == 'lohi'){
+    else if (option == 'lohi') {
         loHi(allItemsArray, itemsDiv)
     }
-    else if (option == 'hilo'){
+    else if (option == 'hilo') {
         hiLo(allItemsArray, itemsDiv)
     }
 }
@@ -91,14 +96,14 @@ const itemsDiv = document.querySelector('.items')
 const items = document.querySelectorAll("#item")
 gridBtn.classList.add('active')
 
-function activeBtn(target){
+function activeBtn(target) {
     target.style.padding = '5px 10px 5px 10px';
     target.style.border = '1px solid #13aff0'
     target.style.margin = '0 -1px 0 -1px'
     target.style.color = '#13aff0'
 }
 
-function deactiveBtn(target){
+function deactiveBtn(target) {
     target.style.padding = '5px 10px 5px 10px';
     target.style.border = '1px solid black'
     target.style.margin = '0 -1px 0 -1px'
@@ -108,13 +113,13 @@ function deactiveBtn(target){
 (gridBtn).onclick = () => {
     if (itemsDiv.classList.contains('activeList')) {
         event.target.classList.toggle('active')
-        listBtn.classList.contains('active') ? 
-        (listBtn.classList.remove('active'), 
-        deactiveBtn(listBtn)) : null;
-        if (event.target.classList.contains('active')){
+        listBtn.classList.contains('active') ?
+            (listBtn.classList.remove('active'),
+                deactiveBtn(listBtn)) : null;
+        if (event.target.classList.contains('active')) {
             activeBtn(event.target)
             itemsDiv.style.display = 'grid'
-            itemsDiv.classList.toggle('activeList') 
+            itemsDiv.classList.toggle('activeList')
             itemsDiv.classList.toggle('items')
             items.forEach(item => item.className = 'item')
         }
@@ -125,22 +130,22 @@ function deactiveBtn(target){
     else {
         return
     }
-} 
+}
 
 listBtn.onclick = () => {
 
-    if (itemsDiv.classList.contains('activeList')){
+    if (itemsDiv.classList.contains('activeList')) {
         return
     }
 
     else {
-        gridBtn.classList.contains('active') ? 
-        (gridBtn.classList.remove('active'), 
-        deactiveBtn(gridBtn)) : null;
+        gridBtn.classList.contains('active') ?
+            (gridBtn.classList.remove('active'),
+                deactiveBtn(gridBtn)) : null;
         event.target.classList.toggle('active')
-        if (event.target.classList.contains('active')){
+        if (event.target.classList.contains('active')) {
             activeBtn(event.target)
-            itemsDiv.classList.toggle('activeList') 
+            itemsDiv.classList.toggle('activeList')
             itemsDiv.classList.toggle('items')
             items.forEach(item => item.className = 'itemActive')
         }
@@ -150,161 +155,31 @@ listBtn.onclick = () => {
     }
 }
 
-
-//////////search products///////
-
-const searchInput = document.querySelector('#search-input')
-var searchSubmitBtn = document.querySelector('#search-submit')
-var searchTerms = "";
-
-// function searchRegex(){
-
-// }
-
-function searchRegex(search){
-
-    const items = document.querySelectorAll("#item")
-    if (gridBtn.classList.contains('active')){
-        items.forEach(item => item.className = 'item')
-        // itemsDiv.classList.toggle('activeList') 
-        //     itemsDiv.classList.toggle('items')
-    } else if (listBtn.classList.contains('active')){
-        console.log('list active');
-        items.forEach(item => item.className = 'itemActive')
-        // itemsDiv.classList.toggle('activeList') 
-        // itemsDiv.classList.toggle('items')
-    }
-
-    
-    items.forEach(item => {
-        const itemTitle = item.querySelector('#item-title').textContent
-        // const regex = searchTerms.toLowerCase()
-        const regex = search
-        if (!itemTitle.toLowerCase().match(regex)){
-            item.style.display = 'none';
-            
-        }
-        else {
-            item.style.display = 'flex';
-            // item.style.flexDirection = 'column'
-            // item.style.alignItems = 'center'
-        }
-    })
-}
-
-searchInput.onkeydown = (search) => {
-    window.setTimeout( function () {
-        const letterNumber = /^[0-9a-zA-Z\s]+$/;
-        if (search.key.length == 1 && search.key.match(letterNumber)) {
-            (searchTerms.length > 0) ? searchTerms += search.key : searchTerms = search.key
-        }
-        else if (search.key == 'Backspace') {
-            searchTerms = searchTerms.slice(0, -1)
-        }
-        searchRegex(search.target.value)
-    }, 10)
-}
-
-searchSubmitBtn.onclick = (click) => {
-    searchRegex(searchInput.value)
-
-}
-
-
-/////////search by Product Categories /////////
-
-const checkBoxes = document.querySelectorAll('.checkbox')
-let selectedBoxes = [];
-
-
-function filterByCategory(selection){
-    if (selection.includes('all') || selection.length == 0){
-        for (i=0; i < allItems.length; i++){
-            allItems[i].style.display = 'flex';
-            allItems[i].style.flexDirection = 'column'
-            allItems[i].style.alignItems = 'center'
-        }
-        return
-    }
-    for (i=0; i < allItems.length; i++){
-        if (selection.includes([...allItems][i].getAttribute('value'))){
-            allItems[i].style.display = 'flex';
-            allItems[i].style.flexDirection = 'column'
-            allItems[i].style.alignItems = 'center'
-        }
-        else {
-            allItems[i].style.display = 'none';
-        }
-    }
-}
-
-checkBoxes.forEach((checkBox) => {
-      checkBox.addEventListener('click', function(){
-        this.classList.toggle('active-checkbox')
-        if (this.classList.contains('active-checkbox')){
-            selectedBoxes.push(this.value)
-            filterByCategory(selectedBoxes)
-    }
-        else {
-            let value = this.value
-            selectedBoxes = selectedBoxes.filter(function(box) { return box !== value})
-            filterByCategory(selectedBoxes)
-        }
-      })
-}) 
-
-////product search///
-
-
-//filter by input boxes
-
-function filterProducts(products){
-    
-}
-
-function sortProducts(){
-    var radio = document.querySelectorAll('.checkbox-input')
-    var allProducts = [...document.querySelectorAll('#item')]
-    .filter(product => product.style.display == 'flex')
-    // for (i=0; i < allProducts.length; i++){
-    //     if (allProducts[i].style.display == 'flex'){
-    //         console.log(allProducts[i]);
-    //     }
-    // }
-    console.log(allProducts);
-
-
-    var checked = []
-
-    for (i=0; i < radio.length; i++){
-        radio[i].checked === true ? checked.push(radio[i].value) : null;
-    }
-    if (checked.length == 0){
-        for (ele of allProducts){
-            ele.style.display = 'flex';
-        }
-        filterProducts(allProducts)
-        return
-    }
-
-    if (checked.includes('All')){
-        for (ele of allProducts){
-            ele.style.display = 'flex'
-        }
-        filterProducts(allProducts)
-        return
-    }
-
-    for (ele of allProducts){
-        if (checked.includes(ele.getAttribute('value'))){
-            ele.style.display = 'flex'
-        } else{
-            ele.style.display = 'none';
-        }
-    }
-    filterProducts(allProducts)
-}
-
 //filter by Search
 
 
+function filterProducts() {
+    
+    window.setTimeout(function () {
+        var items = document.querySelectorAll('#item')
+        var search = document.querySelector('#search-input').value
+        var boxes = [...document.querySelectorAll('.checkbox-input')]
+        .filter(box => box.checked == true)
+        .map(box => box.value)
+        
+        items.forEach(item => {
+            var itemVal = item.getAttribute('value')
+            var itemTitle = item.querySelector('#item-title').textContent
+            if (boxes.includes(itemVal) || boxes.includes('All') || boxes.length == 0){
+                if (itemTitle.toLowerCase().match(search)){
+                    item.style.display = 'flex'
+                } else {
+                    item.style.display = 'none'
+                }
+                
+            } else {
+                item.style.display = 'none'
+            }
+        })
+    }, 10)
+}
