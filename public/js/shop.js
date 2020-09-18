@@ -116,7 +116,7 @@ function deactiveBtn(target){
             itemsDiv.style.display = 'grid'
             itemsDiv.classList.toggle('activeList') 
             itemsDiv.classList.toggle('items')
-            items.forEach(item => item.classList.toggle('itemActive'))
+            items.forEach(item => item.className = 'item')
         }
         else {
             deactiveBtn(event.target)
@@ -128,6 +128,7 @@ function deactiveBtn(target){
 } 
 
 listBtn.onclick = () => {
+
     if (itemsDiv.classList.contains('activeList')){
         return
     }
@@ -141,7 +142,7 @@ listBtn.onclick = () => {
             activeBtn(event.target)
             itemsDiv.classList.toggle('activeList') 
             itemsDiv.classList.toggle('items')
-            items.forEach(item => item.classList.toggle('itemActive'))
+            items.forEach(item => item.className = 'itemActive')
         }
         else {
             deactiveBtn(event.target)
@@ -161,16 +162,20 @@ var searchTerms = "";
 // }
 
 function searchRegex(search){
-    
-    // const letterNumber = /^[0-9a-zA-Z\s]+$/;
-    // if (search.key.length == 1 && search.key.match(letterNumber)) {
-    //     (searchTerms.length > 0) ? searchTerms += search.key : searchTerms = search.key
-    // }
-    // else if (search.key == 'Backspace') {
-    //     searchTerms = searchTerms.slice(0, -1)
-    // }
-    console.log(search);
+
     const items = document.querySelectorAll("#item")
+    if (gridBtn.classList.contains('active')){
+        items.forEach(item => item.className = 'item')
+        // itemsDiv.classList.toggle('activeList') 
+        //     itemsDiv.classList.toggle('items')
+    } else if (listBtn.classList.contains('active')){
+        console.log('list active');
+        items.forEach(item => item.className = 'itemActive')
+        // itemsDiv.classList.toggle('activeList') 
+        // itemsDiv.classList.toggle('items')
+    }
+
+    
     items.forEach(item => {
         const itemTitle = item.querySelector('#item-title').textContent
         // const regex = searchTerms.toLowerCase()
@@ -181,8 +186,8 @@ function searchRegex(search){
         }
         else {
             item.style.display = 'flex';
-            item.style.flexDirection = 'column'
-            item.style.alignItems = 'center'
+            // item.style.flexDirection = 'column'
+            // item.style.alignItems = 'center'
         }
     })
 }
@@ -201,7 +206,6 @@ searchInput.onkeydown = (search) => {
 }
 
 searchSubmitBtn.onclick = (click) => {
-    console.log(searchInput.value)
     searchRegex(searchInput.value)
 
 }
@@ -253,9 +257,23 @@ checkBoxes.forEach((checkBox) => {
 
 
 //filter by input boxes
+
+function filterProducts(products){
+    
+}
+
 function sortProducts(){
     var radio = document.querySelectorAll('.checkbox-input')
-    var allProducts = document.querySelectorAll('#item')
+    var allProducts = [...document.querySelectorAll('#item')]
+    .filter(product => product.style.display == 'flex')
+    // for (i=0; i < allProducts.length; i++){
+    //     if (allProducts[i].style.display == 'flex'){
+    //         console.log(allProducts[i]);
+    //     }
+    // }
+    console.log(allProducts);
+
+
     var checked = []
 
     for (i=0; i < radio.length; i++){
@@ -265,6 +283,7 @@ function sortProducts(){
         for (ele of allProducts){
             ele.style.display = 'flex';
         }
+        filterProducts(allProducts)
         return
     }
 
@@ -272,6 +291,7 @@ function sortProducts(){
         for (ele of allProducts){
             ele.style.display = 'flex'
         }
+        filterProducts(allProducts)
         return
     }
 
@@ -282,6 +302,7 @@ function sortProducts(){
             ele.style.display = 'none';
         }
     }
+    filterProducts(allProducts)
 }
 
 //filter by Search

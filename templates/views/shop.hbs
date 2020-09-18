@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/shop.css">
     <title>Document</title>
 </head>
+
 <body>
     {{>nav}}
-        <div id='wood-pane'>
-            <p>Products</p>
-        </div> 
-        <section class='shop-body'>
-            {{>productsearch}}
-            {{!-- <div class='search-product'>
+    <div id='wood-pane'>
+        <p>Products</p>
+    </div>
+    <section class='shop-body'>
+        {{>productsearch}}
+        {{!-- <div class='search-product'>
                 <div class='search'>
                     <p>Product Search</p>
                     <div>
@@ -42,56 +44,62 @@
  
                 </div>
             </div> --}}
-            <div class='product'>
-                <div class='shop-sorting'>
-                    <div>
-                        <i id='items-grid' class="fas fa-th"></i>
-                        <i id='items-list' class="fas fa-list"></i>
-                        <select onchange='getSort()' name="" id="sort">
-                            <option value="default" selected='selected'>Default sorting</option>
-                            {{!-- <option value="popularity">Sort by popularity</option> --}}
-                            {{!-- <option value="rating">Sort by average rating</option> --}}
-                            <option value="latest">Sort by latest</option>
-                            <option value="lohi">Sort by price: low to high</option>
-                            <option value="hilo">Sort by price: high to low</option>
-                        </select>
-                    </div>
-                    <div> 
-                        <p>View: 
-                            <a href="">12</a> /
-                            <a href="">24</a> /
-                            <a href="">All</a>
-                        </p> 
-                    </div>
+        <div class='product'>
+            <div class='shop-sorting'>
+                <div>
+                    <i id='items-grid' class="fas fa-th"></i>
+                    <i id='items-list' class="fas fa-list"></i>
+                    <select onchange='getSort()' name="" id="sort">
+                        <option value="default" selected='selected'>Default sorting</option>
+                        {{!-- <option value="popularity">Sort by popularity</option> --}}
+                        {{!-- <option value="rating">Sort by average rating</option> --}}
+                        <option value="latest">Sort by latest</option>
+                        <option value="lohi">Sort by price: low to high</option>
+                        <option value="hilo">Sort by price: high to low</option>
+                    </select>
                 </div>
-                <div class='items'>
-                    {{#each products}}
-                        <div id='item' value='{{category}}'>
-                            <input type="hidden" id='date-created' value='{{dateCreated}}'>
-                            
-                            <a href="product/{{slug}}"><img src="{{image.secure_url}}" alt=""></a>
-                            <p id='item-category'>{{category}}</p>
-                            <div>
-                                
-                                <p id='item-title'>{{title}}</p>
-                                
-                                
-                            </div> 
-                            <div>
-                                <p id='item-price'>{{price}}</p>
-                                <a href=""><button>Add to Cart</button></a>
-                            </div>
-                            
-                            
-                        </div> 
-                    {{/each}}  
+                <div>
+                    <p>View:
+                        <a href="">12</a> /
+                        <a href="">24</a> /
+                        <a href="">All</a>
+                    </p>
                 </div>
-                
             </div>
-        </section>
+            <div class='items'>
+                {{!-- change back to items --}}
+                {{#each products}}
+                <div id='item' class='item' value='{{category}}'>
+                    {{!-- change back to item --}}
+                    <input type="hidden" id='date-created' value='{{dateCreated}}'>
+
+                    <a href="product/{{slug}}"><img src="{{image.secure_url}}" alt=""></a>
+                    <div>
+                        <p id='item-category'>{{category}}</p>
+                        <div>
+
+                            <a style='text-decoration: none; color: black;' href=""><p id='item-title'>{{title}}</p></a>
+
+
+                        </div>
+                        <div id='price-div'>
+                            <p><s>{{originalprice}}</s></p>
+                            <p id='item-price'>{{price}}</p>
+                        </div>
+                        <a href=""><button>Add to Cart</button></a>
+                        
+                    </div>
+
+
+
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+    </section>
     {{>footer}}
     <script src='/js/shop.js'></script>
 </body>
-</html>       
 
- 
+</html>

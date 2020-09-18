@@ -28,43 +28,6 @@ body {
     margin-top: 4rem;
 }
 
-/* .search-product {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #eaeaea;
-    margin-top: 30px;
-}
-
-.search > div {
-    width: 80%;
-    text-align: right;
-}
-
-.search > div > input {
-    width: 100%;
-    border: 1px solid #ddd;
-    height: 2rem;
-    text-indent: 10px;
-    box-sizing: border-box;
-} 
-
-.search > div > button {
-    background-color: #13aff0;
-    color: white;
-    border: none;
-    border-radius: none;
-    padding: 13px;
-    margin-top: 10px;
-    
-}
-
-.search > p, .categories > p {
-    border-left: 2.5px solid #13aff0;
-    padding-left: 10px;
-}
-*/
-
 .shop-sorting {
     width: 100%;
     
@@ -128,61 +91,52 @@ body {
 }
 
 .itemActive {
-    color: greenyellow;
-    display: flex;   
+    display: flex; 
+    flex-direction: row;  
+    border-bottom: 1px solid #e4e4e4; 
+    margin-bottom: 1rem;
 }
 
+.itemActive > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+#price-div {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
+#price-div > p:first-child, #item-price {
+    margin: 0;
+}
+
+#price-div > p:last-child {
+    margin-left: 0.5rem;
+}
+
+#price-div > p > s {
+    color: #b6b6b6;
+
+}
+
+#price-div > p:last-child {
+    color: #57bf6d;
+    font-size: 1.4rem;
+}
+ 
 .itemActive > img {
     width: 10%;
-} 
-
-.items-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-#item {
-    padding: 0 15px 0 15px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-
-}
-
-#item.itemActive {
-    display: flex;
-
-}
-
-#item > div:first-child {
-    text-align: center;
-    /* display: flex;
-    flex-direction: column; */
-}
-
-#item > div:last-child {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
 }
 
 #item-category {
+    margin-top: 2rem;
     font-size: 0.8rem;
-    color: #999;
-}
-
-#item-title {
-    font-size: 0.9rem;
-}
-
-#item-price {
-    color: #57bf6d;
-}
-
-#item > a > img {
-    width: 100%;
+    color: #777;
 }
 
 #item > div > a > button {
@@ -200,6 +154,72 @@ body {
     /* padding: 10px; */
     cursor: pointer;
 }
+
+
+
+.items-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    padding: 0 15px 0 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+
+.item > div:first-child {
+    text-align: center;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.item > div:last-child {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.item > div > p:first-child {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+#item-title {
+    font-size: 1.6rem !important;
+    text-align: center;
+}
+
+.item-price {
+    color: #57bf6d;
+}
+
+.item > a > img {
+    width: 100%;
+}
+
+.item > div > a > button {
+    color: #848494;
+    background-color: transparent;
+    padding: 10px;
+    border: 3px double #e4e4e4;
+    transition: all 0.2s;
+    background-color: transparent;
+}
+
+.item > div > a > button:hover {
+    color: #13aff0;
+    border: 3px double #13aff0;
+    /* padding: 10px; */
+    cursor: pointer;
+}
+
+
 
 
 .checkbox:hover {
