@@ -1,7 +1,19 @@
+
+
 //////////////Sort by select bar/////////
 
 const select = document.querySelector('#sort')
 const allItems = document.querySelectorAll('#item')
+
+function setItemStyle() {
+    if (gridBtn.classList.contains('active')) {
+        makeGrid()
+    }
+
+    if (listBtn.classList.contains('active')) {
+        makeList()
+    }
+}
 
 function defaultSort(array, itemsDiv) {
 
@@ -17,10 +29,11 @@ function defaultSort(array, itemsDiv) {
     for (i = 0; i < array.length; i++) {
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
-
+    setItemStyle()
 }
 
 function latestSort(array, itemsDiv) {
+    console.log(array[0]);
     array.sort(function (a, b) {
         const date1 = a.querySelector('#date-created').value
         const date2 = b.querySelector('#date-created').value
@@ -28,8 +41,11 @@ function latestSort(array, itemsDiv) {
     })
     itemsDiv.textContent = '';
     for (i = 0; i < array.length; i++) {
+        console.log(array[i].style.display);
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
+    setItemStyle()
+
 }
 
 function loHi(array, itemsDiv) {
@@ -45,6 +61,7 @@ function loHi(array, itemsDiv) {
     for (i = 0; i < array.length; i++) {
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
+    setItemStyle()
 }
 
 function hiLo(array, itemsDiv) {
@@ -60,30 +77,31 @@ function hiLo(array, itemsDiv) {
     for (i = 0; i < array.length; i++) {
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
+    setItemStyle()
 }
 
 function getSort() {
     const option = select.options[select.selectedIndex].value
     const allItems = document.querySelectorAll('#item')
     // const allItemsArray = Array.prototype.slice.call(allItems, 0);
-    var allItemsArray = [...allItems]
-    const itemsDiv = document.querySelector('.items')
-    console.log(listBtn);
-    if (listBtn.classList.contains('active')){
-        console.log('active list');
-    }
+    const items = [...allItems]
+    const itemsDiv = document.querySelector('.items') == undefined ?
+        document.querySelector('.activeList') :
+        document.querySelector('.items')
+
+
 
     if (option == 'default') {
-        defaultSort(allItemsArray, itemsDiv)
+        defaultSort(items, itemsDiv)
     }
     else if (option == 'latest') {
-        latestSort(allItemsArray, itemsDiv)
+        latestSort(items, itemsDiv)
     }
     else if (option == 'lohi') {
-        loHi(allItemsArray, itemsDiv)
+        loHi(items, itemsDiv)
     }
     else if (option == 'hilo') {
-        hiLo(allItemsArray, itemsDiv)
+        hiLo(items, itemsDiv)
     }
 }
 
@@ -110,21 +128,30 @@ function deactiveBtn(target) {
     target.style.color = 'inherit'
 }
 
-(gridBtn).onclick = () => {
+// gridBtn.onclick = grid()
+
+function makeGrid() {
+    const gridBtn = document.querySelector('#items-grid')
+    const listBtn = document.querySelector('#items-list')
+    const itemsDiv = document.querySelector('.items') == undefined ?
+    document.querySelector('.activeList') :
+    document.querySelector('.items')
+    const items = document.querySelectorAll("#item")
+
     if (itemsDiv.classList.contains('activeList')) {
-        event.target.classList.toggle('active')
+        gridBtn.classList.toggle('active')
         listBtn.classList.contains('active') ?
             (listBtn.classList.remove('active'),
                 deactiveBtn(listBtn)) : null;
-        if (event.target.classList.contains('active')) {
-            activeBtn(event.target)
-            itemsDiv.style.display = 'grid'
+        if (gridBtn.classList.contains('active')) {
+            activeBtn(gridBtn)
+            // itemsDiv.style.display = 'flex'
             itemsDiv.classList.toggle('activeList')
             itemsDiv.classList.toggle('items')
             items.forEach(item => item.className = 'item')
         }
         else {
-            deactiveBtn(event.target)
+            deactiveBtn(gridBtn)
         }
     }
     else {
@@ -132,8 +159,16 @@ function deactiveBtn(target) {
     }
 }
 
-listBtn.onclick = () => {
 
+
+function makeList() {
+    const gridBtn = document.querySelector('#items-grid')
+    const listBtn = document.querySelector('#items-list')
+    const itemsDiv = document.querySelector('.items') == undefined ?
+    document.querySelector('.activeList') :
+    document.querySelector('.items')
+    const items = document.querySelectorAll("#item")
+    
     if (itemsDiv.classList.contains('activeList')) {
         return
     }
@@ -142,44 +177,65 @@ listBtn.onclick = () => {
         gridBtn.classList.contains('active') ?
             (gridBtn.classList.remove('active'),
                 deactiveBtn(gridBtn)) : null;
-        event.target.classList.toggle('active')
-        if (event.target.classList.contains('active')) {
-            activeBtn(event.target)
+        listBtn.classList.toggle('active')
+        if (listBtn.classList.contains('active')) {
+            activeBtn(listBtn)
             itemsDiv.classList.toggle('activeList')
             itemsDiv.classList.toggle('items')
             items.forEach(item => item.className = 'itemActive')
         }
         else {
-            deactiveBtn(event.target)
+            deactiveBtn(listBtn)
         }
     }
 }
+
+
 
 //filter by Search
 
 
 function filterProducts() {
-    
+
     window.setTimeout(function () {
         var items = document.querySelectorAll('#item')
         var search = document.querySelector('#search-input').value
         var boxes = [...document.querySelectorAll('.checkbox-input')]
-        .filter(box => box.checked == true)
-        .map(box => box.value)
-        
+            .filter(box => box.checked == true)
+            .map(box => box.value)
+
         items.forEach(item => {
             var itemVal = item.getAttribute('value')
             var itemTitle = item.querySelector('#item-title').textContent
-            if (boxes.includes(itemVal) || boxes.includes('All') || boxes.length == 0){
-                if (itemTitle.toLowerCase().match(search)){
+            if (boxes.includes(itemVal) || boxes.includes('All') || boxes.length == 0) {
+                if (itemTitle.toLowerCase().match(search)) {
                     item.style.display = 'flex'
                 } else {
                     item.style.display = 'none'
                 }
-                
+
             } else {
                 item.style.display = 'none'
             }
         })
     }, 10)
 }
+
+function productsPerPage(){
+    var getAllItems = document.querySelectorAll('#item')
+    console.log(getAllItems.length);
+}
+
+var selectedPages = document.querySelectorAll('#product-pp')
+
+selectedPages.forEach((option) => {
+    option.onclick = () => {
+        console.log(this.event.target.textContent);
+        var productPP = parseInt(this.event.target.textContent)
+        var getAllItems = document.querySelectorAll('#item')
+        var itemCount = getAllItems.length
+        if (productPP < itemCount) {
+            console.log('extra items');
+        }
+    }
+})

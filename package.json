@@ -17,6 +17,7 @@
     "formidable": "^1.2.2",
     "fs": "0.0.1-security",
     "handlebars": "4.0.6",
+    "jw-paginate": "^1.0.4",
     "keystone": "4.0.0-beta.5",
     "keystone-email": "^1.0.5",
     "lodash": "^4.13.1",

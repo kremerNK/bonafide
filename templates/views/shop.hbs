@@ -47,8 +47,8 @@
         <div class='product'>
             <div class='shop-sorting'>
                 <div>
-                    <i id='items-grid' class="fas fa-th"></i>
-                    <i id='items-list' class="fas fa-list"></i>
+                    <i id='items-grid' class="fas fa-th" onclick='makeGrid()'></i>
+                    <i id='items-list' class="fas fa-list" onclick='makeList()'></i>
                     <select onchange='getSort()' name="" id="sort">
                         <option value="default" selected='selected'>Default sorting</option>
                         {{!-- <option value="popularity">Sort by popularity</option> --}}
@@ -58,15 +58,15 @@
                         <option value="hilo">Sort by price: high to low</option>
                     </select>
                 </div>
-                <div>
+                <div id='products-per-page'>
                     <p>View:
-                        <a href="">12</a> /
-                        <a href="">24</a> /
-                        <a href="">All</a>
+                        <a id='product-pp'>12</a> /
+                        <a id='product-pp'>24</a> /
+                        <a id='product-pp'>All</a>
                     </p>
-                </div> 
+                </div>
             </div>
-            <div class='items'>
+            <div id='all-items-div' class='items'>
                 {{!-- change back to items --}}
                 {{#each products}}
                 <div id='item' class='item' value='{{category}}' name=''>
@@ -76,18 +76,22 @@
                     <a href="product/{{slug}}"><img src="{{image.secure_url}}" alt=""></a>
                     <div>
                         <p id='item-category'>{{category}}</p>
-                        <div>
+                        <div id='product-name' style='height: 100%;'>
 
-                            <a style='text-decoration: none; color: black;' href=""><p id='item-title'>{{title}}</p></a>
-
-
+                            <a style='text-decoration: none; color: black;' href="">
+                                <p id='item-title'>{{title}}</p>
+                            </a>
                         </div>
-                        <div id='price-div'>
-                            <p><s>{{originalprice}}</s></p>
-                            <p id='item-price'>{{price}}</p>
+
+                        <div id='addtocart'>
+                            <div id='price-div'>
+                                <p><s>{{originalprice}}</s></p>
+                                <p id='item-price'>{{price}}</p>
+
+                            </div>
+                            <a href=""><button>Add to Cart</button></a>
                         </div>
-                        <a href=""><button>Add to Cart</button></a>
-                        
+
                     </div>
 
 
