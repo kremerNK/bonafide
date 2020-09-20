@@ -133,11 +133,12 @@ function deactiveBtn(target) {
 function makeGrid() {
     const gridBtn = document.querySelector('#items-grid')
     const listBtn = document.querySelector('#items-list')
-    const itemsDiv = document.querySelector('.items') == undefined ?
-    document.querySelector('.activeList') :
-    document.querySelector('.items')
+    // const itemsDiv = document.querySelector('.items') == undefined ?
+    // document.querySelector('.activeList') :
+    // document.querySelector('.items')
+    const itemsDiv = document.querySelector('#all-items-div')
     const items = document.querySelectorAll("#item")
-
+    
     if (itemsDiv.classList.contains('activeList')) {
         gridBtn.classList.toggle('active')
         listBtn.classList.contains('active') ?
@@ -164,13 +165,15 @@ function makeGrid() {
 function makeList() {
     const gridBtn = document.querySelector('#items-grid')
     const listBtn = document.querySelector('#items-list')
-    const itemsDiv = document.querySelector('.items') == undefined ?
-    document.querySelector('.activeList') :
-    document.querySelector('.items')
+    // const itemsDiv = document.querySelector('.items') == undefined ?
+    // document.querySelector('.activeList') :
+    // document.querySelector('.items')
+    const itemsDiv = document.querySelector('#all-items-div')
     const items = document.querySelectorAll("#item")
     
     if (itemsDiv.classList.contains('activeList')) {
-        return
+        console.log('returned early');
+        // return
     }
 
     else {
@@ -190,6 +193,15 @@ function makeList() {
     }
 }
 
+////set item height so line height of pagination doesn't move on page changes
+// because of the difference between product title heights
+
+const getHeight = [document.querySelector('#item')].sort((a, b) => (a.offsetHeight > b.offsetHeight) ? -1 : 1)[0].offsetHeight
+function setHeight(){
+    items.forEach((item) => {
+        item.style.height = getHeight.toString().concat('px')
+    })
+}
 
 
 //filter by Search
@@ -221,21 +233,103 @@ function filterProducts() {
     }, 10)
 }
 
-function productsPerPage(){
-    var getAllItems = document.querySelectorAll('#item')
-    console.log(getAllItems.length);
-}
 
 var selectedPages = document.querySelectorAll('#product-pp')
 
 selectedPages.forEach((option) => {
     option.onclick = () => {
-        console.log(this.event.target.textContent);
-        var productPP = parseInt(this.event.target.textContent)
-        var getAllItems = document.querySelectorAll('#item')
-        var itemCount = getAllItems.length
-        if (productPP < itemCount) {
-            console.log('extra items');
-        }
+        for (i=0; i < selectedPages.length; i++){
+            if (selectedPages[i].classList.contains('active-page')){
+                selectedPages[i].classList.toggle('active-page')
+            }
+        } 
+        option.classList.toggle('active-page')
+        records_per_page = option.textContent != 'All' ? parseInt(option.textContent) : 100000
+        current_page = 1
+        changePage(1)
+        getSort()
     }
 })
+
+
+var listOfProducts = document.querySelectorAll('#item')
+
+function getProductCount(){
+    for (i=0; i < selectedPages.length; i++){
+        if (selectedPages[i].classList.contains('active-page')){
+            console.log(parseInt(selectedPages[i].textContent));
+            return parseInt(selectedPages[i].textContent)
+        }
+    } 
+}
+
+var current_page = 1;
+var records_per_page = getProductCount();
+
+
+function prevPage()
+{
+    if (current_page > 1) {
+        current_page--;
+        changePage(current_page);
+    }
+}
+
+function nextPage()
+{
+    if (current_page < numPages()) {
+        current_page++;
+        changePage(current_page);
+    } 
+}
+    
+function changePage(page)
+{
+    setHeight()
+    var btn_next = document.getElementById("btn_next");
+    var btn_prev = document.getElementById("btn_prev");
+    // var listing_table = document.getElementById("listingTable");
+    var listing_table = document.querySelector('#all-items-div')
+    var page_span = document.getElementById("page");
+ 
+    // Validate pageitems.forEach((item) => {
+    //     item.style.height = '486px'
+    // })
+    if (page < 1) page = 1;
+    if (page > numPages()) page = numPages();
+
+    listing_table.innerHTML = "";
+
+    for (var i = (page-1) * records_per_page; i < (page * records_per_page) && i < listOfProducts.length; i++) {
+        var clone = listOfProducts[i].cloneNode(true)
+        listing_table.appendChild(clone);
+        if (listBtn.classList.contains('active')){
+            clone.classList.toggle('itemActive')
+            clone.classList.toggle('item')
+        }
+        
+    }
+    // setItemStyle()
+    page_span.innerHTML = page + " of " + numPages();
+
+    if (page == 1) {
+        btn_prev.style.visibility = "hidden";
+    } else {
+        btn_prev.style.visibility = "visible";
+    }
+
+    if (page == numPages()) {
+        btn_next.style.visibility = "hidden";
+    } else {
+        btn_next.style.visibility = "visible";
+    }
+}
+
+function numPages()
+{
+    return Math.ceil(listOfProducts.length / records_per_page);
+}
+
+window.onload = function() {
+    changePage(1);
+};

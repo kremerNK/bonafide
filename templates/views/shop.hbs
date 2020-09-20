@@ -60,6 +60,7 @@
                 </div>
                 <div id='products-per-page'>
                     <p>View:
+                        <a id='product-pp' class='active-page'>3</a> /
                         <a id='product-pp'>12</a> /
                         <a id='product-pp'>24</a> /
                         <a id='product-pp'>All</a>
@@ -99,7 +100,18 @@
                 </div>
                 {{/each}}
             </div>
-
+            {{!-- <div class='pagination'>
+                <a onclick='prevPage()'><button id="btn_prev">&#8249; Prev </button></a>
+                Page <span id="page"></span> of <span id='totalpage'></span>
+                <a onclick='nextPage()'><button id="btn_next">Next &#8250;</button></a>
+            </div> --}}
+            <div id='change-page'>
+                <a href="javascript:prevPage()" id="btn_prev"><i class="fas fa-angle-left"></i></a>
+                Page <span id="page"></span>
+                <a href="javascript:nextPage()" id="btn_next"><i class="fas fa-angle-right"></i></a>
+                
+            </div>
+            
         </div>
     </section>
     {{>footer}}

@@ -95,6 +95,7 @@ body {
     flex-direction: row;  
     border-bottom: 1px solid #e4e4e4; 
     margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .itemActive > div {
@@ -104,6 +105,7 @@ body {
     width: 100%;
 
 }
+
 
 #price-div {
     display: flex;
@@ -142,7 +144,7 @@ body {
 
 
 #item-category {
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 0.8rem;
     color: #777;
 }
@@ -188,6 +190,7 @@ body {
     margin-bottom: 2rem;
     justify-content: flex-start;
 }
+
 
 
 .item > div:first-child {
@@ -259,4 +262,31 @@ body {
 
 #products-per-page > p > a:hover {
     cursor: pointer;
+}
+
+/* pagination buttons */
+
+.active-page {
+    color: #080808 !important;
+    font-size: 0.9rem !important;
+}
+
+#change-page {
+    margin-bottom: 2rem;
+    text-align: right;
+}
+
+#change-page > a {
+    color: #555;
+    text-decoration: none;
+    border: 1px solid #e4e4e4;
+    font-size: 1.3rem;
+    padding: 10px;
+}
+
+
+
+
+.pagination button {
+    
 }
