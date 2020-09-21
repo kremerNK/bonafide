@@ -1,11 +1,13 @@
 body {
     margin: 0;
+    font-family: 'Oswald', sans-serif;
 }
 
 .homepage-section {
     display: flex;
     flex-direction:column;
     padding: 5%;
+    /* margin-top: 100px; */
 }
 
 .homepage-section > div {
@@ -40,7 +42,8 @@ body {
     width: 100%;
     text-align: center;
     font-family: 'Oswald';
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 800;
     text-transform: uppercase;
 }
 
@@ -56,9 +59,232 @@ body {
     display: flex;
     flex-direction: column;
 }
+.homepage-section > div > div > div > div:last-child {
+    padding-top: 2rem;
+    justify-content: flex-start;
+    font-weight: 400;
+}
+
+.homepage-section > div > div > div > div:first-child > p {
+    font-size: 30px;
+    font-weight: 800;   
+}
 
 
 .homepage-section > div > div:last-child > img {
-    height: 10%;
+    /* height: 40%;
+    width: 20%; */
     width: auto;
+} 
+
+#body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#body > div {
+    background-image: url('https://www.bonafidejuicery.com/wp-content/uploads/2017/12/sign-300x286.png');
+    background-size: 300px 286px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#body > div > p{
+    font-size: 50px;
+    font-family: 'Dancing Script';
+    
+
+}
+
+#body > p:last-child{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 200;
+    font-size: 1.4rem;
+    text-align: center;
+    width: 40%;
+}
+
+.instagram {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+/* slide show */
+
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+  
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+    transition: all 1s;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }  
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+  /* Caption text */
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fader;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fader;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: 0.1}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: 0.1}
+    to {opacity: 1}
+  }
+
+
+
+
+
+
+#top-logo {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    height: 30%;
+    margin-top: 2rem;
+    z-index: 1;
+
+}
+
+
+
+  .slide-show {
+    /* margin: 1em auto; */
+    width: 100%;
+    height: 100vh;
+
+    
+    z-index: 0;
+    
+  }
+
+  .slide-show img {
+    
+    position: absolute;
+    width: 99vw;
+    max-width: 100vw !important;
+    height: 100vh;
+  }
+  .slide-show img {
+    /* padding: 10px;
+    border: 1px solid #ccc;
+    background: #fff; */
+    max-width: 100vw !important;
+  }
+
+  .slide-show img:nth-of-type(1) {
+    
+    /* animation: zoominoutsinglefeatured 1s forwards; */
+    animation-name: fader;
+    animation-delay: 2s;
+    animation-duration: 2s;
+    /* transition: all 4s;
+    transform: scale(1.2); */
+    z-index: 20;
+  }
+ .slide-show img:nth-of-type(2) {
+
+    /* z-index: 10; */
+  }
+ .slide-show img:nth-of-type(n+3) {
+    display: none;
+  }
+
+  @keyframes fader {
+    from { opacity: 1.0; }
+    to   { opacity: 0.0; }
+  }
+
+  @keyframes zoominoutsinglefeatured {
+    from {transform: scale(1.0)}
+    to { transform: scale(1.3)}
+
+    /* 100% {
+        transform: scale(1.3);
+    } */
 }

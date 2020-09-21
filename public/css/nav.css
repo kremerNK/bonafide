@@ -1,9 +1,21 @@
 body {
     margin: 0;
     font-family: 'Oswald', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
    
 }  
+
+#navbar {
+    
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    margin-bottom: 5rem;
+}
 
 #top-banner {
     display: flex;
@@ -12,7 +24,11 @@ body {
 }
 
 #top-banner > div:first-child, #top-banner > div:last-child {
-    width: 25%;
+    width: 20%;
+}
+
+#top-banner > div:last-child > input {
+    width: 70%;
 }
 
 #top-banner > input {
@@ -25,9 +41,17 @@ body {
 }
 
 #top-banner-img {
+    transition: all 0.3s;
+    text-align: center;
     height: 125px;
-    max-width: 250px;
+    /* max-width: 250px; */
     
+}
+
+#spacer {
+    background-color: transparent;
+    /* height: 100%; */
+    /* transition: all 0.1s */
 }
 
 nav {
