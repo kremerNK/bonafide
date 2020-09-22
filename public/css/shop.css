@@ -61,9 +61,6 @@ body {
 }
 
 
-#items-list {
-
-}
 
 
 
@@ -103,9 +100,21 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: auto;
 
 }
 
+.itemActive > div > div:first-child > a > p {
+    font-size: 2.4rem !important;
+}
+
+.itemActive > div > div:last-child {
+    height: auto !important;
+}
+
+.shop-body div.product div#all-items-div.activeList div#item.itemActive div div#product-name a p#item-title {
+    font-size: 2rem;
+}
 
 #price-div {
     display: flex;
@@ -212,7 +221,7 @@ body {
 }
 
 #item-title {
-    font-size: 0.9rem !important;
+    font-size: 1.1rem;
     text-align: center;
 }
 

@@ -15,41 +15,13 @@
     </div>
     <section class='shop-body'>
         {{>productsearch}}
-        {{!-- <div class='search-product'>
-                <div class='search'>
-                    <p>Product Search</p>
-                    <div>
-                        <input autocomplete="off" id='search-input' placeholder='Search products...'type="text">
-                        <button type='Submit' >Search</button>
-                    </div>
-                </div>
-                <div class='categories'>
-                    <p>Product Categories</p>
-                    <input type="checkbox" class="checkbox" name="" autocomplete="off" value="all">
-                    <label for="all">All</label><br>
-                    <input type="checkbox" class="checkbox" name="" autocomplete="off" value="bakery">
-                    <label for="bakery">Bakery</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="collagen">
-                    <label for="collagen">Collagen</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="essential-oil">
-                    <label for="essential-oil">Essential Oils</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="gift-card">
-                    <label for="gift-card">Gift Card</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="juice-cleanse">
-                    <label for="juice-cleanse">Juice Cleanse</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="retail-products">
-                    <label for="retail-products">Retail Products</label><br>
-                    <input type="checkbox" class="checkbox" autocomplete="off" name="" value="seasonal-cleanses">
-                    <label for="seasonal-cleanses">Seasonal Cleanses</label><br>
- 
-                </div>
-            </div> --}}
+         
         <div class='product'>
             <div class='shop-sorting'>
                 <div>
                     <i id='items-grid' class="fas fa-th" onclick='makeGrid()'></i>
                     <i id='items-list' class="fas fa-list" onclick='makeList()'></i>
-                    <select onchange='getSort()' name="" id="sort">
+                    <select onchange='sort()' name="" id="sort">
                         <option value="default" selected='selected'>Default sorting</option>
                         {{!-- <option value="popularity">Sort by popularity</option> --}}
                         {{!-- <option value="rating">Sort by average rating</option> --}}
@@ -68,16 +40,14 @@
                 </div>
             </div>
             <div id='all-items-div' class='items'>
-                {{!-- change back to items --}}
                 {{#each products}}
                 <div id='item' class='item' value='{{category}}' name=''>
-                    {{!-- change back to item --}}
                     <input type="hidden" id='date-created' value='{{dateCreated}}'>
 
                     <a href="product/{{slug}}"><img src="{{image.secure_url}}" alt=""></a>
                     <div>
                         <p id='item-category'>{{category}}</p>
-                        <div id='product-name' style='height: 100%;'>
+                        <div id='product-name' style=''>
 
                             <a style='text-decoration: none; color: black;' href="">
                                 <p id='item-title'>{{title}}</p>

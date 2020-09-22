@@ -25,6 +25,8 @@ body {
 
 #footer > div > p {
     color: white;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 #footer > div > ul {
@@ -40,6 +42,8 @@ body {
 
 #footer > div > ul > li > a {
     color: white;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 #footer > div > ul > li:last-child {

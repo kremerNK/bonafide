@@ -30,6 +30,7 @@ function defaultSort(array, itemsDiv) {
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
     setItemStyle()
+
 }
 
 function latestSort(array, itemsDiv) {
@@ -61,6 +62,7 @@ function loHi(array, itemsDiv) {
     for (i = 0; i < array.length; i++) {
         itemsDiv.appendChild(array[i].cloneNode(true))
     }
+    console.log(itemsDiv);
     setItemStyle()
 }
 
@@ -80,17 +82,20 @@ function hiLo(array, itemsDiv) {
     setItemStyle()
 }
 
-function getSort() {
+function sort(){
+    current_page = 1;
+    changePage(1)
+}
+
+function getSort(allItems) {
     const option = select.options[select.selectedIndex].value
-    const allItems = document.querySelectorAll('#item')
+    // const allItems = document.querySelectorAll('#item')
     // const allItemsArray = Array.prototype.slice.call(allItems, 0);
-    const items = [...allItems]
+    // const items = [...allItems]
+    var items = allItems
     const itemsDiv = document.querySelector('.items') == undefined ?
         document.querySelector('.activeList') :
         document.querySelector('.items')
-
-
-
     if (option == 'default') {
         defaultSort(items, itemsDiv)
     }
@@ -128,14 +133,10 @@ function deactiveBtn(target) {
     target.style.color = 'inherit'
 }
 
-// gridBtn.onclick = grid()
 
 function makeGrid() {
     const gridBtn = document.querySelector('#items-grid')
     const listBtn = document.querySelector('#items-list')
-    // const itemsDiv = document.querySelector('.items') == undefined ?
-    // document.querySelector('.activeList') :
-    // document.querySelector('.items')
     const itemsDiv = document.querySelector('#all-items-div')
     const items = document.querySelectorAll("#item")
     
@@ -165,9 +166,6 @@ function makeGrid() {
 function makeList() {
     const gridBtn = document.querySelector('#items-grid')
     const listBtn = document.querySelector('#items-list')
-    // const itemsDiv = document.querySelector('.items') == undefined ?
-    // document.querySelector('.activeList') :
-    // document.querySelector('.items')
     const itemsDiv = document.querySelector('#all-items-div')
     const items = document.querySelectorAll("#item")
     
@@ -196,23 +194,39 @@ function makeList() {
 ////set item height so line height of pagination doesn't move on page changes
 // because of the difference between product title heights
 
-const getHeight = [document.querySelector('#item')].sort((a, b) => (a.offsetHeight > b.offsetHeight) ? -1 : 1)[0].offsetHeight
-function setHeight(){
-    items.forEach((item) => {
-        item.style.height = getHeight.toString().concat('px')
-    })
-}
+// const getHeight = [document.querySelector('#item')].sort((a, b) => (a.offsetHeight > b.offsetHeight) ? -1 : 1)[0].offsetHeight
+// function setHeight(){
+//     items.forEach((item) => {
+//         item.style.height = getHeight.toString().concat('px')
+//     })
+// }
 
 
 //filter by Search
 
 
 function filterProducts() {
-
+    
     window.setTimeout(function () {
+        var catStorage = localStorage.getItem('catStorage')
+        var inputCats = document.querySelectorAll('.checkbox-input')
+
+        if (catStorage !== null){
+            for (i=0; i < inputCats.length; i++){
+                if (inputCats[i].value == catStorage){
+                    console.log(inputCats[i]);
+                    inputCats[i].checked = true;
+                }
+            }
+            window.localStorage.removeItem('catStorage')
+
+        }
+
+
         var items = document.querySelectorAll('#item')
-        var search = document.querySelector('#search-input').value
-        var boxes = [...document.querySelectorAll('.checkbox-input')]
+        search = document.querySelector('#search-input').value
+        // console.log(search);
+        boxes = [...document.querySelectorAll('.checkbox-input')]
             .filter(box => box.checked == true)
             .map(box => box.value)
 
@@ -221,7 +235,9 @@ function filterProducts() {
             var itemTitle = item.querySelector('#item-title').textContent
             if (boxes.includes(itemVal) || boxes.includes('All') || boxes.length == 0) {
                 if (itemTitle.toLowerCase().match(search)) {
+           
                     item.style.display = 'flex'
+
                 } else {
                     item.style.display = 'none'
                 }
@@ -230,9 +246,12 @@ function filterProducts() {
                 item.style.display = 'none'
             }
         })
-    }, 10)
+        current_page = 1
+        changePage(1)
+    }, 20)
 }
 
+filterProducts()
 
 var selectedPages = document.querySelectorAll('#product-pp')
 
@@ -247,17 +266,15 @@ selectedPages.forEach((option) => {
         records_per_page = option.textContent != 'All' ? parseInt(option.textContent) : 100000
         current_page = 1
         changePage(1)
-        getSort()
     }
 })
 
 
-var listOfProducts = document.querySelectorAll('#item')
+const listOfProducts = document.querySelectorAll('#item')
 
 function getProductCount(){
     for (i=0; i < selectedPages.length; i++){
         if (selectedPages[i].classList.contains('active-page')){
-            console.log(parseInt(selectedPages[i].textContent));
             return parseInt(selectedPages[i].textContent)
         }
     } 
@@ -285,7 +302,40 @@ function nextPage()
     
 function changePage(page)
 {
-    setHeight()
+
+
+    // console.log(boxes);
+    // console.log(search);
+    var firstFilter = [...listOfProducts]
+        .filter(product => boxes.length === 0 || 
+        boxes.includes('All') || 
+        boxes.includes(product.getAttribute('value')))
+    filteredProducts = firstFilter.filter(product => 
+        product.querySelector('#item-title').textContent.toLowerCase().match(search.toLowerCase())
+        )
+    // for (i=0; i < filteredProducts.length; i++){
+    //     console.log(search.toLowerCase());
+    //     if (filteredProducts[i].querySelector('#item-title').textContent.toLowerCase().match(search.toLowerCase)){
+    //         console.log(filteredProducts[i]);
+    //     }
+    //     // if (filteredProducts[i].getAttribute('value') == )
+    // }
+
+    console.log(filteredProducts);
+
+    // for (i=0; i < filteredProducts.length; i++){
+    //     if (!filteredProducts[i].querySelector('#item-title').textContent
+    //     .toLowerCase().match(search.toLowerCase())){
+    //         console.log(filteredProducts[i].querySelector('#item-title').textContent.toLowerCase());
+         
+    //         filteredProducts.splice(i, 1)
+    //     } else {
+    //         console.log(filteredProducts[i].querySelector('#item-title').textContent.toLowerCase(), 'match');
+    //     }
+    // }
+   
+    // console.log(filteredProducts);
+    getSort(filteredProducts)
     var btn_next = document.getElementById("btn_next");
     var btn_prev = document.getElementById("btn_prev");
     // var listing_table = document.getElementById("listingTable");
@@ -299,16 +349,25 @@ function changePage(page)
     if (page > numPages()) page = numPages();
 
     listing_table.innerHTML = "";
+    if (filteredProducts.length > 0){
+        for (var i = (page-1) * records_per_page; i < (page * records_per_page) && i < filteredProducts.length; i++) {
+            var clone = filteredProducts[i].cloneNode(true)
+            clone.style.display = 'flex'
+            listing_table.appendChild(clone);
+  
 
-    for (var i = (page-1) * records_per_page; i < (page * records_per_page) && i < listOfProducts.length; i++) {
-        var clone = listOfProducts[i].cloneNode(true)
-        listing_table.appendChild(clone);
-        if (listBtn.classList.contains('active')){
-            clone.classList.toggle('itemActive')
-            clone.classList.toggle('item')
+            
+            if (listBtn.classList.contains('active')){
+                clone.classList.toggle('itemActive')
+                clone.classList.toggle('item')
+            }
+            
         }
-        
+  
+    } else {
+        listing_table.innerHTML = '<p>No Match</p>'
     }
+    
     // setItemStyle()
     page_span.innerHTML = page + " of " + numPages();
 
@@ -327,9 +386,10 @@ function changePage(page)
 
 function numPages()
 {
-    return Math.ceil(listOfProducts.length / records_per_page);
+    return Math.ceil(filteredProducts.length / records_per_page);
 }
 
 window.onload = function() {
-    changePage(1);
+    // changePage(1);
+    
 };
