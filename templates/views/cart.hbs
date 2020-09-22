@@ -11,6 +11,44 @@
         <div id='wood-pane'>
             <p>Cart</p>
         </div>
+
+        <section class='cart-section'>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>
+                        <input type="text">
+                    </th>
+                    <th>
+                        <button>Apply Coupon</button>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th>
+                        <button>Update Cart</button>
+                    </th>
+                </tr>
+            </table>
+            <div id='cart-totals'>
+
+            </div>
+            <div>
+                <p>your cart is empty (if no products in cart)</p>
+            </div>
+        </section>
     {{>footer}}
     <script src='/js/cart.js'></script>
 </body>

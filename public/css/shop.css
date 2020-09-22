@@ -39,6 +39,13 @@ body {
     padding: 1rem 0 1rem 0;
 }
 
+.shop-sorting > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+
 .shop-sorting > div:first-child * {
     padding: 0 10px 0 10px;
 }
@@ -52,12 +59,15 @@ body {
     color: #13aff0;
 } 
 
+
+
 #items-grid {
     padding: 5px 10px 5px 10px;
     border: 1px solid #13aff0;
     margin: 0 -1px 0 -1px;
     cursor: pointer;
     color: #13aff0;
+    /* margin-right: 0.2rem; */
 }
 
 
@@ -114,6 +124,7 @@ body {
 
 .shop-body div.product div#all-items-div.activeList div#item.itemActive div div#product-name a p#item-title {
     font-size: 2rem;
+    margin: 0.5rem 0 0.5rem 0;
 }
 
 #price-div {
@@ -124,7 +135,7 @@ body {
 }
 
 #price-div > p:first-child, #item-price {
-    margin: 0;
+    margin: 0; 
 }
 
 #price-div > p:last-child {

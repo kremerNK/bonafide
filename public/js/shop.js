@@ -124,6 +124,13 @@ function activeBtn(target) {
     target.style.border = '1px solid #13aff0'
     target.style.margin = '0 -1px 0 -1px'
     target.style.color = '#13aff0'
+
+    target.onmouseout = function(){
+        target.style.color = '#13aff0'
+        target.style.border = '1px solid #13aff0'
+        target.style.padding = '5px 10px 5px 10px';
+        target.style.margin = '0 -1px 0 -1px'
+    }
 }
 
 function deactiveBtn(target) {
@@ -131,7 +138,33 @@ function deactiveBtn(target) {
     target.style.border = '1px solid black'
     target.style.margin = '0 -1px 0 -1px'
     target.style.color = 'inherit'
+    target.onmouseover = function(){
+        console.log(target);
+        target.style.color = '#13aff0'
+        target.style.border = '1px solid #13aff0'
+        target.style.padding = '5px 10px 5px 10px';
+        target.style.margin = '0 -1px 0 -1px'
+
+    }
+
+    target.onmouseout = function(){
+        target.style.color = 'black'
+        target.style.border = '1px solid black'
+    }
+   
 }
+
+// function removeHover(ele){
+//     ele.style.color = 'black'
+//     ele.style.border = '1px solid black'
+// }
+
+// function hoverStyle(ele) {
+//     ele.style.color = '#13aff0'
+//     ele.style.border = '1px solid #13aff0'
+//     ele.style.padding = '5px 10px 5px 10px';
+//     ele.style.margin = '0 -1px 0 -1px'
+// }
 
 
 function makeGrid() {

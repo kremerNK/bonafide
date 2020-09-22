@@ -3,6 +3,8 @@ body {
     
 }
 
+
+
 #wood-pane {
     background-image: url('https://www.bonafidejuicery.com/wp-content/uploads/2017/09/kraftbackground-1.jpg');
     height: 125px;
@@ -27,6 +29,7 @@ body {
 
 .contact-section p {
     margin: 0;
+    font-size: 1.3rem;
 }
 
 iframe {
