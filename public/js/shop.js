@@ -1,5 +1,4 @@
 
-
 //////////////Sort by select bar/////////
 
 const select = document.querySelector('#sort')
@@ -154,19 +153,6 @@ function deactiveBtn(target) {
    
 }
 
-// function removeHover(ele){
-//     ele.style.color = 'black'
-//     ele.style.border = '1px solid black'
-// }
-
-// function hoverStyle(ele) {
-//     ele.style.color = '#13aff0'
-//     ele.style.border = '1px solid #13aff0'
-//     ele.style.padding = '5px 10px 5px 10px';
-//     ele.style.margin = '0 -1px 0 -1px'
-// }
-
-
 function makeGrid() {
     const gridBtn = document.querySelector('#items-grid')
     const listBtn = document.querySelector('#items-list')
@@ -224,19 +210,6 @@ function makeList() {
     }
 }
 
-////set item height so line height of pagination doesn't move on page changes
-// because of the difference between product title heights
-
-// const getHeight = [document.querySelector('#item')].sort((a, b) => (a.offsetHeight > b.offsetHeight) ? -1 : 1)[0].offsetHeight
-// function setHeight(){
-//     items.forEach((item) => {
-//         item.style.height = getHeight.toString().concat('px')
-//     })
-// }
-
-
-//filter by Search
-
 
 function filterProducts() {
     
@@ -254,11 +227,8 @@ function filterProducts() {
             window.localStorage.removeItem('catStorage')
 
         }
-
-
         var items = document.querySelectorAll('#item')
         search = document.querySelector('#search-input').value
-        // console.log(search);
         boxes = [...document.querySelectorAll('.checkbox-input')]
             .filter(box => box.checked == true)
             .map(box => box.value)
@@ -336,9 +306,6 @@ function nextPage()
 function changePage(page)
 {
 
-
-    // console.log(boxes);
-    // console.log(search);
     var firstFilter = [...listOfProducts]
         .filter(product => boxes.length === 0 || 
         boxes.includes('All') || 
@@ -346,38 +313,14 @@ function changePage(page)
     filteredProducts = firstFilter.filter(product => 
         product.querySelector('#item-title').textContent.toLowerCase().match(search.toLowerCase())
         )
-    // for (i=0; i < filteredProducts.length; i++){
-    //     console.log(search.toLowerCase());
-    //     if (filteredProducts[i].querySelector('#item-title').textContent.toLowerCase().match(search.toLowerCase)){
-    //         console.log(filteredProducts[i]);
-    //     }
-    //     // if (filteredProducts[i].getAttribute('value') == )
-    // }
-
-    console.log(filteredProducts);
-
-    // for (i=0; i < filteredProducts.length; i++){
-    //     if (!filteredProducts[i].querySelector('#item-title').textContent
-    //     .toLowerCase().match(search.toLowerCase())){
-    //         console.log(filteredProducts[i].querySelector('#item-title').textContent.toLowerCase());
-         
-    //         filteredProducts.splice(i, 1)
-    //     } else {
-    //         console.log(filteredProducts[i].querySelector('#item-title').textContent.toLowerCase(), 'match');
-    //     }
-    // }
    
-    // console.log(filteredProducts);
+
     getSort(filteredProducts)
     var btn_next = document.getElementById("btn_next");
     var btn_prev = document.getElementById("btn_prev");
-    // var listing_table = document.getElementById("listingTable");
     var listing_table = document.querySelector('#all-items-div')
     var page_span = document.getElementById("page");
- 
-    // Validate pageitems.forEach((item) => {
-    //     item.style.height = '486px'
-    // })
+
     if (page < 1) page = 1;
     if (page > numPages()) page = numPages();
 
@@ -387,9 +330,6 @@ function changePage(page)
             var clone = filteredProducts[i].cloneNode(true)
             clone.style.display = 'flex'
             listing_table.appendChild(clone);
-  
-
-            
             if (listBtn.classList.contains('active')){
                 clone.classList.toggle('itemActive')
                 clone.classList.toggle('item')

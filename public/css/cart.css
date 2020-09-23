@@ -19,4 +19,121 @@ body {
     font-family: 'Dancing Script', cursive;
     
     
-} 
+}  
+
+.cart-section {
+    display: flex;
+    flex-direction: column;
+}
+
+#cart-table {
+    width: 75%;
+    margin: 0 auto;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+}
+
+#table-header {
+    text-align: left;
+    font-weight: 200;
+    background-color: #f7f7f7;
+}
+
+#table-header > th {
+    font-family: 'Oswald', sans-serif;
+    padding: 1rem 0 1rem 0;
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-row {
+    
+}
+
+.product-row > td:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-row {
+    
+}
+
+.product-row > td:first-child > button {
+    height: 1.2rem;
+}
+#cart-table tbody tr.product-row td img {
+    height: 100px;
+    width: 125px;
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+#coupon {
+    text-align: left;
+    font-weight: 200;
+    background-color: #f7f7f7;
+}
+
+#coupon > th {
+    font-family: 'Oswald', sans-serif;
+    padding: 1rem 0 1rem 0;
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#coupon button:first-child {
+    margin-left: 50px;
+}
+
+.fas.fa-times {
+    border: 1px solid #bbb; 
+    color: #bbb;
+    border-radius: 100%;
+    padding: 0.4rem;
+}
+
+.fas.fa-times:hover {
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+}
+
+/* quantity button  */
+
+.input-group {
+    display: none;
+    width: auto;
+
+    padding: 2rem 0 2rem 0;
+}
+
+#myNumber {
+    background-color: transparent;
+    border: 1px solid #e4e4e4;
+    border-left: none;
+    border-right: none;
+    color: #777;
+    text-align: center;
+    width: 2.5rem;
+    
+}
+
+#up, #down {
+    color: #777;
+    font-size: 1rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: transparent;
+    border: 1px solid #e4e4e4;
+}
+
+#up:hover, #down:hover {
+    cursor: pointer;
+}

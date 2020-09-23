@@ -17,12 +17,9 @@ function scroll(){
         logoShrink.style.height = '50px'
         navbar.classList.add('sticky');
         spacer.style.height = padding.toString().concat('px')
-        // spacer.style.height = '210px' 
-        console.log('true');
+
         
     } else {
-        console.log(window.pageYOffset);
-        console.log(getHeightNav);
         navbar.classList.remove('sticky')
         // spacer.style.height = '0px'
         logoShrink.style.height = '125px'
@@ -38,3 +35,23 @@ shopNowCat.forEach((item) => item.onclick = () => {
 
 
 ////add items to cart//////
+  
+
+function addCart(){
+    var target = this.event.target;
+    var ancestor = target.closest('#item')
+    var addItem = {};
+    addItem.image = ancestor.querySelector('#product-img').src
+    addItem.title = ancestor.querySelector("#item-title").textContent
+    addItem.price = ancestor.querySelector('#item-price').textContent
+    var id = ancestor.querySelector('#item-id').getAttribute('value')
+    var parsedStorage = JSON.parse(localStorage.getItem('cart')) || []
+    parsedStorage.push({
+        id: id,
+        value: addItem
+    })
+    localStorage.setItem('cart', JSON.stringify(parsedStorage))
+
+}
+
+// push({[id]: addItem})

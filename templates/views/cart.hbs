@@ -1,55 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/cart.css">
     <title>Document</title>
 </head>
+
 <body>
     {{>nav}}
-        <div id='wood-pane'>
-            <p>Cart</p>
+    <div id='wood-pane'>
+        <p>Cart</p>
+    </div>
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button id="down" class="btn btn-default" onclick=" down('0')">-</button>
         </div>
+        <input type="text" id="myNumber" class="form-control input-number" value="1" />
+        <div class="input-group-btn">
+            <button id="up" class="btn btn-default" onclick="up('10')">+</button>
+        </div>
+        
+    </div>
 
-        <section class='cart-section'>
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>
-                        <input type="text">
-                    </th>
-                    <th>
-                        <button>Apply Coupon</button>
-                    </th>
-                    <th></th>
-                    <th></th>
-                    <th>
-                        <button>Update Cart</button>
-                    </th>
-                </tr>
-            </table>
-            <div id='cart-totals'>
+    <section class='cart-section'>
+        <table id='cart-table'>
+            <tr id='table-header'>
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
 
-            </div>
-            <div>
-                <p>your cart is empty (if no products in cart)</p>
-            </div>
-        </section>
+            <tr id='coupon'>
+                <th>
+                    <input type="text">
+                </th>
+                <th>
+                    <button>Apply Coupon</button>
+                </th>
+                <th></th>
+                <th></th>
+                <th>
+                    <button>Update Cart</button>
+                </th>
+            </tr>
+        </table>
+        <div id='cart-totals'>
+
+        </div>
+        <div>
+            <p>your cart is empty (if no products in cart)</p>
+        </div>
+    </section>
     {{>footer}}
     <script src='/js/cart.js'></script>
 </body>
-</html> 
+
+</html>
