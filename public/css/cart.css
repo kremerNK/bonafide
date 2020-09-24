@@ -8,17 +8,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }  
-
+ 
 #wood-pane > p {
     color: #51a246;
     font-weight: 600;
     line-height: 0.5;
     font-size: 44px;
     font-family: 'Dancing Script', cursive;
-    
-    
 }  
 
 .cart-section {
@@ -136,4 +133,19 @@ body {
 
 #up:hover, #down:hover {
     cursor: pointer;
+}
+
+
+
+
+
+
+
+
+#card-element {
+    background-color: red;
+}
+
+.flex.justify-center.mt-32 {
+    background-color: #333;
 }

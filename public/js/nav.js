@@ -46,12 +46,23 @@ function addCart(){
     addItem.price = ancestor.querySelector('#item-price').textContent
     var id = ancestor.querySelector('#item-id').getAttribute('value')
     var parsedStorage = JSON.parse(localStorage.getItem('cart')) || []
-    parsedStorage.push({
-        id: id,
-        value: addItem
+
+    var toPush = {id: id, value: addItem}
+
+    var exists = false
+    parsedStorage.forEach((x) => {
+        if (x.id == toPush.id){
+            exists = true
+        }
+        
     })
+    if (exists == false){
+        parsedStorage.push(toPush)
+    }
+    console.log(parsedStorage);
     localStorage.setItem('cart', JSON.stringify(parsedStorage))
 
 }
 
 // push({[id]: addItem})
+

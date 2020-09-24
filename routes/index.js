@@ -22,6 +22,8 @@ var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
+
+
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
@@ -42,6 +44,8 @@ exports = module.exports = function (app) {
 	app.get('/blog', routes.views.blog);
 	app.get('/blog/:post', routes.views.blogPosts);
 	app.all('/employment', routes.views.employment);
+	app.all('/checkout', routes.views.checkout);
+	app.all('/charge', routes.views.charge);
 	
 	app.all('/contact', routes.views.contact);
 	app.get('/order-now', routes.views.ordernow);
