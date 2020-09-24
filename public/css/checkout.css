@@ -17,3 +17,43 @@ body {
     font-size: 44px;
     font-family: 'Dancing Script', cursive;
 }  
+
+#checkout-table {
+    width: 75%;
+    margin: 0 auto;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+}
+
+#table-header {
+    text-align: left;
+    font-weight: 200;
+    background-color: #f7f7f7;
+}
+
+#table-header > th {
+    font-family: 'Oswald', sans-serif;
+    padding: 1rem 0 1rem 0;
+    font-weight: 500;
+    /* font-size: 1.4rem; */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+#card-element {
+    background-color: red;
+}
+
+.flex.justify-center.mt-32 {
+    background-color: #333;
+}

@@ -19,7 +19,7 @@ if (shoppingCart.length > 0) {
 
         var hiddenId = document.createElement('input')
         hiddenId.type= 'hidden'
-        hiddenId.name = shoppingCart[i].id
+        hiddenId.name = shoppingCart[i].id 
         hiddenId.id = 'product-id'
         row.appendChild(hiddenId)
 
@@ -86,42 +86,54 @@ deleteBtns.forEach(btn => btn.addEventListener('click', function(){
 })) 
 
 //stripe integration
-//const stripe = require('stripe')('sk_test_51HU2DcIVvXQ3iOrWvO8PjTeAWhpijw1vWTyMCJ6LyG8JKeSpfL2YpcJOaYOlA4M3zcV5TSGVUKfVTJZOUlAENbqR00p6L3k482')
 
-const stripe = Stripe('pk_test_51HU2DcIVvXQ3iOrWc4VpIocGbjdoc2mDwhs8p0mOpTfdyi9TF4YaRTISX4husPKA3bCjxhCEIhz5UidBqTYJqTex00MrSwK4C1'); // Your Publishable Key
+const stripe = Stripe('pk_test_51HU2DcIVvXQ3iOrWc4VpIocGbjdoc2mDwhs8p0mOpTfdyi9TF4YaRTISX4husPKA3bCjxhCEIhz5UidBqTYJqTex00MrSwK4C1');
+
 const elements = stripe.elements();
-console.log(elements);
 
 // Create our card inputs
 var style = {
   base: {
-    color: "#fff"  
+    color: "#fff"
   }
-};
- 
+}; 
+
 const card = elements.create('card', { style });
 card.mount('#card-element');
+
+
+const token = async () => await stripe.card.createToken({
+  card: {
+    number: '4242424242424242',
+    exp_month: 9,
+    exp_year: 2021,
+    cvc: '314',
+  },   
+});
 
 const form = document.querySelector('form');
 const errorEl = document.querySelector('#card-errors');
 
 // Give our token to our form
 const stripeTokenHandler = token => {
+
   const hiddenInput = document.createElement('input');
   hiddenInput.setAttribute('type', 'hidden');
   hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id);
+  hiddenInput.setAttribute('value', token.id); 
   form.appendChild(hiddenInput);
-
+ 
   form.submit();
 }
 
 // Create token from card data
 form.addEventListener('submit', e => {
   e.preventDefault();
+  stripeTokenHandler(token)
+  // stripe.createToken(card).then(res => {
 
-  stripe.createToken(card).then(res => {
-    if (res.error) errorEl.textContent = res.error.message;
-    else stripeTokenHandler(res.token);
-  })
-})
+  //   if (res.error) errorEl.textContent = res.error.message;
+    
+  //   else stripeTokenHandler(res.token);
+  // })
+}) 
