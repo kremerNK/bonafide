@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: 'Oswald' sans-serif;
 }
 
 #wood-pane {
@@ -135,17 +136,37 @@ body {
     cursor: pointer;
 }
 
+/* 
+stylize coupon button/input*/
 
-
-
-
-
-
-
-#card-element {
-    background-color: red;
+#coupon {
+    height: 3rem;
 }
 
-.flex.justify-center.mt-32 {
-    background-color: #333;
+#coupon button, #checkout-btn {
+    padding: 12px 20px;
+    background-color: #13aff0;
+    border-radius: 0;
+    color: #fff;
+    border: none;
+    font-family: 'Oswald' sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+#coupon button:hover, #checkout-btn:hover {
+    background-color: #0b6990;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+#coupon input {
+    height: 2.4rem;
+    width: 100%;
+    margin-left: 1rem;
+    border-radius: 5px;
+    border: 1px solid #e4e4e4;
+    text-indent: 5px;
 }

@@ -40,6 +40,8 @@ if (shoppingCart.length > 0) {
     cell1.appendChild(deleteBtn)
     cell1.appendChild(img)
     cell2.innerHTML = shoppingCart[i].value.title
+    cell2.style.fontWeight = '400'
+    cell2.style.fontSize = '1.1rem'
     cell3.innerHTML = shoppingCart[i].value.price
     cell4.appendChild(plusMinusDiv)
     cell5.innerHTML = shoppingCart[i].value.price

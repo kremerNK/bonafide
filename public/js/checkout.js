@@ -28,16 +28,22 @@ if (shoppingCart.length > 0) {
 
 ///set total value
 var itemPrices = document.querySelectorAll('#product-price')
+var totalPlusTax = document.querySelector('#final-total')
+var tax = document.querySelector('#tax')
 var orderTotal = 0
 var totalEle = document.querySelector('#total')
 
+console.log(orderTotal);
 if (itemPrices.length > 0){
     for (i=0; i < itemPrices.length; i++){
         orderTotal += parseFloat(itemPrices[i].textContent.replace( /[^0-9]/, '' ))
     }
 }
-var roundedTotal = Math.ceil(orderTotal * 100)/100
+// orderTotal = orderTotal * 1.05
+var roundedTotal = (Math.ceil(orderTotal * 100)/100)
+tax.textContent = '$ ' + ((Math.ceil((orderTotal * 1.05) * 100)/100) - roundedTotal).toFixed(2)
 totalEle.textContent = '$ '.concat(roundedTotal.toString())
+totalPlusTax.textContent = '$ ' + (Math.ceil((orderTotal * 1.05) * 100)/100).toFixed(2).toString()
 
 // stripe integration
 
@@ -56,7 +62,7 @@ const card = elements.create('card', { style });
 card.mount('#card-element');
  
 
-const token = 't'
+
 
 const form = document.querySelector('form');
 const errorEl = document.querySelector('#card-errors');
@@ -80,10 +86,10 @@ const stripeTokenHandler = token => {
 // Create token from card data
 form.addEventListener('submit', e => {
     var totalCost = document.querySelector('#payment-value')
-    totalCost.value = roundedTotal.toString()
+    totalCost.value = (Math.ceil((orderTotal * 1.05) * 100)/100).toFixed(2).toString()
   
   e.preventDefault();
-  stripeTokenHandler(token)
+  stripeTokenHandler('placeholder')
   // stripe.createToken(card).then(res => {
 
   //   if (res.error) errorEl.textContent = res.error.message;
