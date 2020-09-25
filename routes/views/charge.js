@@ -13,6 +13,7 @@ exports = module.exports = async function (req, res) {
 
 
 	console.log('charge');
+	console.log(req.body);
 	const token = await stripe.tokens.create({
 		card: {
 		  number: '4242424242424242',
@@ -32,7 +33,7 @@ exports = module.exports = async function (req, res) {
 		  })
 		  .then(customer =>
 			stripe.charges.create({
-			  amount: 10000,
+			  amount: req.body.amount * 100,
 			  currency: "usd",
 			  customer: customer.id
 			}) 

@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/cart.css">
-        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    
 
     <title>Document</title>
 </head>
-  
+   
 <body>
-    {{>nav}}
+    {{>nav}} 
     <div id='wood-pane'>
         <p>Cart</p>
     </div>
     <div class="input-group">
         <div class="input-group-btn">
-            <button id="down" class="btn btn-default" onclick=" down('0')">-</button>
+            <button id="down" class="btn btn-default" onclick=" down('1')">-</button>
         </div>
         <input type="text" id="myNumber" class="form-control input-number" value="1" />
         <div class="input-group-btn">
@@ -30,7 +30,7 @@
         <table id='cart-table'>
             <tr id='table-header'>
                 <th></th>
-                <th>Product</th>
+                <th>Product</th> 
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
@@ -40,7 +40,7 @@
                 <th>
                     <input type="text">
                 </th> 
-                <th>
+                <th> 
                     <button>Apply Coupon</button>
                 </th>
                 <th></th>
@@ -63,25 +63,7 @@
         <div>
             <p>your cart is empty (if no products in cart)</p>
         </div>
-        <div>
-            <nav class="bg-purple-900 h-20 flex justify-center">
-                <h1 class="text-white text-5xl">Donation App</h1>
-            </nav>
-
-            <div class="flex justify-center mt-32">
-                <form action="/charge" method="POST" class="flex flex-col w-1/3">
-                    <input value='test'class="bg-transparent text-white p-2 h-10 mb-4" type="text" name="name" placeholder="Name">
-                    <input value='test@yahoo.com'type="email" class="bg-transparent text-white p-2 h-10 mb-4" name="email"
-                        placeholder="Email">
-                    <input value='100.00' class="bg-transparent text-white p-2 h-10 mb-4" type="text" name="amount"
-                        placeholder="Amount">
-
-                    <div id="card-element" class="bg-transparent text-white p-2 h-10 mb-4"></div>
-                    <div id="card-errors" role="alert"></div>
-                    <button class="text-white bg-purple-900 p-4 rounded">Submit Payment</button>
-                </form>
-            </div>
-        </div>
+        
     </section>
     {{>footer}}
     <script src="https://js.stripe.com/v3/"></script>

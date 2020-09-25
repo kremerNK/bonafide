@@ -21,8 +21,9 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
+const stripe = require('stripe')('sk_test_51HU2DcIVvXQ3iOrWvO8PjTeAWhpijw1vWTyMCJ6LyG8JKeSpfL2YpcJOaYOlA4M3zcV5TSGVUKfVTJZOUlAENbqR00p6L3k482')
 
-
+ 
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -36,6 +37,7 @@ var routes = {
   
 // Setup Route Bindings  
 exports = module.exports = function (app) {
+
 	// Views 
 	app.get('/', routes.views.homepage);
 	app.get('/menu', routes.views.menu);
@@ -44,7 +46,7 @@ exports = module.exports = function (app) {
 	app.get('/blog', routes.views.blog);
 	app.get('/blog/:post', routes.views.blogPosts);
 	app.all('/employment', routes.views.employment);
-	app.all('/checkout', routes.views.checkout);
+	app.get('/checkout', routes.views.checkout);
 	app.all('/charge', routes.views.charge);
 	
 	app.all('/contact', routes.views.contact);
@@ -57,7 +59,7 @@ exports = module.exports = function (app) {
  
 	// app.get('/blog/:category?', routes.views.blog);
 	// app.get('/blog/post/:post', routes.views.post);
-	// app.all('/contact', routes.views.contact);
+	// app.all('/contact', routes.views.contact); 
 
 	// COPY THE CODE FROM HERE...
 	//File Upload Route

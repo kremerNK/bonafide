@@ -210,7 +210,7 @@ function makeList() {
     }
 }
 
-
+ 
 function filterProducts() {
     
     window.setTimeout(function () {

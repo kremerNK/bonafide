@@ -44,6 +44,7 @@ function addCart(){
     addItem.image = ancestor.querySelector('#product-img').src
     addItem.title = ancestor.querySelector("#item-title").textContent
     addItem.price = ancestor.querySelector('#item-price').textContent
+    addItem.quantity = '1'
     var id = ancestor.querySelector('#item-id').getAttribute('value')
     var parsedStorage = JSON.parse(localStorage.getItem('cart')) || []
 
@@ -59,7 +60,7 @@ function addCart(){
     if (exists == false){
         parsedStorage.push(toPush)
     }
-    console.log(parsedStorage);
+
     localStorage.setItem('cart', JSON.stringify(parsedStorage))
 
 }

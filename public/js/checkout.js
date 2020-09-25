@@ -1,5 +1,3 @@
-console.log('checkout');
-
 
 
 ///display items and subtotals
@@ -15,17 +13,31 @@ if (shoppingCart.length > 0) {
         row.className = 'product-row'
         var cell1 = row.insertCell(0)
         var cell2 = row.insertCell(1)
+        
 
+        cell1.innerHTML = shoppingCart[i].value.title + ` (Quantity ${shoppingCart[i].value.quantity})`
+        cell2.innerHTML = '$' + parseFloat(shoppingCart[i].value.price.replace( /[^0-9]/, '' )) 
+        * parseFloat(shoppingCart[i].value.quantity)
 
-        cell1.innerHTML = shoppingCart[i].value.title
-        cell2.innerHTML = shoppingCart[i].value.price
-
+        cell2.id = 'product-price'
     }
     
 } else {
     table.style.display = 'none'
 }
 
+///set total value
+var itemPrices = document.querySelectorAll('#product-price')
+var orderTotal = 0
+var totalEle = document.querySelector('#total')
+
+if (itemPrices.length > 0){
+    for (i=0; i < itemPrices.length; i++){
+        orderTotal += parseFloat(itemPrices[i].textContent.replace( /[^0-9]/, '' ))
+    }
+}
+var roundedTotal = Math.ceil(orderTotal * 100)/100
+totalEle.textContent = '$ '.concat(roundedTotal.toString())
 
 // stripe integration
 
@@ -35,13 +47,15 @@ const elements = stripe.elements();
 // Create our card inputs
 var style = {
   base: {
-    color: "#fff"
+    backgroundColor: "#fff",
+  
   }
 }; 
 
 const card = elements.create('card', { style });
-card.mount('#card-element');
 
+card.mount('#checkout-form');
+ 
 
 const token = 't'
 
@@ -51,17 +65,24 @@ const errorEl = document.querySelector('#card-errors');
 // Give our token to our form
 const stripeTokenHandler = token => {
 
+
   const hiddenInput = document.createElement('input');
+
   hiddenInput.setAttribute('type', 'hidden');
   hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id); 
+  hiddenInput.setAttribute('value', token.id);  
   form.appendChild(hiddenInput);
- 
+  
+    
   form.submit();
+  // localStorage.removeItem('cart')
 }
 
 // Create token from card data
 form.addEventListener('submit', e => {
+    var totalCost = document.querySelector('#payment-value')
+    totalCost.value = roundedTotal.toString()
+  
   e.preventDefault();
   stripeTokenHandler(token)
   // stripe.createToken(card).then(res => {
