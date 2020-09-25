@@ -48,13 +48,12 @@ const elements = stripe.elements();
 var style = {
   base: {
     backgroundColor: "#fff",
-  
+   
   }
 }; 
 
 const card = elements.create('card', { style });
-
-card.mount('#checkout-form');
+card.mount('#card-element');
  
 
 const token = 't'

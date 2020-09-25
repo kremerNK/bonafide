@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/checkout.css">
-    {{!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> --}}
 
     <title>Checkout</title>
 </head>
@@ -16,7 +15,6 @@
         <p>Checkout</p>
     </div>
     <section class='checkout-section'>
-
         <table id='checkout-table'>
             <tr id='table-header'>
                 <th>Product</th>
@@ -24,42 +22,28 @@
             </tr>
             <tr>
                 <th>Subtotal</th>
-                <th id='total' name='amount'></th>
+                <th id='total'></th>
+            </tr>
+            <tr>
+                <th>Tax</th>
+                <th id='tax'></th>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <th id='final-total'></th>
             </tr>
         </table>
-        <div>
-
-        
-        <form id='checkout-form' method='POST' action="/charge"></form>
-            <div id='card-element'>
+        <div class='checkout-form-div'>
+            <form id='checkout-form' method='POST' action="/charge">
                 <input value='new' type="hidden" name='name'>
                 <input value='new@new.com' type="hidden" name='Email'>
-                <input id='payment-value' value='' type="hidden" name='amount'>
+                <input id='payment-value' type="hidden" name='amount'>
+                <div id='card-element'>
+
+                </div>
                 <button>Place Order</button>
-            </div>
-        </form>
-    
-
-        {{!-- <div>
-            <nav class="bg-purple-900 h-20 flex justify-center">
-                <h1 class="text-white text-5xl">Donation App</h1>
-            </nav> --}}
-
-        {{!-- <div class="flex justify-center mt-32">
-                <form action="/charge" method="POST" class="flex flex-col w-1/3">
-                    <input value='test' class="bg-transparent text-white p-2 h-10 mb-4" type="text" name="name"
-                        placeholder="Name">
-                    <input value='test@yahoo.com' type="email" class="bg-transparent text-white p-2 h-10 mb-4"
-                        name="email" placeholder="Email">
-                    <input id='total-cost' class="bg-transparent text-white p-2 h-10 mb-4" type="text" name="amount"
-                        placeholder="Amount">
-
-                    <div id="card-element" class="bg-transparent text-white p-2 h-10 mb-4"></div>
-                    <div id="card-errors" role="alert"></div>
-                    <button class="text-white bg-purple-900 p-4 rounded">Submit Payment</button>
-                </form>
-            </div> --}}
-        {{!-- </div> --}}
+            </form>
+        </div>
     </section>
 
     {{>footer}}
@@ -69,28 +53,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
